@@ -1,0 +1,201 @@
+---
+title: "download_data"
+author: "steppe"
+date: "4/8/2022"
+output: html_document
+---
+
+
+You will need to download a vector file which contains the BLM office boundaries.
+```{r Load packages, message = F, warning = F}
+library(tidyverse)
+library(here)
+library(FedData)
+library(sf)
+library(terra)
+library(whitebox)
+#set_here('..')
+```
+
+```{r Read in and Subset BLM field offices}
+FO <- st_read(paste0(here(), "/data/raw/blm_co_admu_fo_shp/BLM_CO_ADMU_FO_20201001.shp"),
+              quiet = T)
+
+FO <- FO %>% 
+  filter(ADMU_NAME == 'UNCOMPAHGRE FIELD OFFICE') %>% 
+  st_transform(4269) %>% 
+  as('Spatial')
+```
+
+
+```{r Read in AIM points}
+
+```
+
+
+### Slope Calculations 
+
+This code serves to download 10m resolution DEM. 
+```{r download DEM, eval = F}
+#dir.create(paste0(here(), '/data/raw/DEM'))
+links <- read.csv(
+  paste0(here(), '/data/raw/', 'DEM_file_paths.csv'), header = F)[,c(1,15)]
+names(links) <- c('Tile', 'URL')
+
+links <- links %>% 
+  mutate(Tile = str_extract_all(Tile, 'n\\d{2}w\\d{3}')) %>% 
+  mutate(Tile = paste0(Tile, '_10m_DEM.tif'))
+
+destfile <- paste0(here(), '/data/raw/DEM/', links$Tile)
+download.file(links$URL[1], destfile[1])
+
+for (i in 1:length(destfile)){
+  
+  download.file(links$URL[i], destfile[i])
+  Sys.sleep(5)
+  message("File downloaded and saved to location: " destfile[i])
+}
+rm(links, destfile, i)
+```
+
+Here we crop the extent of the rasters, and mosaic them together to form a a raster for easier usage.
+```{r Load and Mosaic rasters into Spatstat object, eval = F}
+raster_files <- paste0(here(), '/data/raw/DEM/', 
+                       list.files(paste0(here(), '/data/raw/DEM/')))
+
+raster_files = lapply(raster_files, rast)
+rsrc <- sprc(raster_files)
+m <- mosaic(rsrc)
+
+FO <- FO %>% 
+  st_as_sf() %>% 
+  st_transform(32613) %>% 
+  st_buffer(80) %>%  # we are just going to buffer a little bit to make sure our edges are nice
+  st_transform(crs(m)) %>% 
+  vect()
+
+dem <- crop(m, FO)
+dem <- terra::mask(dem, FO)
+
+writeRaster(dem, paste0(here(), '/data/raw/UFO_dem_10m.tif'))
+rm(raster_files, rsrc, m)
+```
+
+We will finally create a raster with modeled slope values. 
+```{r Create Slope Raster, eval = F}
+
+terrain(dem, v = 'slope', neighbors = 8, unit = 'degrees', 
+               filename = paste0(here(), '/data/processed/UFO_slope.tif')
+               )
+terrain(dem, v = 'aspect', neighbors = 8, unit = 'degrees', 
+               filename = paste0(here(), '/data/processed/UFO_aspect.tif')
+               )
+terrain(dem, v = 'TRI', neighbors = 8, unit = 'degrees', 
+               filename = paste0(here(), '/data/processed/UFO_topo_roughness.tif')
+               )
+
+```
+
+Points with greater than 26.57 degrees (slopes of 50*) are office rejections.
+```{r Read in Slope degree raster}
+degrees<- rast(paste0(here(), '/data/processed/UFO_slope.tif'))
+plot(degrees)
+#aspect<- rast(paste0(here(), '/data/processed/UFO_aspect.tif'))
+#plot(aspect)
+#tri <- rast(paste0(here(), '/data/processed/UFO_topo_roughness.tif'))
+#plot(tri)
+
+rm(aspect, tri)
+```
+
+
+```{r Create Geomorphons and Hydrologic Basins of Field Office}
+
+
+Sys.time()
+wbt_geomorphons('/home/steppe/AIM_field/data/raw/UFO_dem_10m.tif', 
+                output = p, search = 50, forms = T)
+Sys.time()
+
+
+input <- sample_dem_data()
+wbt_geomorphons(input, output = p, search = 50, forms = T)
+f <- rast(p)
+plot(f)
+```
+
+
+As a future endeavor we can use AIM data to test our slope value raster. Note this step is only possible if you have had previous AIM work carried out in the area. 
+```{r Logistic Regression Determining Accuracy of classification, eval = F}
+
+```
+
+
+### Pull in and Process Road Data
+
+```{r}
+john_tigger <- function(x) {
+  name <- x$NAME
+  county_roads <- tigris::roads(state = x$STATEFP,
+                                county = x$COUNTYFP, year = 2020)
+  county_roads <- mutate(county_roads, NAME = name)
+  
+  return(county_roads)
+}
+```
+
+```{r Pull in Road Data, warning = F}
+counties_filt <- tigris::counties(state = c('CO', 'UT'))
+counties <- st_join(counties_filt, st_as_sf(FO), join = st_intersects, left = F)
+
+# WE WILL NEED TO IMPORT JOHN_TIGGER FUNCTION FROM 'REVISIONARY TAXONOMY' - HOW YOU WANT DO THIS DORK? - IT COULD
+# REQUIRE YOU ACTUALLY PUSHING A PACKAGE PUBLIC...
+lst_result <- apply(counties, 1, john_tigger)
+cnty_rds <- bind_rows(lst_result) %>% 
+  st_as_sf()
+
+FO_ch_15mi <- FO %>% 
+  st_as_sf() %>% 
+  st_transform(32613) %>% 
+  st_buffer(16000.0934) %>% 
+  st_transform(st_crs(cnty_rds)) %>% 
+  select(2)
+
+cnty_rds <- st_intersection(cnty_rds, FO_ch_15mi) # reduce extent.
+inter <- st_intersects(cnty_rds,cnty_rds, sparse = TRUE)
+cnty_rds <- cnty_rds[lengths(inter)>1,]
+
+cnty_rds <- cnty_rds %>% 
+  st_transform(32613) %>% 
+  st_simplify(., preserveTopology = FALSE, dTolerance = 20)
+
+ggplot(counties) +
+  geom_sf() +
+  geom_sf(data = st_as_sf(FO), fill = 'blue', alpha = 0.5) +
+  geom_sf(data = cnty_rds_buf, alpha = 0.7) +
+  theme_bw()
+
+cnty_rds_buf <- st_buffer(cnty_rds, 4828) %>% 
+  st_union()
+
+st_write(cnty_rds, paste0(here(), '/data/processed/UFO_roads.shp'), quiet =T)
+rm(lst_result, john_tigger, FO_ch_15mi, counties_filt, inter)
+```
+
+### Determine accuracy of point drops on BLM Land. 
+
+```{r Import Dataset}
+
+```
+
+### Load 
+
+### Locate most proximal road access to Points
+
+```{r Find most proximal points to road}
+
+```
+
+### Determine whether these roads follow public access or cross private without right of way
+
+

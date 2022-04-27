@@ -1,0 +1,164 @@
+---
+title: "Gather ESD's for AIM"
+author: "steppe, Michael Schmidt, K. Holsinger"
+date: '2022-04-25'
+output: html_document
+---
+
+```{r, echo = F}
+knitr::opts_chunk$set(
+  echo = FALSE,  
+  message = FALSE, 
+  warning = FALSE 
+)
+```
+
+```{r Load Libraries, echo = F, warning = F, message = F}
+library(tidyverse)
+library(here)
+library(janitor)
+library(sf)
+```
+
+
+Ecological Site Descriptions serve to identify repeating motif across the landscape which are ecologically similar and respond to management in parallel fashions. 
+
+Traditionally, ESD's may be downloaded manually from the Jornada website via an NRCS soil mapping website which links to them. However this process can become tedious. Here I show a method for organization to generate their own script for:
+
+1) Downloading and setting up the MLRA query box, you can also do this via 
+2) Downloading all ESD's from the Jornada
+3) Generating a list of ESD'S within a certain distance of a location (e.g. AIM plot)
+
+# Download MLRA Database if your are unsure which region your field office is in
+
+[NRCS](https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053624)
+
+I moved this file to my data/raw sub-directory, and renamed it 'nrcs_mlra' because it's initial name did not indicate it's function.
+
+```{r Import Starting Data}
+blm_admnu <- st_read(paste0(here(), '/data/raw/blm_co_admu_fo_shp/',
+  list.files(paste0(here(), '/data/raw/blm_co_admu_fo_shp'), pattern = '.shp$')), 
+  quiet = T)
+  
+mlra <- st_read(paste0(here(), '/data/raw/nrcs_mlra/',
+  list.files(paste0(here(), '/data/raw/nrcs_mlra'), pattern = '.shp$')), 
+  quiet = T)
+
+head(blm_admnu[,c(2,7)]) %>% st_drop_geometry()
+```
+
+I work in the Uncompahgre field office, hence I will filter for that administrative name ('ADMU_NAME'). An alternative it to filter by the District office ('PARENT_NAME'), for example the 'Southwest District Office'; note both of these are in all caps. 
+
+```{r Filter Administrative Unit or Parent Name to relevant area}
+blm_admnu <- blm_admnu  %>% 
+  filter(ADMU_NAME == 'UNCOMPAHGRE FIELD OFFICE') %>% 
+  st_transform(32613) %>%  # we transfor to a PLANAR projection in meters so we can buffer it
+  st_buffer(10000) %>%  # buffer the FO by 10 km  
+  # this allows us to retrieve bordering MLRAS
+  st_transform(st_crs(mlra)) # convert new vector data to same projection as mlra
+
+mlra_lookup <- st_intersects(blm_admnu, mlra, sparse = T)
+mlra <- mlra[mlra_lookup[[1]],]
+
+ggplot(mlra) +
+  geom_sf() +
+  geom_sf(data = blm_admnu, fill = 'yellow', alpha = 0.4) +
+  theme_bw()
+
+rm(mlra_lookup)
+```
+
+## Create list of all ESD's for MLRA's
+
+```{r Create list of ESDs}
+mlra$MLRARSYM <- paste0('0', mlra$MLRARSYM) # these are meant to be preceded by a leading 0
+mlra$MLRARSYM[3] <- paste0(mlra$MLRARSYM[3], 'X') # 36 is suppose to have a trailing X.... this only applies to me!!!!!
+
+list_url <- paste0("https://edit.jornada.nmsu.edu/services/downloads/esd/", mlra$MLRARSYM, "/class-list.txt")
+```
+
+# Download all Relevant ESD from Jornada
+
+Using some code fleshed out by Michael Schmidt we can download the files below. 
+```{r Download ESD's, eval = F}
+ecoclasses <- do.call(rbind,
+          lapply(list_url, read_tsv, skip = 2, show_col_types = FALSE)) %>% 
+  janitor::clean_names()
+
+# NOW FILTER TO YOUR STATE OF INTEREST, for example our MLRA spans several States, 
+# I do not need to download data in another state so we filter to Colorado here
+co_classes<-ecoclasses %>%
+  filter(str_detect(ecological_site_id, "CO$"))
+
+download_esd<-function(x, output_path){
+  base_url <- "https://edit.jornada.nmsu.edu/services/descriptions/esd/"
+  doc_url <- paste0(base_url, x$mlra, "/", x$ecological_site_id, ".pdf")
+  download.file(doc_url, paste0(output_path,"/",x$ecological_site_id," - ",
+                                janitor::make_clean_names(x$ecological_site_name),".pdf"), mode="wb")
+  Sys.sleep(3)
+}
+
+dirpath <- paste0(here(), '/data/raw/UFO_ESD') # MODIFY THIS TO be the folder you want to hold your esd
+# dir.create(dirpath) # this creates a folder to hold the ESD 
+
+download_esd(co_classes, dirpath)
+rm(mlra, ecoclasses, co_classes, dirpath, list_url, download_esd)
+```
+
+# 3 Generate a list of the relevant ESD's for each AIM point
+
+We will just write these out as an excel like file. 
+
+You can hopefully  download the state SSURGO database from here: 
+[NRCS SSURGO BOX](https://nrcs.app.box.com/v/soils/folder/148414960239)
+
+Be sure to check if your state has the 'spatial' component with it- if not it is a not go. For Colorado I had to individually download counties/areas and generate a reference data set from [here](https://websoilsurvey.sc.egov.usda.gov/App/WebSoilSurvey.aspx). 
+
+```{r Link to SSURGO database}
+sf::st_layers(dsn = paste0(here(), '/data/raw/gSSURGO_CO/gSSURGO_CO.gdb'))
+
+st_read(dsn = paste0(here(), '/data/raw/gSSURGO_CO/gSSURGO_CO.gdb'), layer = 'mapunit') # ESDs live here
+table(db$siteindex_l)
+```
+
+For the UFO we had to create our own lookup data file...
+```{r Generate novel ssurgo dataset, eval = F}
+
+spatial <- paste0(here(), '/data/raw/ssurgo/',
+                  list.files(paste0(here(), '/data/raw/ssurgo/'), 
+                             pattern  = 'soilmu_a.*.shp$', recursive = T))
+component <- paste0(here(), '/data/raw/ssurgo/',
+                  list.files(paste0(here(), '/data/raw/ssurgo/'), 
+                             pattern = 'comp', recursive = T))
+ecoclass <- paste0(here(), '/data/raw/ssurgo/',
+                  list.files(paste0(here(), '/data/raw/ssurgo/'), 
+                             pattern = 'cecoclas.txt', recursive = T))
+
+spatial <- do.call(bind_rows,
+        lapply(spatial, st_read, quiet = T))
+component <- do.call(rbind,
+          lapply(component, read_delim, delim = "|", col_names = F, show_col_types = FALSE))[,108:109]
+names(component) <- c('mukey','cokey')
+ecoclass <- do.call(rbind,
+          lapply(ecoclass, read_delim, delim = "|", col_names = F, show_col_types = FALSE))
+names(ecoclass) <-  c('ecoclasstypename', 'ecoclassref', 'ecoclassid', 'ecoclassname', 'cokey', 'coecoclasskey')
+
+ecoclass <- left_join(ecoclass, component, by = 'cokey') %>% 
+  mutate(mukey = as.character(mukey))
+
+ssurgo <- left_join(spatial, ecoclass, by = c('MUKEY' = 'mukey')) 
+
+blm_admnu <- st_transform(blm_admnu, st_crs(ssurgo))
+
+ssurgo_valid <- st_is_valid(ssurgo)
+ssurgo_lookup <- st_intersects(blm_admnu, ssurgo, sparse = T)
+ssurgo <- ssurgo[ssurgo_lookup[[1]],]
+
+ggplot(blm_admnu) +
+  geom_sf(fill = 'yellow') +
+  geom_sf(data = test)
+
+rm(ecoclass, component)
+
+```
+
