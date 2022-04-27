@@ -39,7 +39,7 @@ I moved this file to my data/raw sub-directory, and renamed it 'nrcs_mlra' becau
 blm_admnu <- st_read(paste0(here(), '/data/raw/blm_co_admu_fo_shp/',
   list.files(paste0(here(), '/data/raw/blm_co_admu_fo_shp'), pattern = '.shp$')), 
   quiet = T)
-  
+
 mlra <- st_read(paste0(here(), '/data/raw/nrcs_mlra/',
   list.files(paste0(here(), '/data/raw/nrcs_mlra'), pattern = '.shp$')), 
   quiet = T)
@@ -151,14 +151,43 @@ ssurgo <- left_join(spatial, ecoclass, by = c('MUKEY' = 'mukey'))
 blm_admnu <- st_transform(blm_admnu, st_crs(ssurgo))
 
 ssurgo_valid <- st_is_valid(ssurgo)
+invalid <- as.numeric(which(ssurgo_valid %in% F))
+ssurgo[invalid,] <- st_make_valid(ssurgo[invalid,])
+
 ssurgo_lookup <- st_intersects(blm_admnu, ssurgo, sparse = T)
-ssurgo <- ssurgo[ssurgo_lookup[[1]],]
+ssurgo <- ssurgo[ssurgo_lookup[[1]],] %>% 
+  select(7:11)
+)
 
-ggplot(blm_admnu) +
-  geom_sf(fill = 'yellow') +
-  geom_sf(data = test)
+st_write(ssurgo, paste0(here(), '/data/processed/ssurgo.shp'), quiet = T)
+rm(ecoclass, component, ssurgo_valid, ssurgo_lookup, invalid, spatial)
+```
 
-rm(ecoclass, component)
 
+```{r}
+
+pts <- tibble(
+  pt = c('a','b','c','d'),
+  long = c(38.550773, 38.228984, 38.367782, 38.512936),
+  lat = c(-107.837138, -108.391745, -108.882819, -108.757585)
+) %>% 
+  st_as_sf(coords = c(x = 'lat', y = 'long'), crs = 4326) %>% 
+  st_transform(32613) %>% 
+  st_buffer(3000) %>% 
+  st_transform(st_crs(ssurgo))
+
+esds <- st_intersection(ssurgo, pts) %>% 
+  group_by(pt, ecoclassid, ecoclassname) %>% 
+  summarize(geometry = st_union(geometry)) 
+
+esds$PrcntArea <- round(
+  as.numeric(
+    ((st_area(this)/1000) / (pi*(3000^2)/1000)) * 100
+    ), 
+  1)
+
+ggplot(esds, aes(fill = ecoclassid)) +
+  geom_sf() 
+ 
 ```
 
