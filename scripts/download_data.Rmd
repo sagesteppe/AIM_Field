@@ -109,19 +109,27 @@ rm(aspect, tri)
 ```
 
 
-```{r Create Geomorphons and Hydrologic Basins of Field Office}
+```{r Create Geomorphons and Hydrologic Basins of Field Office, eval = F}
+data_proc <- paste0(here(),"/data/processed/")
 
 
 Sys.time()
-wbt_geomorphons('/home/steppe/AIM_field/data/raw/UFO_dem_10m.tif', 
-                output = p, search = 50, forms = T)
+whitebox::wbt_feature_preserving_smoothing(paste0(here(),'/data/raw/UFO_dem_10m.tif'), 
+                           paste0(data_proc, "UFO_dem_10_smooth.tif"), filter=9)
+
+wbt_breach_depressions(paste0(data_proc, "UFO_dem_10_smooth.tif"), 
+                   paste0(data_proc, "UFO_dem_10_sm_breached.tif"))
+
+wbt_geomorphons(paste0(data_proc, "UFO_dem_10_sm_breached.tif"), 
+                output = paste0(data_proc, "UFO_geomorphons_10m.tif"), 
+                search = 50, forms = T)
 Sys.time()
 
 
-input <- sample_dem_data()
-wbt_geomorphons(input, output = p, search = 50, forms = T)
-f <- rast(p)
-plot(f)
+geomor <- raster::raster(paste0(data_proc, "UFO_geomorphons_10m.tif"))
+plot(geomor)
+
+rm(data_proc)
 ```
 
 

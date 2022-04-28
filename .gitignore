@@ -6,4 +6,10 @@ data/raw/UFO_ESD/
 data/processed/
 data/raw/UFO_dem_10m.tif
 data/processed/ssurgo.*
+data/processed/UFO_aspect.tif
+data/processed/UFO_dem10_sm_breached.tif
+data/processed/UFO_dem_10_smooth.tif
+data/processed/UFO_geomorphons-10m.tif
+data/processed/UFO_slope_deg.tif
+data/processed/UFO_topo_roughness.tif
 

@@ -1,0 +1,49 @@
+---
+title: "Sample_Points"
+author: "steppe"
+date: '2022-04-27'
+output: html_document
+---
+
+```{r Load Libraries, echo = F, warning = F, message = F}
+library(tidyverse)
+library(readxl)
+library(here)
+library(sf)
+library(raster)
+```
+
+ My advice is to to create a MASTER version of all points, and then copy this to a COPY of all points
+```{r}
+
+Plot_Tracking_2022 <- read_excel(paste0(here(),  '/data/raw/PlotTracking_AIM_plots_2022-COPY.xlsx'), 
+                           sheet = 1, skip = 1) %>% 
+  janitor::clean_names()
+
+Proportions <- read_excel(paste0(here(),  '/data/raw/PlotTracking_AIM_plots_2022-COPY.xlsx'), 
+                           sheet = 2, skip = 1) %>% 
+  janitor::clean_names() %>% 
+  drop_na(design_strata, plots)
+
+initial_process <- read_excel(paste0(here(),  '/data/raw/PlotTracking_AIM_plots_2022-COPY.xlsx'), 
+                           sheet = 3) %>% 
+  janitor::clean_names() 
+
+```
+
+
+Slope of Points, AIM points are to be reject if they fall upon a slope of 50% or greater. A 50% slope is 26.57 degrees.
+```{r Office Reject Slopes which are too great to Sample}
+
+slope_degree <- raster(paste0(here(), '/data/processed/UFO_slope_deg.tif'))
+dem <- raster(paste0(here(), '/data/processed/UFO_dem_10_smooth.tif'))
+
+initial_process <- initial_process %>% 
+  drop_na(long:lat) %>% 
+  filter(long != 'SAMPLED IN 2018') %>% 
+  st_as_sf(coords = c(x = 'long', y = 'lat'), crs = 4269, remove = F) 
+
+ouput <- plot_mover(initial_process, utm_nad = 26913,
+                    ras_dem = dem, ras_slo = slope_degree)
+
+```
