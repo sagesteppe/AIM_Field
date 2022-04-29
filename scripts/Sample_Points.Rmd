@@ -11,6 +11,8 @@ library(readxl)
 library(here)
 library(sf)
 library(raster)
+library(leaflet)
+source(here::here('scripts/functions.R'))
 ```
 
  My advice is to to create a MASTER version of all points, and then copy this to a COPY of all points
@@ -46,4 +48,21 @@ initial_process <- initial_process %>%
 ouput <- plot_mover(initial_process, utm_nad = 26913,
                     ras_dem = dem, ras_slo = slope_degree)
 
+ouput <- ouput %>% 
+  mutate(across(.cols = long:lat, as.numeric))
 ```
+
+```{r}
+twop <- ouput %>% 
+  filter(next_in_line_or_oversample == 'Yes',
+         str_detect(plot_id, 'SS|SD'))
+
+leaflet(data = twop) %>%
+ addTiles() %>%
+ addMarkers(~long, ~lat,
+            popup = ~as.character(plot_id),
+            label = ~as.character(plot_id))
+```
+
+
+

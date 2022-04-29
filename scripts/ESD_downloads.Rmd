@@ -176,6 +176,9 @@ pts <- tibble(
   st_buffer(3000) %>% 
   st_transform(st_crs(ssurgo))
 
+
+ssurgo <- st_read(paste0(here(), '/data/processed/ssurgo.shp'), quiet = T)
+
 esds <- st_intersection(ssurgo, pts) %>% 
   group_by(pt, ecoclassid, ecoclassname) %>% 
   summarize(geometry = st_union(geometry)) 

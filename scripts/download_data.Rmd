@@ -83,9 +83,10 @@ rm(raster_files, rsrc, m)
 
 We will finally create a raster with modeled slope values. 
 ```{r Create Slope Raster, eval = F}
+dem <- rast(paste0(here(), '/data/raw/UFO_dem_10m.tif'))
 
 terrain(dem, v = 'slope', neighbors = 8, unit = 'degrees', 
-               filename = paste0(here(), '/data/processed/UFO_slope.tif')
+               filename = paste0(here(), '/data/processed/UFO_slope_deg.tif')
                )
 terrain(dem, v = 'aspect', neighbors = 8, unit = 'degrees', 
                filename = paste0(here(), '/data/processed/UFO_aspect.tif')
@@ -98,7 +99,7 @@ terrain(dem, v = 'TRI', neighbors = 8, unit = 'degrees',
 
 Points with greater than 26.57 degrees (slopes of 50*) are office rejections.
 ```{r Read in Slope degree raster}
-degrees<- rast(paste0(here(), '/data/processed/UFO_slope.tif'))
+degrees<- rast(paste0(here(), '/data/processed/UFO_slope_deg.tif'))
 plot(degrees)
 #aspect<- rast(paste0(here(), '/data/processed/UFO_aspect.tif'))
 #plot(aspect)

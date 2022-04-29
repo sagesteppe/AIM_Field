@@ -1,54 +1,3 @@
-##################################
-####          shifts           ###
-##################################
-
-shifts <- function(x){
-  
-  if(x$Direction == "O"){
-    
-    geom <- c(st_coordinates(x))
-    poly <- as.data.frame(t(matrix(c(
-      geom[1], geom[2]),2))
-    )# create two row matrix (rows transposed to columns)
-    poly <- st_as_sf(poly, coords=c("V1","V2"))
-    poly <- st_as_sf(poly)
-    
-  } else if(x$Direction == "N"){
-    
-    geom <- c(st_coordinates(x))
-    poly <- as.data.frame(t(matrix(c(
-      geom[1]+50, geom[2]),2))
-    )# create two row matrix (rows transposed to columns)
-    poly <- st_as_sf(poly, coords=c("V1","V2"))
-    poly <- st_as_sf(poly)
-  } else if(x$Direction == "E"){
-    
-    geom <- c(st_coordinates(x))
-    poly <- as.data.frame(t(matrix(c(
-      geom[1], geom[2]-50),2))
-    )# create two row matrix (rows transposed to columns)
-    poly <- st_as_sf(poly, coords=c("V1","V2"))
-    poly <- st_as_sf(poly)
-    
-  } else if (x$Direction == "S"){
-    
-    geom <- c(st_coordinates(x))
-    poly <- as.data.frame(t(matrix(c(
-      geom[1]-50, geom[2]),2))
-    )
-    poly <- st_as_sf(poly, coords=c("V1","V2"))
-    poly <- st_as_sf(poly)
-    
-  } else if(x$Direction == "W"){
-    
-    geom <- c(st_coordinates(x))
-    poly <- as.data.frame(t(matrix(c(
-      geom[1], geom[2]+50),2))
-    )
-    poly <- st_as_sf(poly, coords=c("V1","V2"))
-    poly <- st_as_sf(poly)
-  }
-}
 
 ################################
 ###        plot_mover        ###
@@ -72,6 +21,60 @@ plot_mover <- function(x, utm_nad, ras_dem, ras_slo){
   # 'ras_dem' your preferred raster dem (dtm) model, we run on 1/3 arc second
   # 'ras_slo' a raster of slopes values, this can be *quickly* created using terra or 
   # raster package, specify output in degrees. Should match resolution of dem. 
+  
+  ##################################
+  ####          shifts           ###
+  ##################################
+  
+  ## this function does the heavy listing for testing the shifted AA centers
+  shifts <- function(x){
+    
+    if(x$Direction == "O"){
+      
+      geom <- c(st_coordinates(x))
+      poly <- as.data.frame(t(matrix(c(
+        geom[1], geom[2]),2))
+      )# create two row matrix (rows transposed to columns)
+      poly <- st_as_sf(poly, coords=c("V1","V2"))
+      poly <- st_as_sf(poly)
+      
+    } else if(x$Direction == "N"){
+      
+      geom <- c(st_coordinates(x))
+      poly <- as.data.frame(t(matrix(c(
+        geom[1]+50, geom[2]),2))
+      )# create two row matrix (rows transposed to columns)
+      poly <- st_as_sf(poly, coords=c("V1","V2"))
+      poly <- st_as_sf(poly)
+    } else if(x$Direction == "E"){
+      
+      geom <- c(st_coordinates(x))
+      poly <- as.data.frame(t(matrix(c(
+        geom[1], geom[2]-50),2))
+      )# create two row matrix (rows transposed to columns)
+      poly <- st_as_sf(poly, coords=c("V1","V2"))
+      poly <- st_as_sf(poly)
+      
+    } else if (x$Direction == "S"){
+      
+      geom <- c(st_coordinates(x))
+      poly <- as.data.frame(t(matrix(c(
+        geom[1]-50, geom[2]),2))
+      )
+      poly <- st_as_sf(poly, coords=c("V1","V2"))
+      poly <- st_as_sf(poly)
+      
+    } else if(x$Direction == "W"){
+      
+      geom <- c(st_coordinates(x))
+      poly <- as.data.frame(t(matrix(c(
+        geom[1], geom[2]+50),2))
+      )
+      poly <- st_as_sf(poly, coords=c("V1","V2"))
+      poly <- st_as_sf(poly)
+    }
+  }
+  
   
   # buffer points and perform initial slope extraction of slope
   buf_pts <- x %>% 
