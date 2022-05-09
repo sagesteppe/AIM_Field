@@ -42,6 +42,10 @@ initial_process <- read_excel(paste0(here(),  '/data/raw/PlotTracking_AIM_plots_
                            sheet = 3) %>% 
   janitor::clean_names() 
 
+initial_process <- initial_process %>% 
+  drop_na(long:lat) %>% 
+  filter(long != 'SAMPLED IN 2018') %>% 
+  st_as_sf(coords = c(x = 'long', y = 'lat'), crs = 4269, remove = F) 
 ```
 
 ### Slope Rejections
@@ -50,13 +54,8 @@ AIM points are to be rejected if they fall upon a slope of 50% or greater. A 50%
 
 ```{r Office Reject Slopes which are too great to Sample}
 
-slope_degree <- raster(paste0(here(), '/data/processed/UFO_slope_deg.tif'))
+slope_degree <- rast(paste0(here(), '/data/processed/UFO_slope_deg.tif'))
 dem <- raster(paste0(here(), '/data/processed/UFO_dem_10_smooth.tif'))
-
-initial_process <- initial_process %>% 
-  drop_na(long:lat) %>% 
-  filter(long != 'SAMPLED IN 2018') %>% 
-  st_as_sf(coords = c(x = 'long', y = 'lat'), crs = 4269, remove = F) 
 
 ouput <- plot_mover(initial_process, utm_nad = 26913,
                     ras_dem = dem, ras_slo = slope_degree)
@@ -90,15 +89,18 @@ leaflet(data = twop) %>%
             label = ~as.character(plot_id))
 ```
 
-### Create Google Earth Icons for exporting Sites. 
+# Prepare Data for Entry to Google Earth
+
+Google Earth provides an excellent interface to visualize sites due to it's 3-dimensional interface. We will prep and style the points as kml formats for quick input to the system. 
+
+### Create Site Icons for Google Earth
 
 ```{r Save AIM Points as Icons}
-base_url <- 'http:// google.com/mapfiles/ms/micons/'
+base_url <- 'http://google.com/mapfiles/ms/micons/'
 url_suffix <- '.png'
 
 opts_base <- paste0(base_url, c('yellow', 'blue', 'green', 'lightblue', 
                'orange', 'pink', 'purple', 'red'), url_suffix)
-
 opts_oversamples <- paste0(base_url, 
                            c('yellow-dot', 'blue-dot', 'green-dot', 'ltblue-dot', 
                              'orange-dot', 'pink-dot', 'purple-dot', 'red-dot'),
@@ -107,39 +109,144 @@ opts_oversamples <- paste0(base_url,
 rm(base_url, url_suffix)
 ```
 
-```{r Save BLM Ownership as KML}
+
+
+### Create Ownership Layers for Google Earth
+
+Here we will use the PAD-US database to download public land ownership data by state. Note it is almost always not imperative that you check that your points fall on BLM (the chance of this is **very very low**), what matters is crossing private land without easements to access BLM land. 
+
+You can download the [PAD-US dataset](https://www.sciencebase.gov/catalog/item/60259839d34eb12031138e1e) for your state manually. 
+
+```{r Import Public Lands owernship and crop to extent of Field Office. echo = F}
+
+p1 <- paste0(here(), '/data/raw/',
+  list.files(paste0(here(), '/data/raw/'), pattern = '^PADUS'), '/'
+  ) # list folder for state
+PAD <- st_read(paste0(p1, list.files(p1, pattern = 'Fee.*\\.shp$')), quiet = T)
+PAD_valid <- PAD %>% st_is_valid()
+
+PAD[which(PAD_valid %in% F),] <- st_make_valid(PAD[which(PAD_valid %in% F),])
+
+blm_admnu <- st_read(paste0(here(), '/data/raw/blm_co_admu_fo_shp/',
+  list.files(paste0(here(), '/data/raw/blm_co_admu_fo_shp'), pattern = '.shp$')), 
+  quiet = T) %>% 
+  filter(ADMU_NAME == 'UNCOMPAHGRE FIELD OFFICE') %>% 
+  st_transform(32613) %>%  # we transform to a PLANAR projection in meters so we can buffer it
+  st_buffer(10000) %>% 
+  st_transform(st_crs(PAD)) %>% 
+  st_bbox()
+
+PAD <- st_crop(PAD, blm_admnu)
+
+head(PAD)
+table(PAD$Mang_Type) # RELEVANT
+table(PAD$Mang_Name)
+table(PAD$Des_Tp)
+
+PAD <- PAD %>% 
+  dplyr::select(Mang_Type, Mang_Name, Des_Tp) %>% 
+  mutate(Mang_Name = case_when(
+    Mang_Name %in% c('CITY', 'CNTY', 'SDNR', 'SFW', 'SPR', 'OTHS', 'REG') ~ 'CITY_CNTY_SDC_SDNR_SPR', 
+    Mang_Name %in% c('NGO','PVT') ~ 'PVT',
+    TRUE ~ Mang_Name
+  ))
+
+PAD1 <- PAD %>% 
+  group_by(Mang_Name) %>% 
+  summarize(geometry = st_union(geometry))
+
+ggplot(PAD1, aes(fill = Mang_Name)) +
+  geom_sf()
+  
+rm(p1, PAD_valid)
+```
+
+I find that these are the relevant tables for this process, you may locate them in their original form on the
+[PAD-US Data Manual](https://www.usgs.gov/programs/gap-analysis-project/pad-us-data-manual) webpage. Note that I removed many island and oceanic entities from Table 5. 
+
+Table 4. Agency Type domain codes and descriptions
+
+| Code |	      Domain Description         |
+| ---- | --------------------------------- |
+| DESG |	Designation                      | 
+| DIST |	Regional Agency Special District |
+| FED  |  Federal                          |
+| JNT  |	Joint                            |
+| LOC  |	Local Government                 |
+| NGO  |	Non-Governmental Organization    |
+| PVT  |	Private                          |
+| STAT |  State                            |
+| TERR |	Territorial                      |
+| TRIB |	American Indian Lands            |
+| UNK  |	Unknown                          |
+
+Table 5. Agency Name domain codes and descriptions
+
+| Code  |            Domain Description             |
+| ----  | ----------------------------------------- |
+| BIA   | Bureau of Indian Affairs                  |
+| BLM   | Bureau of Land Management                 |
+| CITY  | City Land                                 |
+| CNTY 	| County Land                               |
+| DESG 	| Designation                               |
+| DOD 	| Department of Defense                     |
+| DOE 	| Department of Energy                      |
+| FWS 	| U.S. Fish & Wildlife Service              |
+| JNT 	| Joint                                     |   
+| NGO 	| Non-Governmental Organization             |
+| NPS 	| National Park Service                     |
+| NRCS  | Natural Resources Conservation Service    |
+| OTHF 	| Other or Unknown Federal Land             |
+| OTHR 	| Other                                     |
+| OTHS 	| Other or Unknown State Land               |
+| PVT 	| Private                                   |
+| REG 	| Regional Agency Land                      |
+| RWD 	| Regional Water Districts                  |
+| SDC 	| State Department of Conservation          |
+| SDNR 	| State Department of Natural Resources     |
+| SDOL 	| State Department of Land                  |
+| SFW 	| State Fish and Wildlife                   |
+| SLB 	| State Land Board                          |
+| SPR 	| State Park and Recreation                 |
+| TRIB 	| American Indian Lands                     |
+| UNK 	| Unknown                                   |
+| UNKL 	| Other or Unknown Local Government         |
+| USACE | Army Corps of Engineers                   |
+| USBR 	| Bureau of Reclamation                     |
+| USFS 	| Forest Service                            |
+
+
+
+```{r Save Public Lands Ownership as KML}
 
 kmlfile <- paste(td, "BLM_UFO_Ownership.kml", sep="/")
 
-public_lands_colours <- c(
+public_lands_colours <- setNames(
   
   # these manually transcribed from the H-1553-Publications Standards Manual
-  # Handbook - hopefully no errors
+  # Handbook - hopefully no errors.
+  # [H-1553](https://www.ntc.blm.gov/krc/uploads/223/Ownership_Map_Color_Reference_Sheet.pdf)
   
-  blm <- rgb(254, 230, 121),
-  blm_wilderness <- rgb(254, 230, 191),
-  usfs <- rgb(204, 235, 197),
-  usfs_oc <- rgb(179, 222, 105),
-  usfs_wilderness <- rgb(153, 213, 148),
-  nps <- rgb(202, 189, 220),
-  nps_wilderness <- rgb(177, 137, 193),
-  usfws_nwr <- rgb(127, 204, 167),
-  usfws_wilderness <- rgb(102, 191, 127),
-  ntnl_grassland <- rgb(230, 245, 177),
-  bureau_reclamation <- rgb(255, 255, 179),
-  indian_res <- rgb(253, 180, 108),
-  indian_res_wilderness <- rgb(253, 154, 82),
-  military_reserve_ACE <- rgb(251, 180, 206),
-  federal_other <- rgb(228, 196, 159),
-  state <- rgb(179, 227, 238),
-  state_wilderness <- rgb(107, 207, 226),
-  bankhead-jones <- rgb(252, 205, 207),
-  state_county_city_wildlife_parks_etc <- rgb(143, 181, 190),
-  private <- rgb(255, 255, 255)
-
+  c( # colours
+  rgb(254, 230, 121, max = 255), # BLM
+  rgb(204, 235, 197, max = 255), # USFS
+  rgb(202, 189, 220, max = 255), # NPS
+  rgb(127, 204, 167, max = 255), # FWS
+  rgb(255, 255, 179, max = 255), # USBR
+  rgb(253, 180, 108, max = 255), # TRIB
+  rgb(251, 180, 206, max = 255), # DOD
+  rgb(228, 196, 159, max = 255), # OTHF
+  rgb(179, 227, 238, max = 255), # SLB
+  rgb(255, 255, 255, max = 255), # PVT
+  rgb(143, 181, 190, max = 255) # CITY CNTY
+  ), 
+  
+  c( # names
+  'BLM', 'USFS', 'NPS', 'FWS', 'USBR', 'TRIB', 'DOD', 'OTHF', 'SLB', 'PVT', 'CITY_CNTY_SDC_SDNR_SPR'
+  )
 )
 
-
+public_lands_colours
 
 kmlPolygons(blm_ownership, kmlfile = kmlfile,
   name = "KML Polygons subset", 
@@ -153,3 +260,5 @@ kmlfile <- paste(td, "worldPoliticalandSubset.kml", sep="/")
 ```
 
 
+
+U.S. Geological Survey (USGS) Gap Analysis Project (GAP), 2020, Protected Areas Database of the United States (PAD-US) 2.1: U.S. Geological Survey data release, https://doi.org/10.5066/P92QM3NT.

@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Protected Areas Database of the United States (PAD-US)</title>
+  <link rel="schema.dc" href="http://purl.org/metadata/dublin_core"/>
+  <meta name="dc.title" content="Protected Areas Database of the United States (PAD-US) "/>
+  <meta name="dc.creator" content="U.S. Geological Survey (USGS) Gap Analysis Project (GAP) "/>
+  <meta name="dc.subject" content="NGDA Portfolio Themes Protected Area Land Manager GAP Status Code Land Stewardship Land Ownership Gap Analysis Biodiversity Conservation Protection Status IUCN Category Federal Lands Public Lands Outdoor Recreation Public Health Public Open Space Parks Governmental Units State Lands Private Lands Local Government Lands "/>
+  <meta name="dc.description" content="The USGS Protected Areas Database of the United States (PAD-US) is the nation's inventory of protected areas, including public land and voluntarily provided private protected areas, identified as an A-16 National Geospatial Data Asset in the Cadastre Theme (https://communities.geoplatform.gov/ngda-cadastre/). The PAD-US is an ongoing project with several published versions of a spatial database including areas dedicated to the preservation of biological diversity, and other natural (including extraction), recreational, or cultural uses, managed for these purposes through legal or other effective means. The database was originally designed to support biodiversity assessments; however, its scope expanded in recent years to include all public and nonprofit lands and waters. Most are public lands owned in fee (the owner of the property has full and irrevocable ownership of the land); however, long-term easements, leases, agreements, Congressional (e.g. 'Wilderness Area'), Executive (e.g. 'National Monument'), and administrative designations (e.g. 'Area of Critical Environmental Concern') documented in agency management plans are also included. The PAD-US strives to be a complete inventory of public land and other protected areas, compiling “best available” data provided by managing agencies and organizations. The PAD-US geodatabase maps and describes areas using over twenty-five attributes and five feature classes representing the U.S. protected areas network in separate feature classes: Fee (ownership parcels), Designation, Easement, Marine, Proclamation and Other Planning Boundaries. Five additional feature classes include various combinations of the primary layers (for example, Combined_Fee_Easement) to support data management, queries, web mapping services, and analyses. This PAD-US Version 2.1 dataset includes a variety of updates and new data from the previous Version 2.0 dataset (USGS, 2018 https://doi.org/10.5066/P955KPLE ), achieving the primary goal to &quot;Complete the PAD-US Inventory by 2020&quot; (https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-vision) by addressing known data gaps with newly available data. The following list summarizes the integration of &quot;best available&quot; spatial data to ensure public lands and other protected areas from all jurisdictions are represented in PAD-US, along with continued improvements and regular maintenance of the federal theme. Completing the PAD-US Inventory:   1) Integration of over 75,000 city parks in all 50 States (and the District of Columbia) from The Trust for Public Land's (TPL) ParkServe data development initiative (https://parkserve.tpl.org/) added nearly 2.7 million acres of protected area and significantly reduced the primary known data gap in previous PAD-US versions (local government lands).   2) First-time integration of the Census American Indian/Alaskan Native Areas (AIA) dataset (https://www2.census.gov/geo/tiger/TIGER2019/AIANNH) representing the boundaries for federally recognized American Indian reservations and off-reservation trust lands across the nation (as of January 1, 2020, as reported by the federally recognized tribal governments through the Census Bureau's Boundary and Annexation Survey) addressed another major PAD-US data gap. 3) Aggregation of nearly 5,000 protected areas owned by local land trusts in 13 states, aggregated by Ducks Unlimited through data calls for easements to update the National Conservation Easement Database (https://www.conservationeasement.us/), increased PAD-US protected areas by over 350,000 acres.    Maintaining regular Federal updates: 1) Major update of the Federal estate (fee ownership parcels, easement interest, and management designations), including authoritative data from 8 agencies: Bureau of Land Management (BLM), U.S. Census Bureau (Census), Department of Defense (DOD), U.S. Fish and Wildlife Service (FWS), National Park Service (NPS), Natural Resources Conservation Service (NRCS), U.S. Forest Service (USFS), National Oceanic and Atmospheric Administration (NOAA).  The federal theme in PAD-US is developed in close collaboration with the Federal Geographic Data Committee (FGDC) Federal Lands Working Group (FLWG, https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/);  2) Complete National Marine Protected Areas (MPA) update: from the National Oceanic and Atmospheric Administration (NOAA) MPA Inventory, including conservation measure ('GAP Status Code', 'IUCN Category') review by NOAA;  Other changes: 1) PAD-US field name change - The &quot;Public Access&quot; field name changed from 'Access' to 'Pub_Access' to avoid unintended scripting errors associated with the script command 'access'. 2) Additional field - The &quot;Feature Class&quot; (FeatClass) field was added to all layers within PAD-US 2.1 (only included in the &quot;Combined&quot; layers of PAD-US 2.0 to describe which feature class data originated from).  3) Categorical GAP Status Code default changes - National Monuments are categorically assigned GAP Status Code = 2 (previously GAP 3), in the absence of other information, to better represent biodiversity protection restrictions associated with the designation.  The Bureau of Land Management  Areas of Environmental Concern (ACECs) are categorically assigned GAP Status Code = 3 (previously GAP 2) as the areas are administratively protected, not permanent. More information is available upon request. 4) Agency Name (FWS) geodatabase domain description changed to U.S. Fish and Wildlife Service (previously U.S. Fish &amp; Wildlife Service). 5) Select areas in the provisional PAD-US 2.1 Proclamation feature class were removed following a consultation with the data-steward (Census Bureau). Tribal designated statistical areas are purely a geographic area for providing Census statistics with no land base. Most affected areas are relatively small; however, 4,341,120 acres and 37 records were removed in total. Contact Mason Croft (masoncroft@boisestate) for more information about how to identify these records. For more information regarding the PAD-US dataset please visit, https://usgs.gov/gapanalysis/PAD-US/.  For more information about data aggregation please review the Online PAD-US Data Manual available at https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual . "/>
+  <meta name="dc.publisher" content="USGS Gap Analysis Project - Boise State University Cooperator"/>
+  <meta name="dc.contributor" content="U.S. Geological Survey (USGS) Gap Analysis Project (GAP), 2020, Protected Areas Database of the United States (PAD-US) 2.1: U.S. Geological Survey data release, https://doi.org/10.5066/P92QM3NT "/>
+  <meta name="dc.date" content="20200930"/>
+  <meta name="dc.type" content="data.vector and tabular digital data"/>
+  <meta name="dc.format" content="The File downloads in a .zip format"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Manager Type"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Manager Name"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Federal Management Agencies"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Protection Status by GAP Status Code"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Protected Areas by Manager"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Protection Mechanism Category"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Public Access"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Fee Managers"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Federal Fee Managers (Authoritative Data)"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Proclamation and Other Planning Boundaries"/>
+  <meta name="dc.format" content="PAD-US 2.1 - Fee Topology Overlaps"/>
+  <meta name="dc.identifier" content="https://usgs.gov/gapanalysis/PAD-US"/>
+  <meta name="dc.source" content="Download or view data from https://usgs.gov/gapanalysis/PAD-US/ or https://doi.org/10.5066/P92QM3NT .  The PAD-US version 2.1 data was developed using an Esri ArcGIS version 10 File Geodatabase format to utilize the expanded capabilities of the File Geodatabase for overall size, attribute name length, attribute aliases, coded domain values and topology analysis tools (See PAD_US2_1_GDB.zip at https://doi.org/10.5066/P92QM3NT ).  Users may download a shapefile (.shp), Keyhole Markup Language (.kmz), and ArcGIS version 10.x file geodatabase (.gdb) formats at https://usgs.gov/gapanalysis/PAD-US-data-download .  Various Web Mapping Services (https://usgs.gov/gapanalysis/PAD-US-web-services) and poster maps (https://usgs.gov/gapanalysis/PAD-US-resources) are also available."/>
+  <meta name="dc.lang" content="en"/>
+  <meta name="dc.relation" content="Part of Protected Areas Database of the United States (PAD-US)"/>
+  <meta name="dc.coverage.x.min" scheme="DD" content="-180.0000"/>
+  <meta name="dc.coverage.x.max" scheme="DD" content="180.0000"/>
+  <meta name="dc.coverage.y.min" scheme="DD" content="-15.3861"/>
+  <meta name="dc.coverage.y.max" scheme="DD" content="71.3120"/>
+  <meta name="dc.coverage.placeName" content="United States"/>
+  <meta name="dc.coverage.placeName" content="Alabama (AL)"/>
+  <meta name="dc.coverage.placeName" content="Alaska (AK)"/>
+  <meta name="dc.coverage.placeName" content="Arizona (AZ)"/>
+  <meta name="dc.coverage.placeName" content="Arkansas (AR)"/>
+  <meta name="dc.coverage.placeName" content="California (CA)"/>
+  <meta name="dc.coverage.placeName" content="Colorado (CO)"/>
+  <meta name="dc.coverage.placeName" content="Connecticut (CT)"/>
+  <meta name="dc.coverage.placeName" content="Delaware (DE)"/>
+  <meta name="dc.coverage.placeName" content="Florida (FL)"/>
+  <meta name="dc.coverage.placeName" content="Georgia (GA)"/>
+  <meta name="dc.coverage.placeName" content="Hawaii (HI)"/>
+  <meta name="dc.coverage.placeName" content="Idaho (ID)"/>
+  <meta name="dc.coverage.placeName" content="Illinois (IL)"/>
+  <meta name="dc.coverage.placeName" content="Indiana (IN)"/>
+  <meta name="dc.coverage.placeName" content="Iowa (IA)"/>
+  <meta name="dc.coverage.placeName" content="Kansas (KS)"/>
+  <meta name="dc.coverage.placeName" content="Kentucky (KY)"/>
+  <meta name="dc.coverage.placeName" content="Louisiana (LA)"/>
+  <meta name="dc.coverage.placeName" content="Maine (ME)"/>
+  <meta name="dc.coverage.placeName" content="Maryland (MD)"/>
+  <meta name="dc.coverage.placeName" content="Massachusetts (MA)"/>
+  <meta name="dc.coverage.placeName" content="Michigan (MI)"/>
+  <meta name="dc.coverage.placeName" content="Minnesota (MN)"/>
+  <meta name="dc.coverage.placeName" content="Mississippi (MS)"/>
+  <meta name="dc.coverage.placeName" content="Missouri (MO)"/>
+  <meta name="dc.coverage.placeName" content="Montana (MT)"/>
+  <meta name="dc.coverage.placeName" content="Nebraska (NE)"/>
+  <meta name="dc.coverage.placeName" content="Nevada (NV)"/>
+  <meta name="dc.coverage.placeName" content="New Hampshire (NH)"/>
+  <meta name="dc.coverage.placeName" content="New Jersey (NJ)"/>
+  <meta name="dc.coverage.placeName" content="New Mexico (NM)"/>
+  <meta name="dc.coverage.placeName" content="New York (NY)"/>
+  <meta name="dc.coverage.placeName" content="North Carolina (NC)"/>
+  <meta name="dc.coverage.placeName" content="North Dakota (ND)"/>
+  <meta name="dc.coverage.placeName" content="Ohio (OH)"/>
+  <meta name="dc.coverage.placeName" content="Oklahoma (OK)"/>
+  <meta name="dc.coverage.placeName" content="Oregon (OR)"/>
+  <meta name="dc.coverage.placeName" content="Pennsylvania (PA)"/>
+  <meta name="dc.coverage.placeName" content="Rhode Island (RI)"/>
+  <meta name="dc.coverage.placeName" content="South Carolina (SC)"/>
+  <meta name="dc.coverage.placeName" content="South Dakota (SD)"/>
+  <meta name="dc.coverage.placeName" content="Tennessee (TN)"/>
+  <meta name="dc.coverage.placeName" content="Texas (TX)"/>
+  <meta name="dc.coverage.placeName" content="Utah (UT)"/>
+  <meta name="dc.coverage.placeName" content="Vermont (VT)"/>
+  <meta name="dc.coverage.placeName" content="Virginia (VA)"/>
+  <meta name="dc.coverage.placeName" content="Washington (WA)"/>
+  <meta name="dc.coverage.placeName" content="West Virginia (WV)"/>
+  <meta name="dc.coverage.placeName" content="Wisconsin (WI)"/>
+  <meta name="dc.coverage.placeName" content="Wyoming (WY)"/>
+  <meta name="dc.coverage.placeName" content="American Samoa (AS)"/>
+  <meta name="dc.coverage.placeName" content="Federated States of Micronesia (FM)"/>
+  <meta name="dc.coverage.placeName" content="Mariana Islands (MP)"/>
+  <meta name="dc.coverage.placeName" content="Guam (GU)"/>
+  <meta name="dc.coverage.placeName" content="Marshall Islands (MH)"/>
+  <meta name="dc.coverage.placeName" content="Palau (PW)"/>
+  <meta name="dc.coverage.placeName" content="Puerto Rico (PR)"/>
+  <meta name="dc.coverage.placeName" content="U.S. Minor Outlying Islands (UM)"/>
+  <meta name="dc.coverage.placeName" content="United States Virgin Islands (VI)"/>
+  <meta name="dc.coverage.t.min" content="2005"/>
+  <meta name="dc.coverage.t.max" content="2020"/>
+  <meta name="dc.coverage.periodName" content="2005"/>
+  <meta name="dc.coverage.periodName" content="2006"/>
+  <meta name="dc.coverage.periodName" content="2007"/>
+  <meta name="dc.coverage.periodName" content="2008"/>
+  <meta name="dc.coverage.periodName" content="2009"/>
+  <meta name="dc.coverage.periodName" content="2010"/>
+  <meta name="dc.coverage.periodName" content="2011"/>
+  <meta name="dc.coverage.periodName" content="2012"/>
+  <meta name="dc.coverage.periodName" content="2013"/>
+  <meta name="dc.coverage.periodName" content="2014"/>
+  <meta name="dc.coverage.periodName" content="2015"/>
+  <meta name="dc.coverage.periodName" content="2016"/>
+  <meta name="dc.coverage.periodName" content="2017"/>
+  <meta name="dc.coverage.periodName" content="2018"/>
+  <meta name="dc.coverage.periodName" content="2019"/>
+  <meta name="dc.coverage.periodName" content="2020"/>
+  <meta name="dc.rights" content="Access constraints: These data are in the public domain.; Use constraints: The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that should be used to obtain the data for use.  "/>
+  <meta name="generated-from" content="phpiBayXp.xml"/>
+  <style type="text/css">
+    /* These CSS rules can be modified to apply different styles to your outline-format metadata. */
+    .major-section { border-top: 1px solid black; padding-top: 0.5em; }
+    .child { margin-left: 2em; margin-bottom: 0.5em; }
+    .element-name { font-style: italic; }
+    .element-value { }
+    .blank { margin-top: 1em; }
+    #page-bottom { visibility: hidden; display: none; }
+    #generated-by { font-size: small; }
+  </style>
+</head>
+<body>
+<h1>Protected Areas Database of the United States (PAD-US)</h1>
+Metadata also available as - [<a href="phpiBayXp.faq.html" title="This metadata record in an alternative format">Questions &amp; Answers</a>] - [<a href="phpiBayXp-new.txt" title="This metadata record in an alternative format">Parseable text</a>] - [<a href="phpiBayXp-new.xml" title="This metadata record in an alternative format">XML</a>]<p>
+<h3>Metadata:</h3>
+<ul>
+<li><a href="#1">Identification_Information</a></li>
+<li><a href="#2">Data_Quality_Information</a></li>
+<li><a href="#3">Spatial_Data_Organization_Information</a></li>
+<li><a href="#4">Spatial_Reference_Information</a></li>
+<li><a href="#5">Entity_and_Attribute_Information</a></li>
+<li><a href="#6">Distribution_Information</a></li>
+<li><a href="#7">Metadata_Reference_Information</a></li>
+</ul>
+<div class="major-section" id="1">
+<span class="element-name idinfo">Identification_Information:</span><div class="child">
+<span class="element-name citation">Citation:</span><div class="child">
+<span class="element-name citeinfo">Citation_Information:</span><div class="child">
+<span class="element-name origin">Originator:</span> <span class="element-value origin">U.S. Geological Survey (USGS) Gap Analysis Project (GAP)</span><br/>
+<span class="element-name pubdate">Publication_Date:</span> <span class="element-value pubdate">20200930</span><br/>
+<span class="element-name title">Title:</span> <span class="element-value title">Protected Areas Database of the United States (PAD-US)</span><br/>
+<span class="element-name edition">Edition:</span> <span class="element-value edition">2.1</span><br/>
+<span class="element-name geoform">Geospatial_Data_Presentation_Form:</span> <span class="element-value geoform">vector and tabular digital data</span><br/>
+<span class="element-name serinfo">Series_Information:</span><div class="child">
+<span class="element-name sername">Series_Name:</span> <span class="element-value sername">PAD-US</span><br/>
+<span class="element-name issue">Issue_Identification:</span> <span class="element-value issue">Version 2.1</span><br/>
+</div>
+<span class="element-name pubinfo">Publication_Information:</span><div class="child">
+<span class="element-name pubplace">Publication_Place:</span> <span class="element-value pubplace"><a href="https://usgs.gov/gapanalysis/PAD-US/">https://usgs.gov/gapanalysis/PAD-US/</a></span><br/>
+<span class="element-name publish">Publisher:</span> <span class="element-value publish">U.S. Geological Survey (USGS)</span><br/>
+</div>
+<span class="element-name onlink">Online_Linkage:</span> <span class="element-value onlink"><a href="https://usgs.gov/gapanalysis/PAD-US">https://usgs.gov/gapanalysis/PAD-US</a></span><br/>
+<span class="element-name onlink">Online_Linkage:</span> <span class="element-value onlink"><a href="https://usgs.gov/gapanalysis/PAD-US-data">https://usgs.gov/gapanalysis/PAD-US-data</a></span><br/>
+<span class="element-name onlink">Online_Linkage:</span> <span class="element-value onlink"><a href="https://doi.org/10.5066/P92QM3NT">https://doi.org/10.5066/P92QM3NT</a></span><br/>
+<span class="element-name lworkcit">Larger_Work_Citation:</span><div class="child">
+<span class="element-name citeinfo">Citation_Information:</span><div class="child">
+<span class="element-name origin">Originator:</span> <span class="element-value origin">USGS Gap Analysis Project</span><br/>
+<span class="element-name pubdate">Publication_Date:</span> <span class="element-value pubdate">20200930</span><br/>
+<span class="element-name title">Title:</span> <span class="element-value title">Protected Areas Database of the United States (PAD-US)</span><br/>
+<span class="element-name edition">Edition:</span> <span class="element-value edition">2.1</span><br/>
+<span class="element-name geoform">Geospatial_Data_Presentation_Form:</span> <span class="element-value geoform">geodatabase</span><br/>
+<span class="element-name pubinfo">Publication_Information:</span><div class="child">
+<span class="element-name pubplace">Publication_Place:</span> <span class="element-value pubplace"><a href="https://usgs.gov/gapanalysis/PAD-US/">https://usgs.gov/gapanalysis/PAD-US/</a></span><br/>
+<span class="element-name publish">Publisher:</span> <span class="element-value publish">U.S. Geological Survey (USGS)</span><br/>
+</div>
+<span class="element-name onlink">Online_Linkage:</span> <span class="element-value onlink"><a href="https://usgs.gov/gapanalysis/PAD-US/">https://usgs.gov/gapanalysis/PAD-US/</a></span><br/>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name descript">Description:</span><div class="child">
+<span class="element-name abstract">Abstract:</span>
+<div class="child element-value abstract">
+The USGS Protected Areas Database of the United States (PAD-US) is the nation's inventory of protected areas, including public land and voluntarily provided private protected areas, identified as an A-16 National Geospatial Data Asset in the Cadastre Theme (<a href="https://communities.geoplatform.gov/ngda-cadastre/)">https://communities.geoplatform.gov/ngda-cadastre/)</a>. The PAD-US is an ongoing project with several published versions of a spatial database including areas dedicated to the preservation of biological diversity, and other natural (including extraction), recreational, or cultural uses, managed for these purposes through legal or other effective means. The database was originally designed to support biodiversity assessments; however, its scope expanded in recent years to include all public and nonprofit lands and waters. Most are public lands owned in fee (the owner of the property has full and irrevocable ownership of the land); however, long-term easements, leases, agreements, Congressional (e.g. 'Wilderness Area'), Executive (e.g. 'National Monument'), and administrative designations (e.g. 'Area of Critical Environmental Concern') documented in agency management plans are also included. The PAD-US strives to be a complete inventory of public land and other protected areas, compiling “best available” data provided by managing agencies and organizations. The PAD-US geodatabase maps and describes areas using over twenty-five attributes and five feature classes representing the U.S. protected areas network in separate feature classes: Fee (ownership parcels), Designation, Easement, Marine, Proclamation and Other Planning Boundaries. Five additional feature classes include various combinations of the primary layers (for example, Combined_Fee_Easement) to support data management, queries, web mapping services, and analyses.
+<div class="blank"></div>
+<div class="blank"></div>
+This PAD-US Version 2.1 dataset includes a variety of updates and new data from the previous Version 2.0 dataset (USGS, 2018 <a href="https://doi.org/10.5066/P955KPLE">https://doi.org/10.5066/P955KPLE</a> ), achieving the primary goal to &quot;Complete the PAD-US Inventory by 2020&quot; (<a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-vision">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-vision</a>) by addressing known data gaps with newly available data. The following list summarizes the integration of &quot;best available&quot; spatial data to ensure public lands and other protected areas from all jurisdictions are represented in PAD-US, along with continued improvements and regular maintenance of the federal theme.
+<div class="blank"></div>
+<div class="blank"></div>
+Completing the PAD-US Inventory:  
+<div class="blank"></div>
+<div class="blank"></div>
+1) Integration of over 75,000 city parks in all 50 States (and the District of Columbia) from The Trust for Public Land's (TPL) ParkServe data development initiative (<a href="https://parkserve.tpl.org/">https://parkserve.tpl.org/</a>) added nearly 2.7 million acres of protected area and significantly reduced the primary known data gap in previous PAD-US versions (local government lands).  
+<div class="blank"></div>
+<div class="blank"></div>
+2) First-time integration of the Census American Indian/Alaskan Native Areas (AIA) dataset (<a href="https://www2.census.gov/geo/tiger/TIGER2019/AIANNH">https://www2.census.gov/geo/tiger/TIGER2019/AIANNH</a>) representing the boundaries for federally recognized American Indian reservations and off-reservation trust lands across the nation (as of January 1, 2020, as reported by the federally recognized tribal governments through the Census Bureau's Boundary and Annexation Survey) addressed another major PAD-US data gap.
+<div class="blank"></div>
+<div class="blank"></div>
+3) Aggregation of nearly 5,000 protected areas owned by local land trusts in 13 states, aggregated by Ducks Unlimited through data calls for easements to update the National Conservation Easement Database (<a href="https://www.conservationeasement.us/)">https://www.conservationeasement.us/)</a>, increased PAD-US protected areas by over 350,000 acres.   
+<div class="blank"></div>
+<div class="blank"></div>
+Maintaining regular Federal updates:
+<div class="blank"></div>
+<div class="blank"></div>
+1) Major update of the Federal estate (fee ownership parcels, easement interest, and management designations), including authoritative data from 8 agencies: Bureau of Land Management (BLM), U.S. Census Bureau (Census), Department of Defense (DOD), U.S. Fish and Wildlife Service (FWS), National Park Service (NPS), Natural Resources Conservation Service (NRCS), U.S. Forest Service (USFS), National Oceanic and Atmospheric Administration (NOAA).  The federal theme in PAD-US is developed in close collaboration with the Federal Geographic Data Committee (FGDC) Federal Lands Working Group (FLWG, <a href="https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/)">https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/)</a>; 
+<div class="blank"></div>
+<div class="blank"></div>
+2) Complete National Marine Protected Areas (MPA) update: from the National Oceanic and Atmospheric Administration (NOAA) MPA Inventory, including conservation measure ('GAP Status Code', 'IUCN Category') review by NOAA; 
+<div class="blank"></div>
+<div class="blank"></div>
+Other changes:
+<div class="blank"></div>
+<div class="blank"></div>
+1) PAD-US field name change - The &quot;Public Access&quot; field name changed from 'Access' to 'Pub_Access' to avoid unintended scripting errors associated with the script command 'access'.
+<div class="blank"></div>
+<div class="blank"></div>
+2) Additional field - The &quot;Feature Class&quot; (FeatClass) field was added to all layers within PAD-US 2.1 (only included in the &quot;Combined&quot; layers of PAD-US 2.0 to describe which feature class data originated from). 
+<div class="blank"></div>
+<div class="blank"></div>
+3) Categorical GAP Status Code default changes - National Monuments are categorically assigned GAP Status Code = 2 (previously GAP 3), in the absence of other information, to better represent biodiversity protection restrictions associated with the designation.  The Bureau of Land Management  Areas of Environmental Concern (ACECs) are categorically assigned GAP Status Code = 3 (previously GAP 2) as the areas are administratively protected, not permanent. More information is available upon request.
+<div class="blank"></div>
+<div class="blank"></div>
+4) Agency Name (FWS) geodatabase domain description changed to U.S. Fish and Wildlife Service (previously U.S. Fish &amp; Wildlife Service).
+<div class="blank"></div>
+5) Select areas in the provisional PAD-US 2.1 Proclamation feature class were removed following a consultation with the data-steward (Census Bureau). Tribal designated statistical areas are purely a geographic area for providing Census statistics with no land base. Most affected areas are relatively small; however, 4,341,120 acres and 37 records were removed in total. Contact Mason Croft (masoncroft@boisestate) for more information about how to identify these records.
+<div class="blank"></div>
+For more information regarding the PAD-US dataset please visit, <a href="https://usgs.gov/gapanalysis/PAD-US/">https://usgs.gov/gapanalysis/PAD-US/</a>.  For more information about data aggregation please review the Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a> .
+</div>
+<span class="element-name purpose">Purpose:</span>
+<div class="child element-value purpose">
+The PAD-US geodatabase was originally developed to organize and assess the management status (i.e. apply 'GAP Status Code') of elements of biodiversity protection by identifying species and plant communities not adequately represented in existing conservation lands.  In cooperation with the United Nations Environment Programme World Conservation Monitoring Centre (UNEP-WCMC), PAD-US also supports global conservation analyses to inform policy decisions. The dataset is robust and has been expanded in recent years, culminating in major additions to PAD-US 2.1, to support the recreation, natural resource management, wildfire, emergency management, transportation, research, and public health communities. New applications are frequently discovered. Multiple attributes and a flexible database structure provide context for data to be used at local (depending on inventory completeness in the local area), regional, state, national, and international scales. See <a href="https://usgs.gov/gapanalysis/PAD-US-resources">https://usgs.gov/gapanalysis/PAD-US-resources</a> for more information.
+</div>
+<span class="element-name supplinf">Supplemental_Information:</span>
+<div class="child element-value supplinf">
+The PAD-US database strives to be a complete inventory of areas dedicated to the preservation of biological diversity, and other natural (including extraction), recreational or cultural uses, managed for these purposes through legal or other effective means. PAD-US is an aggregation of “best available” spatial data provided by agencies and organizations at a point in time. This includes both fee ownership of lands as well as management through leases, easements, or other binding agreements. The data also tracks Congressional designations, Executive designations, and administrative designations identified in management plans (e.g. Bureau of Land Management 'Area of Critical Environmental Concern'). These factors provide for a robust dataset offering a spatial representation of the complex U.S. protected areas network. It is important to have in mind a specific analysis question when approaching how to work with the data. As a full inventory of areas aggregated from authoritative source data, PAD-US includes overlapping designation types and small boundary discrepancies between agency datasets. Overlapping designations largely occur in the Federal estate of the 'Designation' or 'Combined' feature classes (e.g. 'Wild and Scenic River' over a 'Wilderness Area' and 'National Forest'). See the Entity_and_Attribute_Information Section for more information about PAD-US feature classes.  
+<div class="blank"></div>
+<div class="blank"></div>
+It is important to note the presence of overlaps especially when trying to calculate area statistics; overlapping boundaries count the same area of ground multiple times. While minor boundary discrepancies remain, most major overlaps have been removed from the 'Fee' feature class and this is the best source for overall land area calculations by land manager ('Manager Name') within the PAD-US database (data gaps limit calculations by fee ownership or 'Owner Name'). Statistics summarizing 'Public Access' or Protection Status ('GAP Status Code') by managing agency or organization from an analysis of the PAD-US 1.4 'Combined' feature class are available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-statistics-and-reports">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-statistics-and-reports</a> and will be updated with PAD-US 2.0 and 2.1. As the PAD-US database is a direct aggregation of source data, the PAD-US development team rarely alters spatial linework.  Exceptions are: 1) to “clip” polygon boundaries along State legal boundary lines (using the authoritative State boundary file provided by the U.S. Census Bureau <a href="https://www2.census.gov/geo/tiger/TGRGDB19/tlgdb_2019_a_us_substategeo.gdb.zip">https://www2.census.gov/geo/tiger/TGRGDB19/tlgdb_2019_a_us_substategeo.gdb.zip</a> ), 2) to remove the small segments of boundaries created by this process associated with State or local lands (not Federal or nonprofit lands), and 3) to integrate Bureau of Land Management Field or District Office boundaries into the large boundaries representing National Public Lands (largely across the West) to attribute PAD-US &quot;Unit Name&quot; and support Wildland Fire Decision Tools.  Some boundary discrepancies (or slivers) remain in the dataset. Data overlaps have been identified and are shared, along with the U.S. Census Bureau State jurisdictional boundary file ( <a href="https://www2.census.gov/geo/tiger/TGRGDB19/tlgdb_2019_a_us_substategeo.gdb.zip">https://www2.census.gov/geo/tiger/TGRGDB19/tlgdb_2019_a_us_substategeo.gdb.zip</a> ), with agency data-stewards to facilitate edits in source files that will then be incorporated in subsequent PAD-US versions over time. 
+<div class="blank"></div>
+<div class="blank"></div>
+This PAD-US Version 2.1 dataset includes a variety of updates and improvements (listed in the abstract) to address known data gaps from the previous version 2.0 dataset. The PAD-US database is built in collaboration with many partners and data-stewards. Information regarding data-stewards is available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-data-stewards">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-data-stewards</a>.
+<div class="blank"></div>
+<div class="blank"></div>
+Story maps and other information are also available to describe PAD-US and various applications:
+<div class="blank"></div>
+<div class="blank"></div>
+1) Completing America’s Inventory of Public Parks and Protected Areas: An Action Plan for 2016 - 2020: <a href="https://gapanalysis.usgs.gov/padus/vision/">https://gapanalysis.usgs.gov/padus/vision/</a>.  
+<div class="blank"></div>
+<div class="blank"></div>
+2) Online PAD-US Help System: <a href="http://www.protectedlands.net/help/">http://www.protectedlands.net/help/</a>
+<div class="blank"></div>
+<div class="blank"></div>
+3) How to Use PAD-US in Base Maps - Guidelines for Incorporating Public Park and Related Protected Areas Data for the U.S. into Online Base Maps (updated periodically).  See the FGDC Federal Lands Working Group website for the current version: <a href="https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/">https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/</a>.
+<div class="blank"></div>
+<div class="blank"></div>
+4) PAD-US Helps Connect Trail Systems Nationally: <a href="http://www.protectedlands.net/uses/pad-us-helps-connect-trail-systems-nationally/">http://www.protectedlands.net/uses/pad-us-helps-connect-trail-systems-nationally/</a>
+<div class="blank"></div>
+<div class="blank"></div>
+5) Federal Recreation Poster Map: <a href="http://www.protectedlands.net/uses/new-federal-recreation-lands-poster/">http://www.protectedlands.net/uses/new-federal-recreation-lands-poster/</a>
+<div class="blank"></div>
+<div class="blank"></div>
+6) PAD-US informs global conservation assessments: <a href="https://www.protectedplanet.net/country/US">https://www.protectedplanet.net/country/US</a> 
+<div class="blank"></div>
+<div class="blank"></div>
+7) 2018 DOI Office of Policy Analysis Seminar: The New and Improved PAD-US 2.0 with stories from the FGDC Federal Lands Working Group (FLWG) (<a href="https://livestream.com/accounts/3723018/events/8246532/player?enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false">https://livestream.com/accounts/3723018/events/8246532/player?enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false</a>) or video archive for edited version (<a href="https://www.doi.gov/ppa/seminar_series/video/)">https://www.doi.gov/ppa/seminar_series/video/)</a>.  
+<div class="blank"></div>
+<div class="blank"></div>
+8) 2017 DOI Office of Policy Analysis Seminar: All of America’s Parks and Protected Areas: Building and Using the PAD-US (with FLWG panel): <a href="https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/">https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/</a>. 
+<div class="blank"></div>
+<div class="blank"></div>
+9) Wildfire Management Uses PAD-US: <a href="http://www.protectedlands.net/uses/wildfire-management-uses-pad-us/">http://www.protectedlands.net/uses/wildfire-management-uses-pad-us/</a>. 
+<div class="blank"></div>
+<div class="blank"></div>
+10) PAD-US and City Parks: <a href="http://www.protectedlands.net/uses/pad-us-and-cityregional-park-agencies/">http://www.protectedlands.net/uses/pad-us-and-cityregional-park-agencies/</a>. 
+<div class="blank"></div>
+<div class="blank"></div>
+11) The Lands We Share: America’s Protected Areas: <a href="https://storymaps.esri.com/stories/2017/protected-areas/">https://storymaps.esri.com/stories/2017/protected-areas/</a>. 
+<div class="blank"></div>
+<div class="blank"></div>
+12) A Report on North American Conservation: <a href="https://story.maps.arcgis.com/apps/Cascade/index.html?appid=6d3a412ee9f34ce7868667bda19e5679">https://story.maps.arcgis.com/apps/Cascade/index.html?appid=6d3a412ee9f34ce7868667bda19e5679</a>.  
+<div class="blank"></div>
+<div class="blank"></div>
+13) Conservation in North America: An Analysis of Land-based Conservation in Canada, Mexico and the United States by NAWPA Agencies: <a href="https://nawpacommittee.org/wp-content/uploads/2016/08/Conservation-in-North-America.pdf">https://nawpacommittee.org/wp-content/uploads/2016/08/Conservation-in-North-America.pdf</a>.  
+<div class="blank"></div>
+<div class="blank"></div>
+14) Federal Agencies Working Together to Improve Data in the Living Atlas: <a href="https://www.esri.com/arcgis-blog/products/arcgis-living-atlas/analytics/federal-agencies-working-together-to-improve-data-in-the-living-atlas/">https://www.esri.com/arcgis-blog/products/arcgis-living-atlas/analytics/federal-agencies-working-together-to-improve-data-in-the-living-atlas/</a>.
+<div class="blank"></div>
+<div class="blank"></div>
+A version history of PAD-US updates is summarized below (See <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-history">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-history</a> for more information): 
+1) First posted - April 2009 (Version 1.0 - available from author).
+2) Revised - May 2010 (Version 1.1 - available from author).
+3) Revised - April 2011 (Version 1.2 - available from author).
+4) Revised - November 2012 (Version 1.3). <a href="https://www.sciencebase.gov/catalog/item/527d09cae4b0850ea051830b">https://www.sciencebase.gov/catalog/item/527d09cae4b0850ea051830b</a>
+5) Revised - May 2016 (Version 1.4) <a href="https://www.sciencebase.gov/catalog/item/56bba648e4b08d617f657960">https://www.sciencebase.gov/catalog/item/56bba648e4b08d617f657960</a>
+6) Revised - September 2018 (Version 2.0) <a href="https://www.sciencebase.gov/catalog/item/5b030c7ae4b0da30c1c1d6de">https://www.sciencebase.gov/catalog/item/5b030c7ae4b0da30c1c1d6de</a>
+7) Revised - September 2020 (Version 2.1) <a href="https://doi.org/10.5066/P92QM3NT">https://doi.org/10.5066/P92QM3NT</a>  
+Comparing protected area between PAD-US versions is not recommended as many changes reflect improvements to agency and organization GIS systems rather than actual changes in protected area acquisition on the ground.
+</div>
+</div>
+<span class="element-name timeperd">Time_Period_of_Content:</span><div class="child">
+<span class="element-name timeinfo">Time_Period_Information:</span><div class="child">
+<span class="element-name rngdates">Range_of_Dates/Times:</span><div class="child">
+<span class="element-name begdate">Beginning_Date:</span> <span class="element-value begdate">2005</span><br/>
+<span class="element-name enddate">Ending_Date:</span> <span class="element-value enddate">2020</span><br/>
+</div>
+</div>
+<span class="element-name current">Currentness_Reference:</span> <span class="element-value current">publication date</span><br/>
+</div>
+<span class="element-name status">Status:</span><div class="child">
+<span class="element-name progress">Progress:</span> <span class="element-value progress">Complete</span><br/>
+<span class="element-name update">Maintenance_and_Update_Frequency:</span> <span class="element-value update">Annually</span><br/>
+</div>
+<span class="element-name spdom">Spatial_Domain:</span><div class="child">
+<span class="element-name bounding">Bounding_Coordinates:</span><div class="child">
+<span class="element-name westbc">West_Bounding_Coordinate:</span> <span class="element-value westbc">-180.0000</span><br/>
+<span class="element-name eastbc">East_Bounding_Coordinate:</span> <span class="element-value eastbc">180.0000</span><br/>
+<span class="element-name northbc">North_Bounding_Coordinate:</span> <span class="element-value northbc">71.3120</span><br/>
+<span class="element-name southbc">South_Bounding_Coordinate:</span> <span class="element-value southbc">-15.3861</span><br/>
+</div>
+</div>
+<span class="element-name keywords">Keywords:</span><div class="child">
+<span class="element-name theme">Theme:</span><div class="child">
+<span class="element-name themekt">Theme_Keyword_Thesaurus:</span> <span class="element-value themekt">None</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">NGDA Portfolio Themes</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Protected Area</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Land Manager</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">GAP Status Code</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Land Stewardship</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Land Ownership</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Gap Analysis</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Biodiversity</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Conservation</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Protection Status</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">IUCN Category</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Federal Lands</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Public Lands</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Outdoor Recreation</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Public Health</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Public Open Space</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Parks</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Governmental Units</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">State Lands</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Private Lands</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Local Government Lands</span><br/>
+</div>
+<span class="element-name theme">Theme:</span><div class="child">
+<span class="element-name themekt">Theme_Keyword_Thesaurus:</span> <span class="element-value themekt">Federal Agencies and Programs</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Forest Service</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Bureau of Land Management</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">National Park Service</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">U.S. Fish and Wildlife Service</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">U.S. Fish and Wildlife Service</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Department of Defense</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Army Corps of Engineers</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">National Oceanic and Atmospheric Administration</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Natural Resources Conservation Service</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Bureau of Reclamation</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Tennessee Valley Authority</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Department of Energy</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Agricultural Research Service</span><br/>
+</div>
+<span class="element-name theme">Theme:</span><div class="child">
+<span class="element-name themekt">Theme_Keyword_Thesaurus:</span> <span class="element-value themekt">USGS Thesaurus</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Geography</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Land-Use Change</span><br/>
+</div>
+<span class="element-name theme">Theme:</span><div class="child">
+<span class="element-name themekt">Theme_Keyword_Thesaurus:</span> <span class="element-value themekt">NGDA Portfolio Themes</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">NGDA</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">National Geospatial Data Asset</span><br/>
+<span class="element-name themekey">Theme_Keyword:</span> <span class="element-value themekey">Cadastre Theme</span><br/>
+</div>
+<span class="element-name place">Place:</span><div class="child">
+<span class="element-name placekt">Place_Keyword_Thesaurus:</span> <span class="element-value placekt">None</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">United States</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Alabama (AL)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Alaska (AK)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Arizona (AZ)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Arkansas (AR)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">California (CA)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Colorado (CO)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Connecticut (CT)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Delaware (DE)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Florida (FL)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Georgia (GA)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Hawaii (HI)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Idaho (ID)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Illinois (IL)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Indiana (IN)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Iowa (IA)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Kansas (KS)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Kentucky (KY)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Louisiana (LA)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Maine (ME)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Maryland (MD)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Massachusetts (MA)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Michigan (MI)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Minnesota (MN)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Mississippi (MS)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Missouri (MO)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Montana (MT)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Nebraska (NE)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Nevada (NV)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">New Hampshire (NH)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">New Jersey (NJ)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">New Mexico (NM)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">New York (NY)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">North Carolina (NC)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">North Dakota (ND)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Ohio (OH)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Oklahoma (OK)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Oregon (OR)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Pennsylvania (PA)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Rhode Island (RI)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">South Carolina (SC)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">South Dakota (SD)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Tennessee (TN)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Texas (TX)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Utah (UT)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Vermont (VT)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Virginia (VA)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Washington (WA)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">West Virginia (WV)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Wisconsin (WI)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Wyoming (WY)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">American Samoa (AS)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Federated States of Micronesia (FM)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Mariana Islands (MP)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Guam (GU)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Marshall Islands (MH)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Palau (PW)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">Puerto Rico (PR)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">U.S. Minor Outlying Islands (UM)</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">United States Virgin Islands (VI)</span><br/>
+</div>
+<span class="element-name place">Place:</span><div class="child">
+<span class="element-name placekt">Place_Keyword_Thesaurus:</span> <span class="element-value placekt">Common geographic areas</span><br/>
+<span class="element-name placekey">Place_Keyword:</span> <span class="element-value placekey">United States</span><br/>
+</div>
+<span class="element-name temporal">Temporal:</span><div class="child">
+<span class="element-name tempkt">Temporal_Keyword_Thesaurus:</span> <span class="element-value tempkt">None</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2005</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2006</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2007</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2008</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2009</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2010</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2011</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2012</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2013</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2014</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2015</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2016</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2017</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2018</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2019</span><br/>
+<span class="element-name tempkey">Temporal_Keyword:</span> <span class="element-value tempkey">2020</span><br/>
+</div>
+</div>
+<span class="element-name accconst">Access_Constraints:</span> <span class="element-value accconst">These data are in the public domain.</span><br/>
+<span class="element-name useconst">Use_Constraints:</span>
+<div class="child element-value useconst">
+The Digital Object Identifier <a href="https://doi.org/10.5066/P92QM3NT">https://doi.org/10.5066/P92QM3NT</a> for PAD-US 2.1 provides the persistent reference that should be used to obtain the data for use.  
+<div class="blank"></div>
+<div class="blank"></div>
+The U.S. Geological Survey and all contributing data partners shall not be held liable for improper or incorrect use of the data described and (or) contained herein. All information is created with a specific end use or uses in mind. This is especially true for GIS data, which is expensive to produce and must be directed to meet the immediate program needs. These data were created with the expectation that they would be used for other applications; however, inappropriate uses are listed below. This list is in no way exhaustive but should serve as a guide to assess whether a proposed use can or cannot be supported by these data. For many uses, it is unlikely that PAD-US will provide the only data needed, and for uses with a regulatory outcome, authoritative agency data and field surveys should verify the result. 
+PAD-US is recommended for users seeking general information about more than one agency or organization's lands. Users should seek authoritative source data directly to answer questions regarding one agency or those requiring more frequent updates. Ultimately, it will be the responsibility of each data user to determine if these data can answer the question being asked. Furthermore, the database is released on condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from its authorized or unauthorized use.
+<div class="blank"></div>
+<div class="blank"></div>
+Inappropriate uses include: Using PAD-US for applications or analyses associated with one agency or a particular unit (agencies are always the best and authoritative source of their land data and many publish updates more frequently than PAD-US). Using some data to map small areas, typically requiring mapping resolution at 1:24,000 scale as boundary quality varies by data source (See &quot;State of PAD-US Data&quot; - a graphical summary of inventory completeness, appropriate scale, and update frequency at: <a href="https://communities.geoplatform.gov/ngda-govunits/wp-content/uploads/2019/09/USGS-base-map-memo.17.pdf">https://communities.geoplatform.gov/ngda-govunits/wp-content/uploads/2019/09/USGS-base-map-memo.17.pdf</a>) and using aerial photographs or ground surveys in areas where data are incomplete. Combining these data with other data finer than 1:100,000 scale (except for select federal agencies or states identified in &quot;State of PAD-US Data&quot;) to produce new hybrid maps or answer queries. Generating specific areal measurements from the data finer than the nearest thousand hectares. Representing boundaries as a legal representation for regulation or acquisition. Establishing definite occurrence or non-occurrence of any feature for an exact geographic area. Determining abundance, health, or condition of any feature. Using the data without acquiring and reviewing the metadata.
+</div>
+<span class="element-name ptcontac">Point_of_Contact:</span><div class="child">
+<span class="element-name cntinfo">Contact_Information:</span><div class="child">
+<span class="element-name cntperp">Contact_Person_Primary:</span><div class="child">
+<span class="element-name cntper">Contact_Person:</span> <span class="element-value cntper">Julie Prior-Magee</span><br/>
+<span class="element-name cntorg">Contact_Organization:</span> <span class="element-value cntorg">USGS Science Analytics and Synthesis (SAS)</span><br/>
+</div>
+<span class="element-name cntpos">Contact_Position:</span> <span class="element-value cntpos">PAD-US Dataset Manager</span><br/>
+<span class="element-name cntaddr">Contact_Address:</span><div class="child">
+<span class="element-name addrtype">Address_Type:</span> <span class="element-value addrtype">mailing address</span><br/>
+<span class="element-name address">Address:</span> <span class="element-value address">PO Box 25046, MS 302</span><br/>
+<span class="element-name city">City:</span> <span class="element-value city">Denver</span><br/>
+<span class="element-name state">State_or_Province:</span> <span class="element-value state">Colorado</span><br/>
+<span class="element-name postal">Postal_Code:</span> <span class="element-value postal">80225</span><br/>
+<span class="element-name country">Country:</span> <span class="element-value country">USA</span><br/>
+</div>
+<span class="element-name cntvoice">Contact_Voice_Telephone:</span> <span class="element-value cntvoice">575-557-1566</span><br/>
+<span class="element-name cntemail">Contact_Electronic_Mail_Address:</span> <span class="element-value cntemail">jpmagee@usgs.gov</span><br/>
+</div>
+<span class="element-name cntinfo">Contact_Information:</span><div class="child">
+<span class="element-name cntperp">Contact_Person_Primary:</span><div class="child">
+<span class="element-name cntper">Contact_Person:</span> <span class="element-value cntper">Lisa J Johnson</span><br/>
+<span class="element-name cntorg">Contact_Organization:</span> <span class="element-value cntorg">USGS Gap Analysis Project - Boise State University</span><br/>
+</div>
+<span class="element-name cntpos">Contact_Position:</span>
+<div class="child element-value cntpos">
+PAD-US Coordinator and FGDC Federal Lands Working Group Co-chair
+</div>
+<span class="element-name cntaddr">Contact_Address:</span><div class="child">
+<span class="element-name addrtype">Address_Type:</span> <span class="element-value addrtype">mailing address</span><br/>
+<span class="element-name address">Address:</span> <span class="element-value address">Boise State University 1910 University Drive - MS 1935</span><br/>
+<span class="element-name city">City:</span> <span class="element-value city">Boise</span><br/>
+<span class="element-name state">State_or_Province:</span> <span class="element-value state">Idaho</span><br/>
+<span class="element-name postal">Postal_Code:</span> <span class="element-value postal">83725</span><br/>
+<span class="element-name country">Country:</span> <span class="element-value country">USA</span><br/>
+</div>
+<span class="element-name cntvoice">Contact_Voice_Telephone:</span> <span class="element-value cntvoice">208-874-3102</span><br/>
+<span class="element-name cntemail">Contact_Electronic_Mail_Address:</span> <span class="element-value cntemail">lisajjohnson@boisestate.edu</span><br/>
+</div>
+</div>
+<span class="element-name datacred">Data_Set_Credit:</span>
+<div class="child element-value datacred">
+U.S. Geological Survey (USGS) Gap Analysis Project (GAP), 2020, Protected Areas Database of the United States (PAD-US) 2.1: U.S. Geological Survey data release, <a href="https://doi.org/10.5066/P92QM3NT">https://doi.org/10.5066/P92QM3NT</a>
+</div>
+<span class="element-name native">Native_Data_Set_Environment:</span>
+<div class="child element-value native">
+Environment as of Metadata Creation: Microsoft Windows 10 (Build 7600) ; Esri ArcGIS 10.2.2 (Build 3552), PAD_US2_1.gdb (2.56 GB)
+</div>
+<span class="element-name crossref">Cross_Reference:</span><div class="child">
+<span class="element-name citeinfo">Citation_Information:</span><div class="child">
+<span class="element-name origin">Originator:</span> <span class="element-value origin">USGS Gap Analysis Project</span><br/>
+<span class="element-name pubdate">Publication_Date:</span> <span class="element-value pubdate">20200930</span><br/>
+<span class="element-name title">Title:</span> <span class="element-value title">Protected Areas Database of the United States (PAD-US)</span><br/>
+<span class="element-name edition">Edition:</span> <span class="element-value edition">2.1</span><br/>
+<span class="element-name geoform">Geospatial_Data_Presentation_Form:</span> <span class="element-value geoform">vector digital data</span><br/>
+<span class="element-name onlink">Online_Linkage:</span> <span class="element-value onlink"><a href="https://usgs.gov/gapanalysis/PAD-US">https://usgs.gov/gapanalysis/PAD-US</a></span><br/>
+</div>
+</div>
+</div>
+</div>
+<div class="major-section" id="2">
+<span class="element-name dataqual">Data_Quality_Information:</span><div class="child">
+<span class="element-name attracc">Attribute_Accuracy:</span><div class="child">
+<span class="element-name attraccr">Attribute_Accuracy_Report:</span>
+<div class="child element-value attraccr">
+As a compilation of many data sets, attribute completeness and accuracy may vary. Federal data providers reviewed the translation of their spatial data files into the PAD-US schema and the aggregated database. In addition, the PAD-US team summarized and reviewed the final database and each feature class for overall attribute accuracy and consistency as described in PAD-US 2.1 Summary Review Tables here: <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__71%2F7f%2Fc0%2F717fc09e4fcfa729a63839abc7bbc4a33273a90c">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__71%2F7f%2Fc0%2F717fc09e4fcfa729a63839abc7bbc4a33273a90c</a> .
+</div>
+</div>
+<span class="element-name logic">Logical_Consistency_Report:</span>
+<div class="child element-value logic">
+Boundary discrepancies (mostly small slivers) between agency datasets and major overlaps associated with fee ownership (mostly between Federal and State lands) have been identified and are shared with agency data-stewards, who will edit source files as resources allow. Users are encouraged to review topology overlap errors associated with the PAD-US 2.0 Topology Overlap Assessment (<a href="https://www.sciencebase.gov/catalog/item/5b043619e4b0da30c1c367e3">https://www.sciencebase.gov/catalog/item/5b043619e4b0da30c1c367e3</a> ) for reference.  A similar assessment of PAD-US 2.1 will be available after the data release. The topology assessment identifies all overlaps (minimum distance between feature coordinates to evaluate overlap relationship = 0.05 meter), large (greater than 5 acres) and small (less than 5 acres) overlaps, between Federal lands and between Federal and State agency lands in the Fee feature class.
+</div>
+<span class="element-name complete">Completeness_Report:</span>
+<div class="child element-value complete">
+Data set is considered complete for the information presented, as described in the abstract and supplemental information section. Estimated completeness of the PAD-US 2.0 inventory, by Federal agency or State, is available at <a href="http://www.protectedlands.net/data-stewards">http://www.protectedlands.net/data-stewards</a>. This information will be updated, with partners, after an assessment of PAD-US 2.1 following the data release. Qualitative completeness estimates balance acres inventoried and the quality of data/attributes in each inventory, including fee owned parcels, easement interests, and major designations. For example, Federal agencies estimate the percent completeness of lands data submitted for PAD-US 2.0 as: NPS (95%), USFS (99%), FWS (89%), BLM (85%), U.S. Army Corps of Engineers (USACE) (80%), DOD (79%), U.S. Bureau of Reclamation (USBR) (50%), NRCS (85%), Bureau of Ocean Energy Management (BOEM) (95%), NOAA (95%). USGS seeks to increase the completeness, efficiency, and accuracy of PAD-US updates in collaboration with agency data-stewards as described in &quot;Completing America's Inventory of Public Parks and Protected Areas: An Action Plan for 2016 - 2020&quot; (November, 2016) and &quot;A Map of the Future&quot;, published following the PAD-US Design Project (July, 2009) available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-vision">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-vision</a> .
+</div>
+<span class="element-name posacc">Positional_Accuracy:</span><div class="child">
+<span class="element-name horizpa">Horizontal_Positional_Accuracy:</span><div class="child">
+<span class="element-name horizpar">Horizontal_Positional_Accuracy_Report:</span>
+<div class="child element-value horizpar">
+As a compilation of many data sets, attribute completeness and accuracy may vary.  Federal data providers reviewed the translation of their spatial data files into the PAD-US schema and the aggregated database.  In addition, the PAD-US team summarized and reviewed the final database and each feature class for overall attribute accuracy and consistency as described in PAD-US 2.1 Summary Review Tables here:  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__71%2F7f%2Fc0%2F717fc09e4fcfa729a63839abc7bbc4a33273a90c">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__71%2F7f%2Fc0%2F717fc09e4fcfa729a63839abc7bbc4a33273a90c</a> .
+</div>
+</div>
+<span class="element-name vertacc">Vertical_Positional_Accuracy:</span><div class="child">
+<span class="element-name vertaccr">Vertical_Positional_Accuracy_Report:</span>
+<div class="child element-value vertaccr">
+A formal accuracy assessment of the vertical positional information in the data set is not applicable.
+</div>
+</div>
+</div>
+<span class="element-name lineage">Lineage:</span><div class="child">
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+PAD-US 2.1 Blank Schema and Data Manual: The first step in the PAD-US 2.1 development process was to update the Blank PAD-US 2.1 schema ( <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__4a%2F81%2Feb%2F4a81eb5c1413a81b49e80dfccb86290d61d2995b">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__4a%2F81%2Feb%2F4a81eb5c1413a81b49e80dfccb86290d61d2995b</a>) in response to feedback and the PAD-US Action Plan (<a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-vision">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-vision</a> ). The blank schema provides a blueprint of the database for the PAD-US Team to load input files for PAD-US development and it is shared with data-stewards seeking to submit source data in the PAD-US format.  PAD-US database aggregation involves the compilation of thousands of agency source data files from nearly 100 data-stewards.  Data aggregation and development are an ongoing and evolving process as user and stakeholder feedback improve the process.  The Data Manual and schema has changed with each PAD-US version to better reflect user needs.  The schema includes all the components to build PAD-US 2.1, including multiple feature classes ('Fee', 'Designation', 'Easement', 'Proclamation', 'Marine', 'Combined'), core attributes, and all standardized domain tables ('State Name', 'IUCN Category', 'GAP Status Code', 'Designation Type', 'Category', 'Agency Type', 'Agency Name', 'Public Access'). Schema changes between PAD-US 2.0 and 2.1 include: 1) the &quot;Public Access&quot; field name changed from 'Access' to 'Pub_Access' to avoid unintended scripting errors associated with that action; and 2) A &quot;Feature Class&quot; (FeatClass) field has been added to all feature classes (only included in the Combined layers of PAD-US 2.0 to describe which feature class data originated from). The 'Marine' and 'Easement' feature classes also include fields (in addition to PAD-US core attributes) unique to the NOAA Marine Protected Areas Inventory and National Conservation Easement Database. In addition, the Blank PAD-US 2.1 Schema includes the U.S. Census Bureau State file (from the national sub-state geography geodatabase: <a href="https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2019/2019_TIGER_GDB_Record_Layouts.pdf">https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2019/2019_TIGER_GDB_Record_Layouts.pdf</a>) that served as the common standard for State jurisdictional boundaries and the 'State Name' field in PAD-US 2.1.  The PAD-US development team works closely with a large variety of stakeholders including development partners, data sources, and data users to develop and maintain the &quot;Data Manual for PAD-US&quot; (online resource available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>) .
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20191210</span><br/>
+</div>
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+Source Data Documentation and Translation: The PAD-US Data-Steward Network includes Federal, State, and nonprofit partners that provide source data files for PAD-US as summarized in online and pdf Steward Reports (<a href="http://www.protectedlands.net/data-stewards/">http://www.protectedlands.net/data-stewards/</a> ). More information about the PAD-US Data-Steward Network is available on the PAD-US website (<a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-data-stewards">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/pad-us-data-stewards</a> ). Eight federal agencies (BLM, U.S. Census Bureau, DOD, FWS, NPS, NRCS, USFS, NOAA) and two nonprofits (Ducks Unlimited and The Trust for Public Land) delivered data for PAD-US 2.1 by January 15, 2020 or USGS compiled data from recommended sources (See details about data contributors and source data files in PAD-US 2.1 Source Data Collection and Translation linked below). The PAD-US Team translated individual source files into the PAD-US 2.1 format (unless provided in the PAD-US format).  Field maps document the translation of agency source data into the PAD-US format and the PAD-US development team reviewed these crosswalks with agency data-stewards (See PAD-US 2.1 Source Data Documentation and Translation at  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__be%2F05%2F50%2Fbe05508fd6ae2ed9e1458349a92041f5eafd82ca">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__be%2F05%2F50%2Fbe05508fd6ae2ed9e1458349a92041f5eafd82ca</a> ).
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20200115</span><br/>
+</div>
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+Quality Assessment and Quality Control: The PAD-US development team uses a Python script to generate a Quality Assessment and Quality Control (QA/QC) report each time a source file is submitted or translated to ensure the major components needed for database aggregation are included (See PAD-US 2.1 QA/QC Script Used in Data Processing at <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__1b%2F2c%2Fec%2F1b2ceca235fe6bc34eb42df145ebc0cb6bf9c500">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__1b%2F2c%2Fec%2F1b2ceca235fe6bc34eb42df145ebc0cb6bf9c500</a> ). Subsequent process steps will outline the general workflow and processes used to compile each major component of the final database.
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20200410</span><br/>
+</div>
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+Local Agency to Agency Name Crosswalk: A python script was used to crosswalk data provided by PAD-US contributors, referencing the land owner or managing entity for a unit, into standardized PAD-US geodatabase domain tables (See PAD-US 2.1 Local Agency to Agency Name Crosswalk at  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__8e%2F08%2F44%2F8e084431cbc6135dd80c314126e8a85e5d960328">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__8e%2F08%2F44%2F8e084431cbc6135dd80c314126e8a85e5d960328</a> ).  PAD-US retains source data as provided in the 'Local Owner' and 'Local Manager' fields.  These fields often provide additional detail to compliment the 'Owner Name' and 'Manager Name' fields, respectively.
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20200510</span><br/>
+</div>
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+Transfer Locally Reviewed Measures from PAD-US 2.0: Input files are compared to the previous PAD-US (version 2.0) to evaluate new records and assign identifiers to join (ExistJoinID) source data updates (input files) with the previous version of PAD-US (2.0). File records are compared via automated scripts tracking attributes and polygon location followed by a detailed manual review to ensure existing data match updates correctly and new records are identified.  Once a reliable JoinID is confirmed post review, the Transfer Non Default Conservation Measures script transfers value added data managed by USGS (not available in source data) including locally assigned conservation ('GAP Status Code', 'IUCN Category') or recreation access measures ('Public Access'), the World Database on Protected Areas (WDPA) Site ID (a unique identifier assigned by UNEP-WCMC and managed by USGS), and 'Date of Establishment'. See PAD-US 2.1 Reconciliation Script Used in Data Processing at  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__47%2F17%2Fe4%2F4717e4f00eab7bfd262b39451c9f087a69aa0fb2">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__47%2F17%2Fe4%2F4717e4f00eab7bfd262b39451c9f087a69aa0fb2</a>
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20200515</span><br/>
+</div>
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+Categorical Assignments by Designation Type: The areas in PAD-US are assigned conservation measures that assess management intent to permanently protect biological diversity: the nationally relevant 'GAP Status Code' (that also identifies multiple use areas) and the global 'IUCN Category' standard.  In addition, a general measure of recreation access ('Public Access') is also assigned.  After locally reviewed measures were transferred from PAD-US 2.0 (as described in the previous processing step) input files are checked for completeness of required attributes and that all domains and standardized field attributes are completely assigned.  In the absence of other information (e.g. local assignment or review), 'GAP Status Code', 'IUCN Category', and 'Public Access' are assigned categorically based on 'Designation Type' using a Python script (See PAD-US 2.1 Default Categorical Assignment Process at  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__43%2F37%2Fb6%2F4337b60a1e3f645524e59df886bcf4dcf474b717)">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__43%2F37%2Fb6%2F4337b60a1e3f645524e59df886bcf4dcf474b717)</a>.
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20200712</span><br/>
+</div>
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+Multiple Feature Class Implementation: The major feature of PAD-US 2.0 involved the expansion of the multiple feature class database structure; primarily, the removal of overlapping management designations from fee owned lands.  The expanded structure, defined by the addition of the &quot;Designation&quot; feature class was replicated in PAD-US 2.1. Building on Federal Lands Working Group (<a href="https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/">https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/</a> ) efforts to develop PAD-US 1.4 and 2.0, it was fairly straightforward to determine feature class placement of Federal spatial data. Federal data-stewards defined the 'Category' (field in PAD-US) associated with source data submitted for PAD-US 2.1 as fee parcels, easement interest, leases, agreements, overlapping management designations, proclamation, or marine boundaries.  An automated script process compared State and other overlaps to Federal fee data to determine feature class placement (See PAD-US 2.1 Multiple Feature Class Script Used in Data Processing at  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__4b%2F30%2F4b%2F4b304bcd4ed2165fc8e601c33d5aa89960a6f39c">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__4b%2F30%2F4b%2F4b304bcd4ed2165fc8e601c33d5aa89960a6f39c</a> ).
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20200702</span><br/>
+</div>
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+Database Aggregation and Load Order: Input files referenced in the “Source Data Collection and Translation&quot; processing step above are aggregated into the PAD-US geodatabase in a purposeful load order to achieve the necessary visual and analytical results associated with current database technology (See Database Aggregation and Load Order at:  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__62%2F7e%2Fff%2F627eff0b3b28ba335a4c86a26f3a443f19b50a05)">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__62%2F7e%2Fff%2F627eff0b3b28ba335a4c86a26f3a443f19b50a05)</a>. Load order strives to account for boundary size, type, and quality, to increase the likelihood overlapping features are visible on maps and to support assessments of biodiversity protection status or recreation access. Files in the PAD-US geodatabase feature class loaded first remain on the bottom in cases of overlap.  Feature classes are manually loaded separately (agencies referenced below are listed in geodatabase load order within their respective feature classes - bottom to top) before the PAD-US 2.1 'Combined' feature classes are created.  For example, the full 'PADUS2_1Combined_Proclamation_Marine_Fee_Designation_Easement' feature class represents this load order (PAD-US feature class and a general description of agency source data listed from the bottom to the top): 1) 'Proclamation' feature class (FWS Approved Acquisition, USFS Proclamation Boundaries, NPS Proclamation Boundaries, DOD Military Lands, Census American Indian Areas ); 2) 'Marine' feature class (BOEM Blocks, NOAA Marine Protected Areas Inventory); 3) Federal fee lands (Department Of Energy (DOE), Tennessee Valley Authority (TVA), Agricultural Research Service (ARS) legacy data transferred from PAD-US 2.0, BLM public lands from Surface Management Area database, USBR legacy data transferred from PAD-US 2.0, USACE lands transferred from PAD-US 2.0, USFS fee parcel data, NPS fee parcel data, FWS fee parcel data); 4) State and local government fee lands, in alphabetical order by State; 5) Fee lands from regional datasets (Ducks Unlimited - Conservation and Recreation Lands (DU-CARL) - Fee held land trust data, TPL ParkServe - urban parks; 6) Federal designations (USBR designations, BLM ACEC (transferred from PAD-US 2.0), BLM Monuments/National Conservation Areas/Similar, USACE reservoirs (transferred from PAD-US 2.0), USFS Inventory Roadless Areas, BLM Wilderness Study Areas, NPS Other Categories of Wilderness, NPS designations, USFS Withdrawals, USFS designations, USFS Special Interest Management areas, BLM Wilderness, USFS Wilderness, USFS Wild and Scenic Rivers, NPS Legislated Wilderness (from Wilderness.net), FWS Special Designations, BLM Wild and Scenic Rivers); 7) State and Local designations, in alphabetical order by State (transferred from PAD-US 2.0); 8) Designations from regional datasets (DU CARL, TPL ParkServe); 9) Easements (often small) are loaded last to remain visible on top of overlapping records.  The PAD-US 2.1 update includes federal easements provided directly by managing agencies and TPL ParkServe easement updates only - all other easements transferred from PAD-US 2.0 are from a subset of the National Conservation Easement Database for PAD-US (non-sensitive easements suitable for distribution in the public domain published February 2018).
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20200712</span><br/>
+</div>
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+PAD-US 2.1 Review: Once all attributes are assigned and feature classes are aggregated, the PAD-US development team conducts a final review by summarizing the database (See PAD-US 2.1 Review Summary Tables at  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__71%2F7f%2Fc0%2F717fc09e4fcfa729a63839abc7bbc4a33273a90c">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__71%2F7f%2Fc0%2F717fc09e4fcfa729a63839abc7bbc4a33273a90c</a>) and reviewing tables associated with each feature class. In addition, 'GIS Acres' are compared to known sources and spatial data are compared to previous PAD-US versions. 
+<div class="blank"></div>
+<div class="blank"></div>
+Federal Lands Working Group data-stewards reviewed the translation of authoritative spatial data (federal lands and waters) into the PAD-US format. The PAD-US Team prepared a package of data in a GIS with supporting documentation for each of the eight agencies (BLM, Census, DOD, FWS, NPS, NRCS, USFS, NOAA) who contributed to PAD-US 2.1 (that is, an ArcMap Project with translated source data prepared for PAD-US aggregation, symbology layer files to aid interpretation of conservation and recreation measures applied by USGS, and Quality Control / Quality Assurance (QA/QC) reports documenting edits to source data to meet PAD-US requirements following automated checks and manual review).
+<div class="blank"></div>
+<div class="blank"></div>
+The review objective to ensure agency partners generally understand how source data updates are transformed and represented in PAD-US 2.1 focused on the following priorities: 1) Feature class placement (for example, is the source data file located in the correct PAD-US feature class?); 2) Source data translation (for example, are source data attributes translated into the PAD-US format correctly?); and 3) Source data references (for example, do the PAD-US fields &quot;Aggregator Source&quot;, &quot;GIS Source&quot;, and &quot;GIS Source Date&quot; cite agency source data files correctly?).
+<div class="blank"></div>
+<div class="blank"></div>
+The PAD-US Team sent review packages to Primary Contacts (<a href="https://communities.geoplatform.gov/ngda-govunits/wp-content/uploads/2020/01/FedLandsInfo2020Jan21.pdf">https://communities.geoplatform.gov/ngda-govunits/wp-content/uploads/2020/01/FedLandsInfo2020Jan21.pdf</a>) from eight agencies the week of June 29th (2020).  Seven agencies responded within the review period (comments received by July 17, 2020) confirming source data are represented accurately in PAD-US 2.1, with no or very minor edits the PAD-US Team reconciled immediately. Only one agency did not have resources available for a detailed review prior to publication; however, the data-steward was actively involved in source data compilation and translation. The agency supports the PAD-US 2.1 data release and will provide feedback, as needed, to inform future PAD-US updates.
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20200718</span><br/>
+</div>
+<span class="element-name procstep">Process_Step:</span><div class="child">
+<span class="element-name procdesc">Process_Description:</span>
+<div class="child element-value procdesc">
+Data quality assessment and appropriate use of federal spatial data:
+The PAD-US Team and FLWG recommends users review “The State of PAD-US Data” (<a href="https://communities.geoplatform.gov/ngda-govunits/wp-content/uploads/2019/09/USGS-base-map-memo.17.pdf">https://communities.geoplatform.gov/ngda-govunits/wp-content/uploads/2019/09/USGS-base-map-memo.17.pdf</a>) to better understand the appropriate scale and estimated level of spatial data inventory completeness, and update frequency of agency source data aggregated in PAD-US. The summary graphic, developed by USGS cooperators in collaboration with the FLWG following the publication of PAD-US 2.0, is updated following each PAD-US data release.  In addition, “Guidance for Base Map Developers to Use PAD-US” (<a href="https://communities.geoplatform.gov/ngda-govunits/wp-content/uploads/2019/09/Guidelines-for-Base-Maps-Data-Use_Version17Sept2019.pdf">https://communities.geoplatform.gov/ngda-govunits/wp-content/uploads/2019/09/Guidelines-for-Base-Maps-Data-Use_Version17Sept2019.pdf</a>) underscores the importance that users recognize PAD-US as the authoritative source for aggregated data only (that is, more than one agency). Agencies are always the best and authoritative source of their land data and many update spatial datasets more frequently than PAD-US (see base map guidance for more information).
+</div>
+<span class="element-name procdate">Process_Date:</span> <span class="element-value procdate">20190917</span><br/>
+</div>
+</div>
+</div>
+</div>
+<div class="major-section" id="3">
+<span class="element-name spdoinfo">Spatial_Data_Organization_Information:</span><div class="child">
+<span class="element-name direct">Direct_Spatial_Reference_Method:</span> <span class="element-value direct">Vector</span><br/>
+<span class="element-name ptvctinf">Point_and_Vector_Object_Information:</span><div class="child">
+<span class="element-name sdtsterm">SDTS_Terms_Description:</span><div class="child">
+<span class="element-name sdtstype">SDTS_Point_and_Vector_Object_Type:</span> <span class="element-value sdtstype">G-polygon</span><br/>
+<span class="element-name ptvctcnt">Point_and_Vector_Object_Count:</span> <span class="element-value ptvctcnt">642931</span><br/>
+</div>
+</div>
+</div>
+</div>
+<div class="major-section" id="4">
+<span class="element-name spref">Spatial_Reference_Information:</span><div class="child">
+<span class="element-name horizsys">Horizontal_Coordinate_System_Definition:</span><div class="child">
+<span class="element-name planar">Planar:</span><div class="child">
+<span class="element-name mapproj">Map_Projection:</span><div class="child">
+<span class="element-name mapprojn">Map_Projection_Name:</span> <span class="element-value mapprojn">Albers Conical Equal Area</span><br/>
+<span class="element-name albers">Albers_Conical_Equal_Area:</span><div class="child">
+<span class="element-name stdparll">Standard_Parallel:</span> <span class="element-value stdparll">29.500000</span><br/>
+<span class="element-name stdparll">Standard_Parallel:</span> <span class="element-value stdparll">45.500000</span><br/>
+<span class="element-name longcm">Longitude_of_Central_Meridian:</span> <span class="element-value longcm">-96.000000</span><br/>
+<span class="element-name latprjo">Latitude_of_Projection_Origin:</span> <span class="element-value latprjo">23.000000</span><br/>
+<span class="element-name feast">False_Easting:</span> <span class="element-value feast">0.000000</span><br/>
+<span class="element-name fnorth">False_Northing:</span> <span class="element-value fnorth">0.000000</span><br/>
+</div>
+</div>
+<span class="element-name planci">Planar_Coordinate_Information:</span><div class="child">
+<span class="element-name plance">Planar_Coordinate_Encoding_Method:</span> <span class="element-value plance">coordinate pair</span><br/>
+<span class="element-name coordrep">Coordinate_Representation:</span><div class="child">
+<span class="element-name absres">Abscissa_Resolution:</span> <span class="element-value absres">0.000100</span><br/>
+<span class="element-name ordres">Ordinate_Resolution:</span> <span class="element-value ordres">0.000100</span><br/>
+</div>
+<span class="element-name plandu">Planar_Distance_Units:</span> <span class="element-value plandu">meters</span><br/>
+</div>
+</div>
+<span class="element-name geodetic">Geodetic_Model:</span><div class="child">
+<span class="element-name horizdn">Horizontal_Datum_Name:</span> <span class="element-value horizdn">North American Datum of 1983</span><br/>
+<span class="element-name ellips">Ellipsoid_Name:</span> <span class="element-value ellips">Geodetic Reference System 80</span><br/>
+<span class="element-name semiaxis">Semi-major_Axis:</span> <span class="element-value semiaxis">6378137.000000</span><br/>
+<span class="element-name denflat">Denominator_of_Flattening_Ratio:</span> <span class="element-value denflat">298.257222</span><br/>
+</div>
+</div>
+</div>
+</div>
+<div class="major-section" id="5">
+<span class="element-name eainfo">Entity_and_Attribute_Information:</span><div class="child">
+<span class="element-name detailed">Detailed_Description:</span><div class="child">
+<span class="element-name enttyp">Entity_Type:</span><div class="child">
+<span class="element-name enttypl">Entity_Type_Label:</span> <span class="element-value enttypl">PADUS2_1Combined_Proclamation_Marine_Fee_Designation_Easement</span><br/>
+<span class="element-name enttypd">Entity_Type_Definition:</span>
+<div class="child element-value enttypd">
+The 'Combined' feature classes integrate other feature classes from the PAD-US 2.1 geodatabase, as described in the name (and in database load order) including core PAD-US attributes only.
+</div>
+<span class="element-name enttypds">Entity_Type_Definition_Source:</span> <span class="element-value enttypds">PAD-US Development Team</span><br/>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">OBJECTID</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span> <span class="element-value attrdef">Internal feature number.</span><br/>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span> <span class="element-value attrdefs">ESRI</span><br/>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name udom">Unrepresentable_Domain:</span>
+<div class="child element-value udom">
+Sequential unique whole numbers that are automatically generated.
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Shape</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span> <span class="element-value attrdef">Feature geometry.</span><br/>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span> <span class="element-value attrdefs">ESRI</span><br/>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name udom">Unrepresentable_Domain:</span> <span class="element-value udom">Coordinates defining the features.</span><br/>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">FeatClass</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+This field, added to the PAD-US 2.1 'Combined' feature classes, identifies the original feature class ('Fee', 'Easement', 'Designation', etc.) a unit occurred in before combination.  This is included to assist users seeking data in the 'Fee' feature class as data gaps exist and 'Category' (which would otherwise define feature class placement) may be 'Other' or 'Unknown'.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">FeatClass</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Category</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The general 'Category' for the protection mechanism associated with the protected area.  'Fee' simple is the most common way real estate is owned.  A conservation 'easement' creates a legally enforceable land preservation agreement between a landowner and government agency or qualified land protection organization (i.e. land trust).  'Other' types of protection include leases, agreements, or deed restrictions.  'Designation' is applied to management boundaries not tied to title documents (e.g. 'National Monument', 'Wild and Scenic River', and some 'State Wildlife Management Area') overlapping fee ownership parcels.  'Marine' includes outer continental shelf lands managed by the Bureau of Ocean Energy Management and Marine Protected Areas identified by the National Oceanic and Atmospheric Administration.  'Proclamation' defines the outer boundaries of areas without internal ownership defined: Tribal Lands (Census AIA), Military Lands (Department of Defense), Proclamation (National Park Service and Forest Service) and Approved Acquisition Boundaries (U.S. Fish and Wildlife Service).
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Category</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Own_Type</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The general land owner description (e.g. 'Federal', 'Territorial', 'American Indian Lands', 'State', 'Regional Agency Special District', 'Local Government', 'Non-Governmental Organization', 'Private', 'Joint') standardized for the U.S.  See PAD-US Data Manual for the “Agency Name to Agency Type Crosswalk” or geodatabase look up table for full domain descriptions.  'Regional Agency Special Districts' include limited purpose governmental units that exist separately from local governments such as county or municipal.  'Designation' is applied to designations overlapping fee lands as ownership is not applicable.  Use the 'Manager Type' field for the best general depiction of Federal lands as several ownership related data gaps (i.e. 'Owner Type' = 'Unknown') occur in the Federal theme.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Own_Type</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Own_Name</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+Land owner or holding agency (e.g. 'Forest Service', 'State Fish and Wildlife', 'City Land', Non-Governmental Organization') standardized for the U.S.  See PAD-US Data Manual or geodatabase 'Agency Name' lookup table for full domain descriptions.  Please note there are instances where 'Owner Name' = 'Designation' rather than an 'Agency Name' as expected.  'Designation' is applied to designations overlapping fee as ownership (i.e. the 'Owner Name') is not applicable, while it remains a core attribute.  A python script assigns 'Owner Name' from 'Local Owner' (PAD-US 2.1 Local Owner to Owner Name Crosswalk at  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__8e%2F08%2F44%2F8e084431cbc6135dd80c314126e8a85e5d960328)">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__8e%2F08%2F44%2F8e084431cbc6135dd80c314126e8a85e5d960328)</a>. 'Owner Name' also contains unknown values where parcel level ownership data are not yet available from authoritative data sources.  Use the 'Manager Name' field for the best depiction of Federal lands by agency as several ownership related data gaps (i.e. 'Owner Name' = 'Unknown') occur in the Federal theme.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Own_Name</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Loc_Own</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The name of the land owner as provided by the data source, to complement the standardized 'Owner Name' field (e.g. 'State Fish and Wildlife' is a standard 'Owner Name', while 'Washington Department of Fish and Wildlife' reflect source data in the 'Local Owner' field) as more detail may be provided.  A python script assigns 'Owner Name' from 'Local Owner' (PAD-US 2.1 Local Owner to Owner Name Crosswalk at  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__8e%2F08%2F44%2F8e084431cbc6135dd80c314126e8a85e5d960328)">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__8e%2F08%2F44%2F8e084431cbc6135dd80c314126e8a85e5d960328)</a>.  Efforts to complete and standardize 'Local Owner' in cooperation with data-stewards are in progress.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Loc_Own</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Mang_Type</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+General land manager description (e.g. 'Federal', 'Territorial', 'American Indian Lands', 'State', 'Regional Agency Special District', 'Local Government', 'Non-Governmental Organization', 'Private', 'Joint') standardized for the U.S.  See PAD-US Data Manual for “Agency Name to Agency Type Crosswalk” or geodatabase look up table for full domain descriptions.  Use the 'Manager Type' field for the most complete general depiction of Federal lands as ownership related data gaps (i.e. 'Owner Type' = 'Unknown') occur in the Federal theme.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Mang_Type</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Mang_Name</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+Land manager or administrative agency (e.g. 'Forest Service', 'State Fish and Wildlife', 'City Land', Non-Governmental Organization') standardized for the U.S.  See PAD-US Data Manual or geodatabase look up table for 'Agency Name' for full domain descriptions.  A python script assigns 'Manager Name' from 'Local Manager' (PAD-US 2.1 Local Owner to Owner Name Crosswalk:  <a href="https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__8e%2F08%2F44%2F8e084431cbc6135dd80c314126e8a85e5d960328)">https://www.sciencebase.gov/catalog/file/get/5f186a2082cef313ed843257?f=__disk__8e%2F08%2F44%2F8e084431cbc6135dd80c314126e8a85e5d960328)</a>.  Use 'Manager Name' for the best depiction of Federal lands by agency as the 'Owner Name' field includes data gaps (i.e. 'Owner Name' = 'Unknown'), where parcel level ownership data are not yet available from authoritative data sources.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Mang_Name</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Loc_Mang</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The name of the land manager as provided by the data source, to complement the standardized 'Manager Name' field (e.g. 'City Land' is a standard 'Manager Name' while 'Agoura Hills, City of' is an example of a 'Local Manager').
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Loc_Manag</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Des_Tp</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The unit's land management description or 'Designation Type', standardized for the U.S. (e.g. 'Area of Critical Environmental Concern', 'Wilderness Area', 'State Park', 'Local Recreation Area', 'Conservation Easement').  See the PAD-US Data Manual for a crosswalk of 'Designation Type' from source data where 'Local Designation Type' may include related designations in various formats (e.g. NWSR, National Recreation River, National Scenic River, Eligible - Recreational, Eligible - Wild, etc.) or the geodatabase look up table for 'Designation Type' domain descriptions.  'Designation Type' supports PAD-US queries and the categorical assignment of conservation measures (i.e. 'GAP Status Code', 'IUCN Category') and 'Public Access' in the absence of other information.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Des_Tp</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Loc_Ds</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The unit's land management description or designation as provided by the data source.  'Local Designation Type' is not standardized and complements the standardized PAD-US 'Designation Type' field as more detail may be available.  Null values indicate designation related information was not available in source files and categorical assignments to 'Designation Type' apply.  See the PAD-US Data Manual for a crosswalk of 'Designation Type' (e.g. 'State Conservation Area') from source data where 'Local Designation Type' may include various, related designations referenced in source data (e.g. State Natural Area, State Ecological Reserve, State Nature Preserve, State Critical Habitat Area, State Wildlife Management Area, etc.).
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Loc_Ds</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Unit_Nm</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The name of overall protected area following the PAD-US Standard (i.e. full name including the designation type in Proper Case without acronyms, unit identifiers, special characters, space or return errors), complimenting 'Local Name'.  As null values are not permitted in this standardized field, categorical assignments are sometimes made from the 'Manager Name' field and an auto-incremented number for each protected area when data gaps occur in source files.  This field is in a state of transition as data-stewards move toward common standards.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Unit_Nm</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Loc_Nm</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The name of the protected area as provided by the data source; the 'Local Name' field is not standardized.  This field may or may not include designations, different formats, spelling errors, unit or area identifiers unique to parcels; however, it links directly to source data files.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Loc_Nm</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">State_Nm</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+Name of State or territory by United States Postal Service abbreviation. U.S. Census Bureau States and Equivalent data serve as the common standard to apply 'State Name' and State jurisdictional boundaries. More information about Protected Areas Database of the United States (PAD-US) data-stewards and source data files are available at <a href="http://www.protectedlands.net/data-stewards/">http://www.protectedlands.net/data-stewards/</a>.  See domain descriptions in PAD-US Data Manual or geodatabase look up table for details.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">State_Nm</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Agg_Src</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+'Aggregator Source' describes the Aggregator (Organization) credited with data aggregation, version of PAD-US when the update occurred, feature class name (except when split into multiple feature classes) the data reside in, reference to the original source data file, and a reference to describe the State location to manage boundary inconsistencies between agency datasets (from State data-steward submissions only). 'Aggregator Source' is attributed in the format 'organization name_PADUSversion_featureclass_filename_filetype' (e.g. TNC_PADUS1_4_SecuredAreas2008.shp). State aggregations also include a reference to the State in the format 'organization name_PADUSversion_filename_filetype_StateUSPS'.  Aggregators may not always be able to define the geodatabase feature class as data may be mixed (e.g. MNDNR_PADUS2_0_MN2015_PADUS_MN_1.gdb_MN, NJOGIS_PADUS2_0Fee_OSPRI_August2017_NJ). Organization acronyms are used and underscore replaces spaces and periods. A data aggregator submits data in the PAD-US format or includes nonprofit aggregators managing regional or national datasets with required fields for PAD-US translation.  USGS is identified as an aggregator when data translation is required (e.g. USGS_PADUS2_0Fee_BLM_SMA_ADMU_Union). More information about Protected Areas Database of the United States (PAD-US) data-stewards and source data files are available at <a href="http://www.protectedlands.net/data-stewards/">http://www.protectedlands.net/data-stewards/</a>.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Agg_Src</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">GIS_Src</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The source of spatial data the aggregator obtained (e.g. WYGF_whmas08.shp) for each record. File names match original source data provided by managing agencies to increase update efficiency and data transparency. This field is in a state of transition to fully meet standards as the original 'GIS Source' is not always provided in aggregated datasets.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">GIS_Src</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Src_Date</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+This represents the date (yyyy/mm/dd) GIS data was published or obtained (in the case of infrequently updated files) by the data aggregator. If month or day is unknown, the date is yyyy/00/00. The date an aggregated dataset was delivered to USGS may also be assigned to address data gaps when the original 'GIS Source Date' is not available.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Src_Date</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">GIS_Acres</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+Acres calculated for each polygon converted from the Shape_Area field using field calculator &quot;!shape.area@acres!&quot;.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">GIS_Acres</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">GAP_Sts</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The 'GAP Status Code' is a measure of management intent to conserve biodiversity defined as: 
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP Status Code 1': An area having permanent protection from conversion of natural land cover and a mandated management plan in operation to maintain a natural state within which disturbance events (of natural type, frequency, intensity, and legacy) are permitted to proceed without interference or are mimicked through management. 
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP Status Code 2': An area having permanent protection from conversion of natural land cover and a mandated management plan in operation to maintain a primarily natural state, but which may receive uses or management practices that degrade the quality of existing natural communities, including suppression of natural disturbance. 
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP Status Code 3': An area having permanent protection from conversion of natural land cover for most of the area, but subject to extractive uses of either a broad, low-intensity type (e.g., logging, Off Highway Vehicle recreation) or localized intense type (e.g., mining).  It also confers protection to Federally listed endangered and threatened species throughout the area. 
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP Status Code 4': There are no known public or private institutional mandates or legally recognized easements or deed restrictions held by the managing entity to prevent conversion of natural habitat types to anthropogenic habitat types.  The area generally allows conversion to unnatural land cover throughout or management intent is unknown.  See the PAD-US Standards Manual for a summary of methods or the geodatabase look up table for short descriptions.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">GAP_Sts</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">GAPCdSrc</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+An acronym to describe the GAP Code Source or organization(s) that applied 'GAP Status Code' to a unit boundary.  This field also describes the methods used for assigning GAP Status as follows: 
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP - Default' is assigned when GAP's categorical assignment of status has been applied, without more detailed review or inquiry. 
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP' is assigned when standard methods (includes management plan review or land manager interview to assign GAP Status to a protected area) apply. 
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP - Other Organization' (e.g. 'GAP - NPS') applies when the measure is assigned in partnership with GAP, including review. 
+<div class="blank"></div>
+<div class="blank"></div>
+'Other Organization' is assigned when another organization applied GAP Status according to their methods (e.g. The Nature Conservancy).
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">GAPCdSrc</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">GAPCdDt</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The most current Year (yyyy) the 'GAP Status Code' was assigned to the polygon.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">GAPCdDt</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">IUCN_Cat</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+International Union for the Conservation of Nature (IUCN) management categories assigned to protected areas for inclusion in the United Nations Environment World Conservation Monitoring Center (UNEP-WCMC) World Database for Protected Areas (WDPA) and the Commission for Environmental Cooperation (CEC) North American Terrestrial Protected Areas Database.  IUCN defines a protected area as, &quot;A clearly defined geographical space, recognized, dedicated and managed, through legal or other effective means, to achieve the long-term conservation of nature with associated ecosystem services and cultural values&quot; (includes GAP Status Code 1 and 2 only).  Categorization follows as: 
+<div class="blank"></div>
+<div class="blank"></div>
+'IUCN Category Ia': Strict Nature Reserves are strictly protected areas set aside to protect biodiversity and possibly geological or geomorphological features, where human visitation, use and impacts are strictly controlled and limited to ensure preservation of the conservation values.  Such protected areas can serve as indispensable reference areas for scientific research and monitoring.  
+<div class="blank"></div>
+<div class="blank"></div>
+'IUCN Category Ib': Wilderness Areas protected areas are usually large unmodified or slightly modified areas, retaining their natural character and influence, without permanent or significant human habitation, which are protected and managed to preserve their natural condition.  
+<div class="blank"></div>
+<div class="blank"></div>
+'IUCN Category II': National Park protected areas are large natural or near natural areas set aside to protect large-scale ecological processes, along with the complement of species and ecosystems characteristic of the area, which also provide a foundation for environmentally and culturally compatible spiritual, scientific, educational, recreational and visitor opportunities.  
+<div class="blank"></div>
+<div class="blank"></div>
+'IUCN Category III': Natural Monument or Feature protected areas are set aside to protect a specific natural monument, which can be a landform, sea mount, submarine caverns, geological features such as caves, or even a living feature such as an ancient grove.  They are generally quite small protected areas and often have high visitor value.  
+<div class="blank"></div>
+<div class="blank"></div>
+'IUCN Category IV': Habitat and (or) species management protected areas aim to protect particular species or habitats and management reflects this priority.  Many category IV protected areas will need regular, active interventions to address the requirements of particular species or to maintain habitats, but this is not a requirement of this category.  
+<div class="blank"></div>
+<div class="blank"></div>
+'IUCN Category V': Protected landscape and (or) seascape protected areas occur where the interaction of people and nature over time has produced an area of distinct character with significant ecological, biological, cultural, and scenic value.  
+<div class="blank"></div>
+<div class="blank"></div>
+'IUCN Category VI': Protected area with sustainable use (community based, non-industrial) of natural resources are generally large, with much of the area in a more-or-less natural condition and whereas a proportion is under sustainable natural resource management and where such exploitation is seen as one of the main aims of the area.  
+<div class="blank"></div>
+<div class="blank"></div>
+'Other Conservation Areas' are not recognized by IUCN at this time; however, they will be evaluated to determine if they meet the definition of Other Effective Area Based Conservation Measures (OECMs) for inclusion in the WDPA following recently released guidance.  These areas (GAP Status Code 3 areas only) are attributed in the 'IUCN Category' Domain along with  'Unassigned' areas (GAP Status Code 4).  In addition, a few areas are included as 'Not Reported', these areas meet the definition of IUCN protection (i.e. GAP Status Code 1 or 2) but 'IUCN Category' has not yet been assigned and categorical assignment is not appropriate.  See the PAD-US Data Manual for a summary of methods.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">IUCN_Cat</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">IUCNCtSrc</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+An acronym to describe the organization(s) that applied 'IUCN Category' to the polygon.  This field also describes the methods used for assigning 'IUCN Category' as follows: 
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP - Default' is assigned when GAP's categorical assignment of status has been applied, without additional review.  
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP - Other Organization' (e.g. 'GAP - NPS') applies when the measure is assigned in partnership with GAP, including review.  
+<div class="blank"></div>
+<div class="blank"></div>
+'Other Organization' applies when IUCN Category is assigned by another organization according to their methods (e.g. NOAA).  See the PAD-US Standards Manual for more information.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">IUCNCtSrc</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">IUCNCtDt</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The most current Year (yyyy) the 'IUCN Category' was assigned to the polygon.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">IUCNCtDt</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Pub_Access</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+Level of 'Public Access' permitted, described as:
+<div class="blank"></div>
+<div class="blank"></div>
+'Open' requires no special requirements for public access to the property (may include regular hours of availability); 
+<div class="blank"></div>
+<div class="blank"></div>
+'Restricted' requires a special permit from the owner for access, a registration permit on public land (e.g. self-permitting Wild and Scenic River, backcountry Wilderness registration) or has highly variable times when open to use; 
+<div class="blank"></div>
+<div class="blank"></div>
+'Closed' occurs where no public access is allowed (e.g. land bank property, special ecological study areas, military bases, many easements, etc.).
+<div class="blank"></div>
+<div class="blank"></div>
+'Unknown' is assigned where information is not currently available.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Pub_Access</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Access_Src</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+An acronym to describe the organization(s) that applied 'Public Access' to the polygon.  This field also describes the methods used for assigning 'Public Access' as follows: 
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP - Default' is assigned when GAP's categorical assignment of status has been applied, without additional review.  
+<div class="blank"></div>
+<div class="blank"></div>
+'GAP - Other Organization' (e.g. 'GAP - NPS') applies when the measure is assigned in partnership with GAP, including review.  
+<div class="blank"></div>
+<div class="blank"></div>
+'Other Organization' applies when Public Access is assigned by another organization according to their methods (e.g. NOAA).  See the PAD-US Standards Manual for more information.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Access_Dt</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Access_Dt</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The most current Year (yyyy) the 'Public Access' classification was assigned to the polygon.  See the PAD-US Standards Manual for more information.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Access_Dt</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Date_Est</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The Year (yyyy) the protected area was designated, decreed or otherwise established.  The date is assigned to each unit by name and designation type, without event status (e.g. Yellowstone National Park: 1872, Frank Church-River of No Return Wilderness Area: 1980).  This field is not fully attributed and data gaps are difficult to address.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Date_Est</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Source_PAID</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The 'Source Protected Area Identifier' (Source PAID) includes the persistent identifier (e.g. numbers, letters, or combinations of each) associated with each protected area, when available in source data.  The intention is to maintain a reliable connection to join authoritative source data to previous PAD-US versions (to transfer attributes not available in source data) and support links to other data.  This field is not fully attributed and significant work remains to ensure persistent identifiers are provided by data-stewards.  Several Federal data-stewards provided 'Source PAID' for PAD-US 2.1 and the FLWG plans to continue work to ensure this field is operational for the Federal estate in the PAD-US format.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Source_PAID</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">WDPA_Cd</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+The 'World Database for Protected Areas (WDPA) Site Code' is assigned by the UNEP World Conservation Monitoring Centre (UNEP-WCMC) to all areas submitted to the WDPA.  USGS maintains these codes, assigned to overall protected areas by 'Unit Name' (includes 'Designation Type'), between PAD-US updates.  Areas identified as 'GAP Status Code' 1 or 2 meet the definition of protection by the International Union for the Conservation of Nature (IUCN) and are submitted to WCMC for the WDPA.  Other areas will not have a 'WDPA Code'.  A derivative PAD-US product, with all 'WDPA Codes', is sent to WCMC for the WDPA following each PAD-US update. This field is incomplete at this time, pending additional code assignments by WCMC following PAD-US 2.0 publication and review.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">WDPA_Cd</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">EHoldTyp</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+'Easement Holder Type' is the general description (e.g., 'Federal', 'Tribal', 'State', 'Private') of the easement holder, following the PAD-US 'Agency Type' domain codes and descriptions.  This is a core attribute in the National Conservation Easement Database (NCED) that was transferred to the PAD-US Easement and various Combined feature classes.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">EHoldTyp</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">EsmtHldr</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span>
+<div class="child element-value attrdef">
+'Easement Holder' is the name of the organization managing or holding the easement standardized by NCED to Proper Case with all acronyms spelled out (e.g., The Nature Conservancy [TNC]).  This is a core attribute in the National Conservation Easement Database (NCED) provided by the easement holder or data provider that was transferred to the PAD-US 'Easement' and various 'Combined' feature classes.
+</div>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">EsmtHldr</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Comments</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span> <span class="element-value attrdef">Comments from either the original data source or aggregator.</span><br/>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span>
+<div class="child element-value attrdefs">
+See Online PAD-US Data Manual available at <a href="https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual">https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/pad-us-data-manual</a>
+</div>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name codesetd">Codeset_Domain:</span><div class="child">
+<span class="element-name codesetn">Codeset_Name:</span> <span class="element-value codesetn">Comments</span><br/>
+<span class="element-name codesets">Codeset_Source:</span> <span class="element-value codesets">U.S. Geological Survey</span><br/>
+</div>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Shape_Length</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span> <span class="element-value attrdef">Length of feature in internal units.</span><br/>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span> <span class="element-value attrdefs">ESRI</span><br/>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name udom">Unrepresentable_Domain:</span> <span class="element-value udom">Positive real numbers that are automatically generated.</span><br/>
+</div>
+</div>
+<span class="element-name attr">Attribute:</span><div class="child">
+<span class="element-name attrlabl">Attribute_Label:</span> <span class="element-value attrlabl">Shape_Area</span><br/>
+<span class="element-name attrdef">Attribute_Definition:</span> <span class="element-value attrdef">Area of feature in internal units squared.</span><br/>
+<span class="element-name attrdefs">Attribute_Definition_Source:</span> <span class="element-value attrdefs">ESRI</span><br/>
+<span class="element-name attrdomv">Attribute_Domain_Values:</span><div class="child">
+<span class="element-name udom">Unrepresentable_Domain:</span> <span class="element-value udom">Positive real numbers that are automatically generated.</span><br/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="major-section" id="6">
+<span class="element-name distinfo">Distribution_Information:</span><div class="child">
+<span class="element-name distrib">Distributor:</span><div class="child">
+<span class="element-name cntinfo">Contact_Information:</span><div class="child">
+<span class="element-name cntorgp">Contact_Organization_Primary:</span><div class="child">
+<span class="element-name cntorg">Contact_Organization:</span> <span class="element-value cntorg">U.S. Geological Survey - ScienceBase</span><br/>
+</div>
+<span class="element-name cntaddr">Contact_Address:</span><div class="child">
+<span class="element-name addrtype">Address_Type:</span> <span class="element-value addrtype">mailing and physical address</span><br/>
+<span class="element-name address">Address:</span> <span class="element-value address">Denver Federal Center,</span><br/>
+<span class="element-name address">Address:</span> <span class="element-value address">Building 810, Mail Stop 302</span><br/>
+<span class="element-name city">City:</span> <span class="element-value city">Denver</span><br/>
+<span class="element-name state">State_or_Province:</span> <span class="element-value state">Colorado</span><br/>
+<span class="element-name postal">Postal_Code:</span> <span class="element-value postal">80225</span><br/>
+<span class="element-name country">Country:</span> <span class="element-value country">USA</span><br/>
+</div>
+<span class="element-name cntvoice">Contact_Voice_Telephone:</span> <span class="element-value cntvoice">1-888- 275-8747</span><br/>
+<span class="element-name cntemail">Contact_Electronic_Mail_Address:</span> <span class="element-value cntemail">sciencebase@usgs.gov</span><br/>
+</div>
+</div>
+<span class="element-name resdesc">Resource_Description:</span>
+<div class="child element-value resdesc">
+Download or view data from <a href="https://usgs.gov/gapanalysis/PAD-US/">https://usgs.gov/gapanalysis/PAD-US/</a> or <a href="https://doi.org/10.5066/P92QM3NT">https://doi.org/10.5066/P92QM3NT</a> .  The PAD-US version 2.1 data was developed using an Esri ArcGIS version 10 File Geodatabase format to utilize the expanded capabilities of the File Geodatabase for overall size, attribute name length, attribute aliases, coded domain values and topology analysis tools (See PAD_US2_1_GDB.zip at <a href="https://doi.org/10.5066/P92QM3NT">https://doi.org/10.5066/P92QM3NT</a> ).  Users may download a shapefile (.shp), Keyhole Markup Language (.kmz), and ArcGIS version 10.x file geodatabase (.gdb) formats at <a href="https://usgs.gov/gapanalysis/PAD-US-data-download">https://usgs.gov/gapanalysis/PAD-US-data-download</a> .  Various Web Mapping Services (<a href="https://usgs.gov/gapanalysis/PAD-US-web-services">https://usgs.gov/gapanalysis/PAD-US-web-services</a>) and poster maps (<a href="https://usgs.gov/gapanalysis/PAD-US-resources">https://usgs.gov/gapanalysis/PAD-US-resources</a>) are also available.
+</div>
+<span class="element-name distliab">Distribution_Liability:</span>
+<div class="child element-value distliab">
+Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected.  Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.
+<div class="blank"></div>
+This database, identified as PAD-US version 2.1, has been approved for release by the U.S. Geological Survey (USGS).  Although this database has been subjected to rigorous review and is substantially complete, the USGS reserves the right to revise the data pursuant to further analysis and review.
+</div>
+<span class="element-name stdorder">Standard_Order_Process:</span><div class="child">
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">The File downloads in a .zip format</span><br/>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span> <span class="element-value networkr"><a href="https://doi.org/10.5066/P92QM3NT">https://doi.org/10.5066/P92QM3NT</a></span><br/>
+<span class="element-name networkr">Network_Resource_Name:</span> <span class="element-value networkr"><a href="https://usgs.gov/gapanalysis/PAD-US">https://usgs.gov/gapanalysis/PAD-US</a></span><br/>
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+A Variety of web mapping services are available to accompany the data and to help visualize the data in many ways.   A summary and short description of all available services (PADUS2_1 Layer Files Description.pdf ) is included in the data download or here: (<a href="https://usgs.gov/gapanalysis/PAD-US-web-services">https://usgs.gov/gapanalysis/PAD-US-web-services</a> ).  The most commonly used Services can be viewed through the PAD-US Online Map Viewer (<a href="https://maps.usgs.gov/padus/">https://maps.usgs.gov/padus/</a> ) or can be accessed and consumed by other web mapping applications using the links provided here:(<a href="https://usgs.gov/gapanalysis/PAD-US-web-services">https://usgs.gov/gapanalysis/PAD-US-web-services</a> ). The expanded multiple feature class structure of PAD-US 2.1 has increased available options to portray the PAD-US data in webservices because of the separation of the &quot;Fee&quot; held areas from the overlapping management &quot;Designations&quot;.  Several different types of services are now available, both in the technology used as well as the data that is included.  Esri created a variety of Services in ArcGIS Online using a combined PAD-US 2.1 Feature Class that included the Department of Defense Military Lands and CENSUS Tribal Areas (Proclamation feature class), Marine Areas, Fee, Designation, and Easement data.  Esri developed Feature Layer and Tile Layer services with different scale ranges for each of the types of layers. You must zoom in to view Feature services as they are set from about Counties (1:500,000) to Room (1:100) level.  Vector Tile Layers are set from about World (1:100,000,000) to Small Building (1:800) level.  Esri incorporated both of these layers into ArcGIS Online Webmaps to transition between the two: <a href="http://www.arcgis.com/home/group.html?id=e1832888324f42e08f2a1f08e6904ad1&view=list&start=1&num=20&focus=maps#content">http://www.arcgis.com/home/group.html?id=e1832888324f42e08f2a1f08e6904ad1&view=list&start=1&num=20&focus=maps#content</a> .  Additional cached Tile WMS layers are available from ScienceBase, that include data from the Fee feature class only (All Fee Managers, Federal Fee Manager - Authoritative data only).  These services do not include overlapping management designations that often mask private or other inholdings.
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Manager Type</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service representing coarse level land manager description from &quot;Agency Type&quot; Domain, &quot;Manager Type&quot; Field (for example, Federal, Tribal, State, Local Gov, Private). Use for broad categorization of manager levels, for general depictions of who manages what areas.
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ManagerType/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ManagerType/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Manager Name</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service representing fine level manager or administrative agency name standardized for the Nation (USFS, BLM, State Fish and Wildlife, State Parks and Rec, City, NGO, etc). This map is based on the PAD-US 2.1 Combined Proclamation, Marine, Fee, Designation, Easement feature class. DOD and Tribal areas shown with 50% transparency. Use for categorization by manager name, with detailed federal managers and generic state/local/other managers.
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ManagerName/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ManagerName/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Federal Management Agencies</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service describing federal managers or administrative agencies by name. DOD and Tribal areas shown with 50% transparency. Use to depict individual federal management agencies (no state, local or private lands). This map is based on the PAD-US 2.1 Combined Proclamation, Marine, Fee, Designation, Easement feature class.
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/FederalManagementAgencies/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/FederalManagementAgencies/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Protection Status by GAP Status Code</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service representing a measure of management intent to permanently protect biodiversity. GAP 1 and 2 areas are primarily managed for biodiversity, GAP 3 are managed for multiple uses including conservation and extraction, GAP 4 no known mandate for biodiversity protection. Shows the full range of GAP Status Codes (1-3) for all lands and marine areas.GAP Status Code 4 areas not included.
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ProtectionStatusbyGAPStatusCode/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ProtectionStatusbyGAPStatusCode/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Protected Areas by Manager</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service representing protected areas categorized as GAP Status 1-3 classified by GAP Status Code protection level and manager type. Allows users to see extent of biodiversity protection and multiple use areas by manager type (federal, state, etc.).
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ProtectedAreasbyManager/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ProtectedAreasbyManager/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Protection Mechanism Category</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service representing the protection mechanism category including fee simple, internal management designations, easements, leases and agreements, and Marine Areas. Proclamation category shown as gray outline. Use to show categories of land tenure for all protected areas, including marine areas.
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ProtectionMechanismCategory/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ProtectionMechanismCategory/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Public Access</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service representing general level of public access permitted in the area - Open, Restricted (permit, seasonal), Closed. Public Access Unknown areas not included. Use to show general categories of public access (however, not all areas have been locally reviewed).
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/PublicAccess/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/PublicAccess/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Fee Managers</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service representing fine level manager or administrative agency name standardized for the Nation (USFS, BLM, State Fish and Wildlife, State Parks and Rec, City, NGO, etc). Where available this layer includes fee simple parcels from the PAD-US 2.1 Fee feature Class plus DOD and Tribal from the Proclamation feature class. Use for categorization by manager name, with detailed federal managers and generic state/local/other managers. DOD and Tribal areas shown with 50% transparency.
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/FeeManagers/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/FeeManagers/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Federal Fee Managers (Authoritative Data)</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service describing authoritative fee data for federal managers or administrative agencies by name. U.S. Department of Defense and Tribal areas shown with 50% transparency from the Proclamation feature class. Use to depict authoritative fee data for individual federal management agencies (no state, local or private lands). This service does not include designations that often overlap state, private or other inholdings. U.S. Department of Defense internal land ownership is not represented but is implied Federal. See the Federal Management Agencies service for a combined view of fee ownership, designations, and easements.
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/FederalFeeManagersAuth/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/FederalFeeManagersAuth/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Proclamation and Other Planning Boundaries</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service representing boundaries that provide additional context. Administrative agency name standardized for the nation (DOD, FWS, NPS, USFS, Tribal). Boundaries shown with outline only, as proclamation data do not depict actual ownership or management. Use to show outline of agency proclamation, approved acquisition or other planning boundaries where internal ownership is not depicted.
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ProclamationandOtherPlanningBoundaries/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/ProclamationandOtherPlanningBoundaries/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name digform">Digital_Form:</span><div class="child">
+<span class="element-name digtinfo">Digital_Transfer_Information:</span><div class="child">
+<span class="element-name formname">Format_Name:</span> <span class="element-value formname">PAD-US 2.1 - Fee Topology Overlaps</span><br/>
+<span class="element-name formvern">Format_Version_Number:</span> <span class="element-value formvern">ArcGIS Map Services</span><br/>
+<span class="element-name formspec">Format_Specification:</span> <span class="element-value formspec"><a href="http://www.geoplatform.gov/spec/esri-map-rest">http://www.geoplatform.gov/spec/esri-map-rest</a></span><br/>
+<span class="element-name formcont">Format_Information_Content:</span>
+<div class="child element-value formcont">
+An ArcGIS WMS Service representing Topology overlaps in the Fee Feature Class. As an aggregated data inventory, PAD-US contains thousands of data sources which are all integrated into one combined database. The policy of USGS is to accept agency data “as is” and translate them into the PAD-US format. Boundaries created by a specific agency or data steward may not fully align with those of another, creating GIS topology errors (mostly minor boundary discrepancies) associated with fee parcel ownership. In addition, more than one agency may submit an area for PAD-US without complete attributes that differentiate the fee owner and land manager. The FGDC Federal Lands Working Group (FLWG, <a href="https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/">https://communities.geoplatform.gov/ngda-govunits/federal-lands-workgroup/</a>) and the PAD-US Team made great progress with version 2.1 in reducing boundary discrepancies among federal agencies and between federal and state lands. PAD-US has a number of feature classes that overlay one another - for example, some easements overlay fee lands or other easements; many designation or proclamation boundaries overlay fee and/or easement lands, as well as other designations/proclamations. These are not errors - they are an accurate reflection of the world of protected areas data. But they can create challenges for spatial data users. In PAD-US version 2.1, designations and proclamations are in separate feature classes which has helped address this issue, but overlapping boundaries still remain in the fee parcel ownership layer desired for many applications. Users are encouraged to generally review these overlaps, contained in this record or the full topology assessment available here: <a href="https://doi.org/10.5066/P92QM3NT">https://doi.org/10.5066/P92QM3NT</a> . The assessment identifies all overlaps (minimum distance between feature coordinates to evaluate overlap relationship = 0.05 meter), large (greater than 5 acres), and small (less than 5 acres) overlaps between federal agency lands and between federal and state agency lands in the Fee feature class.
+</div>
+</div>
+<span class="element-name digtopt">Digital_Transfer_Option:</span><div class="child">
+<span class="element-name onlinopt">Online_Option:</span><div class="child">
+<span class="element-name computer">Computer_Contact_Information:</span><div class="child">
+<span class="element-name networka">Network_Address:</span><div class="child">
+<span class="element-name networkr">Network_Resource_Name:</span>
+<div class="child element-value networkr">
+<a href="https://gis1.usgs.gov/arcgis/rest/services/padus2_1/FeeTopologyOverlaps/MapServer">https://gis1.usgs.gov/arcgis/rest/services/padus2_1/FeeTopologyOverlaps/MapServer</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="element-name fees">Fees:</span> <span class="element-value fees">None.  No fees are applicable for obtaining the data set.</span><br/>
+</div>
+</div>
+</div>
+<div class="major-section" id="7">
+<span class="element-name metainfo">Metadata_Reference_Information:</span><div class="child">
+<span class="element-name metd">Metadata_Date:</span> <span class="element-value metd">20201218</span><br/>
+<span class="element-name metc">Metadata_Contact:</span><div class="child">
+<span class="element-name cntinfo">Contact_Information:</span><div class="child">
+<span class="element-name cntperp">Contact_Person_Primary:</span><div class="child">
+<span class="element-name cntper">Contact_Person:</span> <span class="element-value cntper">Mason Croft</span><br/>
+<span class="element-name cntorg">Contact_Organization:</span> <span class="element-value cntorg">USGS Gap Analysis Project - Boise State University Cooperator</span><br/>
+</div>
+<span class="element-name cntpos">Contact_Position:</span> <span class="element-value cntpos">PAD-US Technical Specialist</span><br/>
+<span class="element-name cntaddr">Contact_Address:</span><div class="child">
+<span class="element-name addrtype">Address_Type:</span> <span class="element-value addrtype">mailing address</span><br/>
+<span class="element-name address">Address:</span> <span class="element-value address">1910 University Drive - MS 1935</span><br/>
+<span class="element-name city">City:</span> <span class="element-value city">Boise</span><br/>
+<span class="element-name state">State_or_Province:</span> <span class="element-value state">Idaho</span><br/>
+<span class="element-name postal">Postal_Code:</span> <span class="element-value postal">83725</span><br/>
+<span class="element-name country">Country:</span> <span class="element-value country">USA</span><br/>
+</div>
+<span class="element-name cntvoice">Contact_Voice_Telephone:</span> <span class="element-value cntvoice">208-301-8288</span><br/>
+<span class="element-name cntemail">Contact_Electronic_Mail_Address:</span> <span class="element-value cntemail">masoncroft@boisestate.edu</span><br/>
+</div>
+</div>
+<span class="element-name metstdn">Metadata_Standard_Name:</span> <span class="element-value metstdn">FGDC Content Standard for Digital Geospatial Metadata</span><br/>
+<span class="element-name metstdv">Metadata_Standard_Version:</span> <span class="element-value metstdv">FGDC-STD-001-1998</span><br/>
+<span class="element-name mettc">Metadata_Time_Convention:</span> <span class="element-value mettc">local time</span><br/>
+</div>
+</div>
+<hr id="page-bottom"/>
+<div id="generated-by">Generated by <a href="https://geology.usgs.gov/tools/metadata/tools/doc/mp.html" style="font-family: monospace;">mp</a> version 2.9.50 on Fri Dec 18 08:37:53 2020</div>
+
+</body>
+</html>

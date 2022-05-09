@@ -52,7 +52,7 @@ I work in the Uncompahgre field office, hence I will filter for that administrat
 ```{r Filter Administrative Unit or Parent Name to relevant area}
 blm_admnu <- blm_admnu  %>% 
   filter(ADMU_NAME == 'UNCOMPAHGRE FIELD OFFICE') %>% 
-  st_transform(32613) %>%  # we transfor to a PLANAR projection in meters so we can buffer it
+  st_transform(32613) %>%  # we transform to a PLANAR projection in meters so we can buffer it
   st_buffer(10000) %>%  # buffer the FO by 10 km  
   # this allows us to retrieve bordering MLRAS
   st_transform(st_crs(mlra)) # convert new vector data to same projection as mlra
