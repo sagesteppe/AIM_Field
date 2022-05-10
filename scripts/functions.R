@@ -163,7 +163,7 @@ KML_Points_draw <- function(x, path){
   # Inputs an initial process datasheet as an sf object. 
   
   # section 1 generate the appropriate points for assignment to strata
-  base_url <- 'http://google.com/mapfiles/ms/micons/'
+  base_url <- 'http://maps.google.com/mapfiles/ms/micons/'
   url_suffix <- '.png'
   opts_base <- paste0(base_url, c('yellow', 'blue', 'green', 'lightblue', 
                                   'orange', 'pink', 'purple', 'red'), url_suffix)
@@ -247,6 +247,7 @@ KML_Points_draw <- function(x, path){
   write_files <- function(y){
     
     file <-  st_as_sf(y) %>% 
+      st_transform(4326) %>% 
       as('Spatial')
     
     kmlPoints(file, 
@@ -328,6 +329,7 @@ KML_Polygons_draw <- function(x, path){
   write_files <- function(y){
     
     file <-  st_as_sf(y) %>% 
+      st_transform(4326) %>% 
       as('Spatial')
     
     kmlPolygon(file,
