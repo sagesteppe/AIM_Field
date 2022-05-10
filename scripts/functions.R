@@ -319,8 +319,7 @@ KML_Polygons_draw <- function(x, path){
     mutate(fname = paste0(Mang_Name, '_land_', 
                           str_remove(Sys.Date(), '-[0-9]{2}-[0-9]{2}')
     )) %>% 
-    mutate(fpath = paste0(save_path, '/', fname, '.kml')) %>% 
-    mutate(public_lands_colours = paste0("'", public_lands_colours, "'"))
+    mutate(fpath = paste0(save_path, '/', fname, '.kml')) 
   
   # 5 create files
   
@@ -337,7 +336,7 @@ KML_Polygons_draw <- function(x, path){
                kmlfile = file$fpath[1],
                name = file$Mang_Name[1], 
                description = file$Mang_Name[1], 
-               col = file$public_lands_cols[1],
+               col = file$public_lands_colours[1],
                visibility = 1, lwd = 1, border = "black")
     
   }

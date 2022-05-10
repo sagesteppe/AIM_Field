@@ -10,7 +10,8 @@
 <color>ff000000</color>
 </LineStyle>
 <PolyStyle>
-<fill>0</fill>
+<color>ffb3ffff</color>
+<fill>1</fill>
 </PolyStyle>
 </Style>
 
