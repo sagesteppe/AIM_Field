@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>PP_2022_OS</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/purple-dot.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>PP-177</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.042896,38.902257
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PP-178</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.098681,38.046647
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PP-179</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.124899,38.857399
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PP-180</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.14115,38.441078
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

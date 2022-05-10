@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>MMS_2022_Base</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/lightblue.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>MMS-095</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.339544,38.535949
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>MMS-096</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.898956,38.351665
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>MMS-097</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.064751,38.030116
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>MMS-098</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.728779,38.393477
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>MMS-099</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.838595,38.967624
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

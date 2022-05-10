@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>SD_2022_OS</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/blue-dot.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>SD-410</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.914476,38.742949
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-411</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.084693,38.794695
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-412</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.79379,38.395299
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-413</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.059011,38.547461
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-414</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.592002,38.795691
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

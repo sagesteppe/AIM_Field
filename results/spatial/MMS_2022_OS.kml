@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>MMS_2022_OS</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/ltblue-dot.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>MMS-100</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.339983,38.098831
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>MMS-101</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.703628,38.637981
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>MMS-102</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.646603,38.737451
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>MMS-103</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.06025,38.823289
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>MMS-104</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.857223,38.668492
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>MMS-105</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.615079,38.562426
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

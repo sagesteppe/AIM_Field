@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>SS_2022_Base</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/yellow.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>SS-294</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.044479,38.887456
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-295</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.911005,38.426537
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-296</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.613894,38.269868
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-297</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.843053,38.57352
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-298</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.725248,38.629781
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-299</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.849115,38.242067
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-300</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.410944,38.283072
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-305</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.032972,38.436191
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-306</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.176968,38.559432
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-307</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.839536,38.294466
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-308</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.587029,38.178208
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-309</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.019717,38.387704
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-310</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.260846,38.863507
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-311</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.798366,38.434416
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-312</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.438279,38.31586
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-313</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.125509,38.475573
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

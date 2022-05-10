@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>SD_2022_Base</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/blue.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>SD-392</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.833458,38.51496
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-393</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.688675,38.436633
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-394</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.83741,38.729151
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-395</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.340761,38.791271
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-399</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.053323,38.799809
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-400</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.16855,38.652986
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-401</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.849567,38.341638
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-402</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.881637,38.599736
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-403</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.653142,38.271388
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-404</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.846415,38.547525
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-405</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.171683,38.766973
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-406</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.853154,38.796504
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-407</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.153736,38.792414
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-408</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.199613,38.693348
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SD-409</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.028767,38.796033
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

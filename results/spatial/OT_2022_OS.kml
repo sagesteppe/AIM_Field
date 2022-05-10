@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>OT_2022_OS</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/orange-dot.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>OT-121</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.92495,38.401541
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>OT-122</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.839792,38.556978
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>OT-123</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.372369,38.66486
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>OT-124</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.909085,38.294985
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>OT-125</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.846424,38.409131
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>OT-126</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.775565,38.44739
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

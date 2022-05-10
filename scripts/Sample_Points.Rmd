@@ -95,20 +95,12 @@ Google Earth provides an excellent interface to visualize sites due to it's 3-di
 
 ### Create Site Icons for Google Earth
 
-```{r Save AIM Points as Icons}
-base_url <- 'http://google.com/mapfiles/ms/micons/'
-url_suffix <- '.png'
+```{r Determine if the number of strata exceed 8 and group strata to reduce, eval = F}
 
-opts_base <- paste0(base_url, c('yellow', 'blue', 'green', 'lightblue', 
-               'orange', 'pink', 'purple', 'red'), url_suffix)
-opts_oversamples <- paste0(base_url, 
-                           c('yellow-dot', 'blue-dot', 'green-dot', 'ltblue-dot', 
-                             'orange-dot', 'pink-dot', 'purple-dot', 'red-dot'),
-                           url_suffix)
+KML_Points_draw(initial_process, 'spatial')
 
-rm(base_url, url_suffix)
+rm(KML_Points_draw)
 ```
-
 
 
 ### Create Ownership Layers for Google Earth
@@ -137,11 +129,6 @@ blm_admnu <- st_read(paste0(here(), '/data/raw/blm_co_admu_fo_shp/',
   st_bbox()
 
 PAD <- st_crop(PAD, blm_admnu)
-
-head(PAD)
-table(PAD$Mang_Type) # RELEVANT
-table(PAD$Mang_Name)
-table(PAD$Des_Tp)
 
 PAD <- PAD %>% 
   dplyr::select(Mang_Type, Mang_Name, Des_Tp) %>% 
@@ -217,46 +204,11 @@ Table 5. Agency Name domain codes and descriptions
 
 
 
-```{r Save Public Lands Ownership as KML}
+```{r Save Public Lands Ownership as KML, eval = F}
 
-kmlfile <- paste(td, "BLM_UFO_Ownership.kml", sep="/")
+resin <- KML_Polygons_draw(PAD1, 'spatial')
 
-public_lands_colours <- setNames(
-  
-  # these manually transcribed from the H-1553-Publications Standards Manual
-  # Handbook - hopefully no errors.
-  # [H-1553](https://www.ntc.blm.gov/krc/uploads/223/Ownership_Map_Color_Reference_Sheet.pdf)
-  
-  c( # colours
-  rgb(254, 230, 121, max = 255), # BLM
-  rgb(204, 235, 197, max = 255), # USFS
-  rgb(202, 189, 220, max = 255), # NPS
-  rgb(127, 204, 167, max = 255), # FWS
-  rgb(255, 255, 179, max = 255), # USBR
-  rgb(253, 180, 108, max = 255), # TRIB
-  rgb(251, 180, 206, max = 255), # DOD
-  rgb(228, 196, 159, max = 255), # OTHF
-  rgb(179, 227, 238, max = 255), # SLB
-  rgb(255, 255, 255, max = 255), # PVT
-  rgb(143, 181, 190, max = 255) # CITY CNTY
-  ), 
-  
-  c( # names
-  'BLM', 'USFS', 'NPS', 'FWS', 'USBR', 'TRIB', 'DOD', 'OTHF', 'SLB', 'PVT', 'CITY_CNTY_SDC_SDNR_SPR'
-  )
-)
-
-public_lands_colours
-
-kmlPolygons(blm_ownership, kmlfile = kmlfile,
-  name = "KML Polygons subset", 
-  description = "three countries", 
-  col = "blue",
-  visibility = 1, lwd = 1, border = "white", kmlname = "R Test 2",
-  kmldescription = "This is <b>only</b> a <a href='http://www.r-project.org'>R</a> test.")
-## combine to make a list of polygon objects to plot
-polList <- c(regions,wrld_simpl)
-kmlfile <- paste(td, "worldPoliticalandSubset.kml", sep="/")
+rm(KML_Polygons_draw)
 ```
 
 

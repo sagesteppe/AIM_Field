@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>RI_2022_OS</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/pink-dot.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>RI-211</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.818368,38.40912
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>RI-212</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.094009,38.522557
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>RI-213</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.941801,38.239491
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>RI-214</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.058674,38.518105
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

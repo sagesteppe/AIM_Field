@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>PJ_2022_OS</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/green-dot.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>PJ-162</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.255481,38.562017
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PJ-163</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.830671,38.890193
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PJ-164</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.948949,38.407282
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PJ-165</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.691779,38.439375
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PJ-166</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.291681,38.683439
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PJ-167</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.005397,38.422991
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PJ-168</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.679437,38.239586
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PJ-169</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.331351,38.107853
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>PJ-170</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-109.009443,38.350063
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>SS_2022_OS</name>
+<description><![CDATA[]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://google.com/mapfiles/ms/micons/yellow-dot.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>SS-314</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.665132,38.927375
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-315</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.287627,38.560152
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-316</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.681069,38.456526
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-317</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.492533,38.927641
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-318</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-107.87746,38.924354
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-319</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.746507,38.267168
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>SS-320</name>
+  <description><![CDATA[]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-108.442432,38.100348
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>
