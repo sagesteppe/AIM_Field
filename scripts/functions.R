@@ -171,7 +171,7 @@ KML_Points_draw <- function(x, path){
                              c('yellow-dot', 'blue-dot', 'green-dot', 'ltblue-dot', 
                                'orange-dot', 'pink-dot', 'purple-dot', 'red-dot'),
                              url_suffix)
-  
+  r
   rm(base_url, url_suffix)
   
   # section 2 write path to each file and file name
@@ -319,7 +319,8 @@ KML_Polygons_draw <- function(x, path){
     mutate(fname = paste0(Mang_Name, '_land_', 
                           str_remove(Sys.Date(), '-[0-9]{2}-[0-9]{2}')
     )) %>% 
-    mutate(fpath = paste0(save_path, '/', fname, '.kml')) 
+    mutate(fpath = paste0(save_path, '/', fname, '.kml')) %>% 
+    mutate(public_lands_colours = paste0("'", public_lands_colours, "'"))
   
   # 5 create files
   
