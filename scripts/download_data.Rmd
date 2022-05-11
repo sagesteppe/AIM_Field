@@ -99,7 +99,7 @@ terrain(dem, v = 'TRI', neighbors = 8, unit = 'degrees',
 
 Points with greater than 26.57 degrees (slopes of 50*) are office rejections.
 ```{r Read in Slope degree raster}
-degrees<- rast(paste0(here(), '/data/processed/UFO_slope_deg.tif'))
+degrees<- rast(paste0(here(), '/data/processed/UFO_slope.tif'))
 plot(degrees)
 #aspect<- rast(paste0(here(), '/data/processed/UFO_aspect.tif'))
 #plot(aspect)
@@ -135,6 +135,7 @@ rm(data_proc)
 
 
 As a future endeavor we can use AIM data to test our slope value raster. Note this step is only possible if you have had previous AIM work carried out in the area. 
+
 ```{r Logistic Regression Determining Accuracy of classification, eval = F}
 
 ```
@@ -159,6 +160,7 @@ counties <- st_join(counties_filt, st_as_sf(FO), join = st_intersects, left = F)
 
 # WE WILL NEED TO IMPORT JOHN_TIGGER FUNCTION FROM 'REVISIONARY TAXONOMY' - HOW YOU WANT DO THIS DORK? - IT COULD
 # REQUIRE YOU ACTUALLY PUSHING A PACKAGE PUBLIC...
+
 lst_result <- apply(counties, 1, john_tigger)
 cnty_rds <- bind_rows(lst_result) %>% 
   st_as_sf()
@@ -181,27 +183,56 @@ cnty_rds <- cnty_rds %>%
 ggplot(counties) +
   geom_sf() +
   geom_sf(data = st_as_sf(FO), fill = 'blue', alpha = 0.5) +
-  geom_sf(data = cnty_rds_buf, alpha = 0.7) +
+  geom_sf(data = cnty_rds, alpha = 0.7) +
   theme_bw()
-
-cnty_rds_buf <- st_buffer(cnty_rds, 4828) %>% 
-  st_union()
 
 st_write(cnty_rds, paste0(here(), '/data/processed/UFO_roads.shp'), quiet =T)
 rm(lst_result, john_tigger, FO_ch_15mi, counties_filt, inter)
 ```
 
-### Determine accuracy of point drops on BLM Land. 
 
-```{r Import Dataset}
+```{r Reduce Road Data to remove disconnected roads}
+
+cnty_rds <- st_read(paste0(here(), '/data/processed/UFO_roads.shp'), quiet =T)
+
+
+#touching <- st_touches(cnty_rds)
+#v <- touching[1:length(touching)] != "integer(0)"
+#touching <- cnty_rds[v,]
+
+cnty_rds_union <- st_as_sf(cnty_rds_union)
+
+ggplot() +
+  geom_sf(data = st_as_sf(FO), fill = 'blue', alpha = 0.5) +
+  geom_sf(data = cnty_rds, alpha = 0.7) +
+  geom_sf(data = touching, color = 'red') +
+  theme_bw()
+
 
 ```
+
 
 ### Load 
 
 ### Locate most proximal road access to Points
 
 ```{r Find most proximal points to road}
+pts <- st_read(paste0(here(), '/data/raw/AIM_Points_2022.shp')) %>% 
+  st_transform(26912)
+cnty_rds <- st_transform(cnty_rds, 26912) %>% 
+  group_by(FULLNAME) %>% 
+  summarize(geometry = st_union(geometry))
+
+res <- st_nearest_feature(pts, cnty_rds)
+closest_rds <- cnty_rds[res,]
+distances <- st_distance(pts, cnty_rds[res,], by_element = TRUE)
+
+np_linestrings <- st_nearest_points(pts, closest_rds, pairwise = TRUE)
+
+ggplot(pts) +
+  geom_sf() +
+  geom_sf(data = closest_rds) +
+  geom_sf(data = np_linestrings, color = 'red')
 
 ```
 
