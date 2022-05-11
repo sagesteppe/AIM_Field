@@ -109,7 +109,7 @@ Here we will use the PAD-US database to download public land ownership data by s
 
 You can download the [PAD-US dataset](https://www.sciencebase.gov/catalog/item/60259839d34eb12031138e1e) for your state manually. 
 
-```{r Import Public Lands owernship and crop to extent of Field Office. echo = F}
+```{r Import Public Lands owernship and crop to extent of Field Office, echo = F}
 
 p1 <- paste0(here(), '/data/raw/',
   list.files(paste0(here(), '/data/raw/'), pattern = '^PADUS'), '/'
