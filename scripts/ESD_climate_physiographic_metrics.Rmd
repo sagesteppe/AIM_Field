@@ -29,6 +29,7 @@ library(sf)
 library(terra)
 library(prism)
 library(here)
+library(kableExtra)
 ```
 
 # Data Analysis
@@ -120,7 +121,7 @@ monthly_precip <- monthly_precip %>%
   mutate('annual_total' = rowSums(.)) %>% 
   mutate(across(.cols = 1:12, ~ round((.x/annual_total)*100, 1)))
 
-rm(ppt)
+rm(ppt, path)
 ```
 
 ```{r frost free period, echo = F}
@@ -132,7 +133,7 @@ frost_free <- rast(paste0(here(), '/data/raw/FrostFreeDays/',
                )
 
 ff <- tibble(Frost_free = extract(frost_free, aim_pts_v, method = 'bilinear', fun = mean, weights = T)[,2])
-rm(frost_free)
+rm(frost_free, aim_pts_v)
 ```
 
 
@@ -151,5 +152,18 @@ cbind(aim_pts, physio, annual_climate, ff) %>%
                     col.names = c('Plot ID', 'Elev. (ft.)', '% Slope', 'Aspect', 'Ppt. (in.)', 'Annual Temp. (C)',  
                                   'Ann. Temp. (F)', 'Frost Free (d)')) %>%
   kableExtra::kable_styling(latex_options = c("striped", "hold_position", "repeat_header"))
+
+rm(physio, annual_climate, ff)
+```
+
+\pagebreak
+
+```{r, echo = F}
+monthly_precip_t <- data.frame('Plot' = aim_pts$plot_id, monthly_precip[,1:12])
+monthly_precip_t %>% 
+  kableExtra::kable(., "latex", booktabs = TRUE, longtable = TRUE, 
+                    caption = "Monthly Precipitation 2022 UFO AIM") %>%
+  kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header")) 
+
 ```
 
