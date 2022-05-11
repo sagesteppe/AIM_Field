@@ -113,7 +113,6 @@ rm(aspect, tri)
 ```{r Create Geomorphons and Hydrologic Basins of Field Office, eval = F}
 data_proc <- paste0(here(),"/data/processed/")
 
-
 Sys.time()
 whitebox::wbt_feature_preserving_smoothing(paste0(here(),'/data/raw/UFO_dem_10m.tif'), 
                            paste0(data_proc, "UFO_dem_10_smooth.tif"), filter=9)

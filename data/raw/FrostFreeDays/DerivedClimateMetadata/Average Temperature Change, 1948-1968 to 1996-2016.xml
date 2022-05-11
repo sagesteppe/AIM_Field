@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE metadata SYSTEM "http://fgdc.gov/metadata/fgdc-std-001-1998.dtd">
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>USDA Forest Service</origin>
+        <pubdate>November 1, 2019</pubdate>
+        <title>Average Temperature Change, 1948-1968 to 1996-2016</title>
+        <geoform>raster digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>TopoWx (“Topography Weather”) temperature data were used to compare historical temperature for two time periods; this dataset provides improved historical temperature data, as compared with other gridded temperature datasets. This dataset represents the absolute change in average temperature between 1948-1968 and 1996-2016 for the contiguous United States. For more information about TopoWx, see http://www.scrimhub.org/resources/topowx/.</abstract>
+      <purpose>Absolute change in average temperature between 1948-1968 and 1996-2016 for the contiguous U.S.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>1948</begdate>
+          <enddate>2016</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>Publication Date</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-125.004167</westbc>
+        <eastbc>-66.670834</eastbc>
+        <northbc>51.195833</northbc>
+        <southbc>24.1125</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Categories</themekt>
+        <themekey>environment</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>USDA Forest Service</themekey>
+        <themekey>USFS</themekey>
+        <themekey>Office of Sustainability and Climate</themekey>
+        <themekey>OSC</themekey>
+        <themekey>climate</themekey>
+        <themekey>temperature</themekey>
+        <themekey>TopoWx</themekey>
+        <themekey>800 meters</themekey>
+      </theme>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>The USDA Forest Service makes no warranty, expressed or implied, including the
+            warranties of merchantability and fitness for a particular purpose, nor assumes any
+            legal liability or responsibility for the accuracy, reliability, completeness or utility
+            of these geospatial data, or for the improper or incorrect use of these geospatial data.
+            These geospatial data and related maps or graphics are not legal documents and are not
+            intended to be used as such. The data and maps may not be used to determine title,
+            ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that
+            may be in place on either public or private land. Natural hazards may or may not be
+            depicted on the data and maps, and land users should exercise due caution. The data are
+            dynamic and may change over time. The user is responsible to verify the limitations of
+            the geospatial data and to use the data accordingly.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <city>Washington</city>
+          <state>DC</state>
+          <postal>20250</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>Please send an e-mail to the address below.</cntvoice>
+        <cntemail>SM.FS.data@usda.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>USDA Office of Sustainability and Climate and the Rocky Mountain Research
+            Station</datacred>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.5.1.7333</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>No formal attribute accuracy tests were conducted.</attraccr>
+    </attracc>
+    <logic/>
+    <complete>Data is complete as of publication.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>Horizontal accuracy is variable.</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>According to the project website (http://www.scrimhub.org/resources/topowx/), "The objective of TopoWx is to provide gridded temperature estimates that accurately capture both (1) locally relevant topoclimate spatial patterns; and (2) regional climate variability and trends. TopoWx gridded temperature estimates are based on historical daily station observations, digital elevation model (DEM) variables, atmospheric reanalysis data, and MODIS land skin temperature. Interpolation procedures include moving window regression kriging and geographically weighted regression. To better ensure temporal consistency, all input station observations are homogenized using the GHCN/USHCN Pairwise Homogenization Algorithm." Monthly temperature data were downloaded as netCDF files from the TopoWx website (https://download.scrim.psu.edu/TopoWx/release_2017-07/monthly/). Additional processing was applied to do the following: a) for each year, all the maximum monthly temperature files were averaged together, then all the minimum monthly datasets, b) the average annual minima and maxima were averaged together, to create an overall annual average, c) these datasets were exported as rasters, then d) the annual averages were averaged together to produce an overall average for the two time periods of interest. R scripts were used for the first three steps, and a Python script for the fourth; finally, the absolute change between the two time periods was then calculated in ArcGIS.</procdesc>
+        <procdate>2019</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Raster</direct>
+    <rastinfo>
+      <rasttype>Pixel</rasttype>
+      <rowcount>3250</rowcount>
+      <colcount>7000</colcount>
+    </rastinfo>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>8.983152841195215e-009</latres>
+        <longres>8.983152841195215e-009</longres>
+        <geogunit>Decimal Degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>D WGS 1984</horizdn>
+        <ellips>WGS 1984</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257223563</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Raster</enttypl>
+        <enttypd>A spatial data model that defines space as an array of equally sized cells
+                    arranged in rows and columns, and composed of single or multiple bands. Each
+                    cell contains an attribute value and location coordinates. Unlike a vector
+                    structure, which stores coordinates explicitly, raster coordinates are contained
+                    in the ordering of the matrix. Groups of cells that share the same value
+                    represent the same type of geographic feature.</enttypd>
+        <enttypds>Esri GIS Dictionary</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Value</attrlabl>
+        <attrdef>Absolute change in average annual temperature in degrees Celsius</attrdef>
+        <attrdefs>U.S. Forest Service</attrdefs>
+        <attrdomv>
+          <udom>Degrees Celsius</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <city>Washington</city>
+          <state>DC</state>
+          <postal>20250</postal>
+        </cntaddr>
+        <cntvoice>Please send an e-mail to the address below.</cntvoice>
+        <cntemail>SM.FS.data@usda.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any
+            liability or responsibility for the accuracy, reliability, completeness, or utility of
+            these geospatial data or for the improper or incorrect use of those data. The data are
+            dynamic and may change over time. The user is responsible for verifying the limitations
+            of the geospatial data and for using the data accordingly.</distliab>
+  </distinfo>
+  <metainfo>
+    <metd>20191101</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <city>Washington</city>
+          <state>DC</state>
+          <postal>20250</postal>
+        </cntaddr>
+        <cntvoice>Please send an e-mail to the address below.</cntvoice>
+        <cntemail>SM.FS.data@usda.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

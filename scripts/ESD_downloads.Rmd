@@ -2,7 +2,9 @@
 title: "Gather ESD's for AIM"
 author: "steppe, Michael Schmidt, K. Holsinger"
 date: '2022-04-25'
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r, echo = F}
@@ -18,6 +20,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(sf)
+source(here::here('scripts/functions.R'))
 ```
 
 
@@ -39,6 +42,7 @@ I moved this file to my data/raw sub-directory, and renamed it 'nrcs_mlra' becau
 blm_admnu <- st_read(paste0(here(), '/data/raw/blm_co_admu_fo_shp/',
   list.files(paste0(here(), '/data/raw/blm_co_admu_fo_shp'), pattern = '.shp$')), 
   quiet = T)
+here()
 
 mlra <- st_read(paste0(here(), '/data/raw/nrcs_mlra/',
   list.files(paste0(here(), '/data/raw/nrcs_mlra'), pattern = '.shp$')), 
@@ -61,7 +65,7 @@ mlra_lookup <- st_intersects(blm_admnu, mlra, sparse = T)
 mlra <- mlra[mlra_lookup[[1]],]
 
 ggplot(mlra) +
-  geom_sf() +
+  geom_sf(aes(colour = MLRA_NAME)) +
   geom_sf(data = blm_admnu, fill = 'yellow', alpha = 0.4) +
   theme_bw()
 
@@ -70,7 +74,7 @@ rm(mlra_lookup)
 
 ## Create list of all ESD's for MLRA's
 
-```{r Create list of ESDs}
+```{r Create list of ESDs, eval = F}
 mlra$MLRARSYM <- paste0('0', mlra$MLRARSYM) # these are meant to be preceded by a leading 0
 mlra$MLRARSYM[3] <- paste0(mlra$MLRARSYM[3], 'X') # 36 is suppose to have a trailing X.... this only applies to me!!!!!
 
@@ -80,22 +84,24 @@ list_url <- paste0("https://edit.jornada.nmsu.edu/services/downloads/esd/", mlra
 # Download all Relevant ESD from Jornada
 
 Using some code fleshed out by Michael Schmidt we can download the files below. 
-```{r Download ESD's, eval = F}
+```{r Download ESDs, eval = F}
 ecoclasses <- do.call(rbind,
           lapply(list_url, read_tsv, skip = 2, show_col_types = FALSE)) %>% 
   janitor::clean_names()
 
-# NOW FILTER TO YOUR STATE OF INTEREST, for example our MLRA spans several States, 
-# I do not need to download data in another state so we filter to Colorado here
+# NOW FILTER TO YOUR STATE OF INTEREST, for example our MLRA spans several States
 co_classes<-ecoclasses %>%
-  filter(str_detect(ecological_site_id, "CO$"))
+  filter(str_detect(ecological_site_id, "CO|UT$"))
 
 download_esd<-function(x, output_path){
+  initial_timeout <- getOption('timeout')
+  options(timeout=7200)
   base_url <- "https://edit.jornada.nmsu.edu/services/descriptions/esd/"
   doc_url <- paste0(base_url, x$mlra, "/", x$ecological_site_id, ".pdf")
   download.file(doc_url, paste0(output_path,"/",x$ecological_site_id," - ",
                                 janitor::make_clean_names(x$ecological_site_name),".pdf"), mode="wb")
   Sys.sleep(3)
+  options(timeout = initial_timeout)
 }
 
 dirpath <- paste0(here(), '/data/raw/UFO_ESD') # MODIFY THIS TO be the folder you want to hold your esd
@@ -114,7 +120,7 @@ You can hopefully  download the state SSURGO database from here:
 
 Be sure to check if your state has the 'spatial' component with it- if not it is a not go. For Colorado I had to individually download counties/areas and generate a reference data set from [here](https://websoilsurvey.sc.egov.usda.gov/App/WebSoilSurvey.aspx). 
 
-```{r Link to SSURGO database}
+```{r Link to SSURGO database, eval = F}
 sf::st_layers(dsn = paste0(here(), '/data/raw/gSSURGO_CO/gSSURGO_CO.gdb'))
 
 st_read(dsn = paste0(here(), '/data/raw/gSSURGO_CO/gSSURGO_CO.gdb'), layer = 'mapunit') # ESDs live here
@@ -157,40 +163,51 @@ ssurgo[invalid,] <- st_make_valid(ssurgo[invalid,])
 ssurgo_lookup <- st_intersects(blm_admnu, ssurgo, sparse = T)
 ssurgo <- ssurgo[ssurgo_lookup[[1]],] %>% 
   select(7:11)
-)
 
 st_write(ssurgo, paste0(here(), '/data/processed/ssurgo.shp'), quiet = T)
 rm(ecoclass, component, ssurgo_valid, ssurgo_lookup, invalid, spatial)
 ```
 
 
-```{r}
-
-pts <- tibble(
-  pt = c('a','b','c','d'),
-  long = c(38.550773, 38.228984, 38.367782, 38.512936),
-  lat = c(-107.837138, -108.391745, -108.882819, -108.757585)
-) %>% 
-  st_as_sf(coords = c(x = 'lat', y = 'long'), crs = 4326) %>% 
-  st_transform(32613) %>% 
-  st_buffer(3000) %>% 
-  st_transform(st_crs(ssurgo))
-
+```{r Extract soil survey areas to points, eval = F}
 
 ssurgo <- st_read(paste0(here(), '/data/processed/ssurgo.shp'), quiet = T)
+aim_plts_buff<- st_read(paste0(here(), '/data/raw/AIM_Points_2022.shp'), quiet = T) %>% 
+  st_transform(26912) %>% 
+  st_buffer(1610) %>% 
+  st_transform(st_crs(ssurgo))
 
-esds <- st_intersection(ssurgo, pts) %>% 
-  group_by(pt, ecoclassid, ecoclassname) %>% 
+esds <- st_intersection(ssurgo, aim_plts_buff) %>% 
+  group_by(plot_id, ecclssd, ecclssn) %>% 
   summarize(geometry = st_union(geometry)) 
 
-esds$PrcntArea <- round(
-  as.numeric(
-    ((st_area(this)/1000) / (pi*(3000^2)/1000)) * 100
-    ), 
-  1)
-
-ggplot(esds, aes(fill = ecoclassid)) +
+ggplot(esds, aes(fill = ecclssd), color = NA) +
   geom_sf() 
  
+esds$Area <- round( 
+    (units::set_units(st_area(esds), km^2) / # caluclate area of each mapped ESD
+       mean(units::set_units(st_area(aim_plts_buff), km^2)) ) # standardize areas to mean area of buffer
+    * 100, # convert to percentile
+    1) 
+
+dir.create(paste0(here(), '/data/processed/ESDS_spatial'))
+st_write(esds, paste0(here(), '/data/processed/ESDS_spatial/esds.shp'), quiet = T)
+```
+
+```{r Write table of ESD by plot}
+
+esds <- st_read(paste0(here(), '/data/processed/ESDS_spatial/esds.shp'), quiet = T)
+
+esds %>% 
+  group_by(plot_id) %>% 
+  arrange(plot_id, -Area) %>% 
+  mutate(ecclssn = str_to_title(ecclssn)) %>% 
+  collapse_rows_df(plot_id) %>% 
+  st_drop_geometry() %>% 
+  kableExtra::kable(., "latex", booktabs = TRUE, longtable = TRUE, 
+                    caption = "Ecological Sites Descriptions 2022 UFO AIM", 
+                    col.names = c('Plot ID', 'Eco Site Code', 'Eco Site Name', 'Percent Area')) %>%
+  kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header")) 
+
 ```
 

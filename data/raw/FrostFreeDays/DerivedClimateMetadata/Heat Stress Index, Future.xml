@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE metadata SYSTEM "http://fgdc.gov/metadata/fgdc-std-001-1998.dtd">
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>USDA Forest Service</origin>
+        <pubdate>November 1, 2019</pubdate>
+        <title>Heat Stress Index, Future</title>
+        <geoform>raster digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>The National Forest Climate Change Maps project provides information on projected climate changes at a scale relevant to decision-making process, including forest plans to meet the needs of national forest managers. The maps use the best available science and are available for every national forest with relevant data coverage. The datasets include variables related to precipitation and air temperature, for both historical data and future projections. These datasets were created using 20-model averages of downscaled climate data from MACA-v2METDATA (https://climate.northwestknowledge.net/MACA/). For more information about this project, see https://www.fs.fed.us/rm/boise/AWAE/projects/national-forest-climate-change-maps.html. This dataset represents the heat stress index (HSI), the average number of days per year when the temperature-humidity index (a function of temperature and relative humidity) exceeds the recommended threshold for beef cattle, for the future time period (2071-2090, RCP 8.5), in the contiguous United States. For more information about these methods, see Reeves and Bagne 2016: https://www.fs.fed.us/rm/pubs/rmrs_gtr343.pdf.</abstract>
+      <purpose>The heat stress index (HSI), the average number of days per year when the temperature-humidity index (a function of temperature and relative humidity) exceeds the recommended threshold for beef cattle, for the future time period (2071-2090, RCP 8.5), in the contiguous U.S.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>2071</begdate>
+          <enddate>2090</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>Publication Date</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-124.792997</westbc>
+        <eastbc>-67.042997</eastbc>
+        <northbc>49.416856</northbc>
+        <southbc>25.041856</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Categories</themekt>
+        <themekey>environment</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>USDA Forest Service</themekey>
+        <themekey>USFS</themekey>
+        <themekey>Office of Sustainability and Climate</themekey>
+        <themekey>OSC</themekey>
+        <themekey>climate</themekey>
+        <themekey>temperature</themekey>
+        <themekey>relative humidity</themekey>
+        <themekey>heat stress index</themekey>
+        <themekey>HSI</themekey>
+        <themekey>temperature humidity index</themekey>
+        <themekey>THI</themekey>
+        <themekey>cattle</themekey>
+        <themekey>rangelands</themekey>
+        <themekey>0.041666667 degrees</themekey>
+      </theme>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>The USDA Forest Service makes no warranty, expressed or implied, including the
+            warranties of merchantability and fitness for a particular purpose, nor assumes any
+            legal liability or responsibility for the accuracy, reliability, completeness or utility
+            of these geospatial data, or for the improper or incorrect use of these geospatial data.
+            These geospatial data and related maps or graphics are not legal documents and are not
+            intended to be used as such. The data and maps may not be used to determine title,
+            ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that
+            may be in place on either public or private land. Natural hazards may or may not be
+            depicted on the data and maps, and land users should exercise due caution. The data are
+            dynamic and may change over time. The user is responsible to verify the limitations of
+            the geospatial data and to use the data accordingly.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <city>Washington</city>
+          <state>DC</state>
+          <postal>20250</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>Please send an e-mail to the address below.</cntvoice>
+        <cntemail>SM.FS.data@usda.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>USDA Office of Sustainability and Climate and the Rocky Mountain Research
+            Station</datacred>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.5.1.7333</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>No formal attribute accuracy tests were conducted.</attraccr>
+    </attracc>
+    <logic/>
+    <complete>Data is complete as of publication.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>Horizontal accuracy is variable.</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>Daily temperature and humidity data were downloaded as netCDF files from MACAv2METDATA (http://thredds.northwestknowledge.net:8080/thredds/reacch_climate_CMIP5_macav2_catalog2.html) for each of 20 general circulation models (GCMs). R scripts were used to a) download the data, b) open each netCDF file, then for each year: calculate the average daily temperature and average daily relative humidity from the daily minimum and maximum values for each of these, c) use these values to calculate the daily temperature-humidity index (THI), defined as 0.8 × Tair + RH × (Tair - 14.4) + 46.4, d) use these values to calculate the heat stress index (HSI), defined as the number of days per year with a THI greater than 74, the threshold value to trigger a heat stress alert for beef cattle e) calculate the annual average HSI using all years of the future time period, f) average the values for all 20 models, and g) export these results as a raster. For more information about these methods, see Reeves and Bagne 2016: https://www.fs.fed.us/rm/pubs/rmrs_gtr343.pdf.</procdesc>
+        <procdate>2019</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Raster</direct>
+    <rastinfo>
+      <rasttype>Pixel</rasttype>
+      <rowcount>585</rowcount>
+      <colcount>1386</colcount>
+    </rastinfo>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>8.983152841195215e-009</latres>
+        <longres>8.983152841195215e-009</longres>
+        <geogunit>Decimal Degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>D WGS 1984</horizdn>
+        <ellips>WGS 1984</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257223563</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Raster</enttypl>
+        <enttypd>A spatial data model that defines space as an array of equally sized cells
+                    arranged in rows and columns, and composed of single or multiple bands. Each
+                    cell contains an attribute value and location coordinates. Unlike a vector
+                    structure, which stores coordinates explicitly, raster coordinates are contained
+                    in the ordering of the matrix. Groups of cells that share the same value
+                    represent the same type of geographic feature.</enttypd>
+        <enttypds>Esri GIS Dictionary</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Value</attrlabl>
+        <attrdef>Heat stress index: the average number of days per year when the temperature-humidity index exceeds the recommended threshold for beef cattle</attrdef>
+        <attrdefs>U.S. Forest Service</attrdefs>
+        <attrdomv>
+          <udom>Number of days</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <city>Washington</city>
+          <state>DC</state>
+          <postal>20250</postal>
+        </cntaddr>
+        <cntvoice>Please send an e-mail to the address below.</cntvoice>
+        <cntemail>SM.FS.data@usda.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any
+            liability or responsibility for the accuracy, reliability, completeness, or utility of
+            these geospatial data or for the improper or incorrect use of those data. The data are
+            dynamic and may change over time. The user is responsible for verifying the limitations
+            of the geospatial data and for using the data accordingly.</distliab>
+  </distinfo>
+  <metainfo>
+    <metd>20191101</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <city>Washington</city>
+          <state>DC</state>
+          <postal>20250</postal>
+        </cntaddr>
+        <cntvoice>Please send an e-mail to the address below.</cntvoice>
+        <cntemail>SM.FS.data@usda.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>
