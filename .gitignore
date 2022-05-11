@@ -3,6 +3,7 @@ data/raw/DEM/
 data/raw/nrcs_mlra/
 data/raw/ssurgo/
 data/raw/UFO_ESD/
+data/raw/prism/
 data/processed/
 data/raw/UFO_dem_10m.tif
 data/processed/ssurgo.*
