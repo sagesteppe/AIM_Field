@@ -291,6 +291,8 @@ from_plot <- shortestPath(Conductance, point, parking, output="SpatialLines")
 
 ```{r}
 
+dem <- terra:project(dem, 29612)
+
 perspective_routes <- function(target_pts, roads, dem, search_dist, public_lands, utm){
   
   # this function will identify 5 positions (including the shortest distance)
@@ -300,7 +302,7 @@ perspective_routes <- function(target_pts, roads, dem, search_dist, public_lands
   
   # target_pts: AIM points as sf objects
   # roads: a road layer, such as TIGER, as multi-linestring
-  # dem: a digital elevation model, ideally in meters (conversion will occur in process)
+  # dem: a digital elevation model, in meters (we recommend terra for projecting)
   # search_dist: radii from which to search for a route from 'roads' to 'target_pts'
   # public_lands: a vector dataset of public land owernship, can you only travel on these?
   # utm: a local utm coordinate system for use. 

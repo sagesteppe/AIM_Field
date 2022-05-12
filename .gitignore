@@ -4,6 +4,7 @@ data/raw/nrcs_mlra/
 data/raw/ssurgo/
 data/raw/UFO_ESD/
 data/raw/prism/
+data/raw/FrostFreeDays/
 data/processed/
 data/raw/UFO_dem_10m.tif
 data/processed/ssurgo.*
