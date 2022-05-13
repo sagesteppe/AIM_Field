@@ -12,8 +12,10 @@ library(tidyverse)
 library(here)
 library(FedData)
 library(sf)
+library(raster) # needed for gdistance
 library(terra)
 library(whitebox)
+library(gdistance)
 #set_here('..')
 ```
 
@@ -235,8 +237,6 @@ ggplot(pts) +
 
 
 ```{r gdistance example}
-library(raster)
-library(gdistance)
 r <- raster(system.file("external/maungawhau.grd", package="gdistance"))
 
 altDiff <- function(x){x[2] - x[1]}
@@ -258,18 +258,12 @@ lines(AtoB, col="red", lwd=2)
 lines(BtoA, col="blue")
 text(A[1] - 10, A[2] - 10, "A")
 text(B[1] + 10, B[2] + 10, "B")
+
+rm(altDiff, hd, slope, adk, speed, Conductance, A, B, AtoB, BtoA)
 ```
 
 ```{r worked examples}
-park2point <- np_linestrings %>% 
-  st_cast('MULTIPOINT') %>% 
-  st_as_sf() %>% 
-  st_cast('POINT') %>% 
-  mutate(location = rep(c('point', 'parking'), times = length(np_linestrings)), .before = 1) %>% 
-  mutate(plot_id = rep(pts$plot_id, each = 2), .before = 1) %>% 
-  rename('geometry' = x)
 
-dem <- raster::raster(paste0(here(), '/data/processed/', "UFO_dem_10_smooth.tif"))
 
 altDiff <- function(x){x[2] - x[1]}
 hd <- transition(dem, altDiff, 16, symm=FALSE)
@@ -290,10 +284,19 @@ from_plot <- shortestPath(Conductance, point, parking, output="SpatialLines")
 ```
 
 ```{r}
+p1 <- paste0(here(), '/data/raw/', 
+       list.files(paste0(here(), '/data/raw/'), pattern = 'PADUS'), "/")
+PAD <- st_read(paste0(p1, list.files(p1, pattern = 'Fee.*\\.shp$')), quiet = T)
+PAD_valid <- PAD %>% st_is_valid()
+PAD[which(PAD_valid %in% F),] <- st_make_valid(PAD[which(PAD_valid %in% F),])
 
-dem <- terra:project(dem, 29612)
+dem <- rast(paste0(here(), '/data/processed/', "UFO_dem_10_smooth.tif"))
+# dem <- terra::project(dem, "epsg:26912")
+# writeRaster(dem, paste0(here(), '/data/processed/', "UFO_dem_10_smooth_UTM.tif"))
 
-perspective_routes <- function(target_pts, roads, dem, search_dist, public_lands, utm){
+park2point <- nearestPt2points(np_linestrings, pts$plot_id)
+
+perspective_routes <- function(target_pts, roads, dem, search_dist, public_lands, road_segments){
   
   # this function will identify 5 positions (including the shortest distance)
   # from a road to an AIM point. Each of these 5 points will have the least cost
@@ -302,29 +305,102 @@ perspective_routes <- function(target_pts, roads, dem, search_dist, public_lands
   
   # target_pts: AIM points as sf objects
   # roads: a road layer, such as TIGER, as multi-linestring
-  # dem: a digital elevation model, in meters (we recommend terra for projecting)
+  # dem: a digital elevation model, in meters ala UTM (we recommend terra for projecting)
   # search_dist: radii from which to search for a route from 'roads' to 'target_pts'
-  # public_lands: a vector dataset of public land owernship, can you only travel on these?
-  # utm: a local utm coordinate system for use. 
+  # public_lands: a vector dataset of public land owernship, can you only travel on these
+  # road_segments: distance by which to 'chop up' a road so that multiple segments can be 
+  # used for starting points, in meters.
+  
+  # helper functions:
+  closest <- function(target, access){
+    
+    access <- st_transform(access, st_crs(target))
+    distances <- st_distance(target, access)
+    closest <- access[head(order(distances), 5), ]
+    closest <- tibble('plot_id' = target$plot_id[1], closest)
+
+  }
+  # project all data to the crs of the digital elevation model
+  pts <- st_transform(target_pts, crs(dem))
+  roads <- st_transform(roads, crs(dem))
+  public_lands <- st_transform(public_lands, crs(dem)) %>% 
+    dplyr::select(geometry)
   
   # REDUCE EXTENT OF ANALYSIS TO STUDY AREAS 
+  search_window <- st_buffer(pts, search_dist) %>% 
+    dplyr::select(geometry)
   
-  pts <- st_transform(target_pts, utm)
-  search_window <- st_buffer(pts, search_dist)
-  
-  roads <- st_transform(roads, utm)
   road_subset <- st_intersection(search_window, roads)
-  road_susbet <- st_segmentize(road_subset, dfMaxLength = 400)
+  road_subset <- st_intersection(public_lands, road_subset)
   
-  # identify the 5 nearest road segments
+  # SPLIT ROADS INTO PIECES AND SELECT THOSE OF 1/8 ~ 1/4 MI
+  road_subset <- rmapshaper::ms_simplify(road_subset, keep = 0.05) %>% 
+    summarize(geometry = st_union(geometry))
+  road_subset <- st_segmentize(road_subset, dfMaxLength = 400) 
+  road_subset <- nngeo::st_segments(road_subset, progress = F)
   
-  nearest_segment_1 <- st_nearest_feature(target_pts, roads)
-  closest_segment_1 <- cnty_rds[nearest_segment_1,]
-  distances <- st_distance(pts, cnty_rds[res,], by_element = TRUE)
-  np_linestrings <- st_nearest_points(pts, closest_rds, pairwise = TRUE)
+  road_subset_length <- st_length(road_subset)
+  road_subset <- road_subset[as.numeric(road_subset_length) > 250,]
+  
+  # identify up to the 5 nearest road segments
+  pts_split <- split(pts, ~ pts$plot_id)
+  rds <- bind_rows(lapply(pts_split, closest, access = road_subset)) %>% st_as_sf()
+  
+  recip_point <- rds %>% 
+    dplyr::select(plot_id) %>% 
+    st_drop_geometry()
+  pts1 <- pts %>% 
+    dplyr::select(plot_id) %>% 
+    right_join(., recip_point)
 
+  # return the nearest points along the road segments
+  np_linestrings <- st_nearest_points(pts1, rds, pairwise = TRUE)
+  resin <- nearestPt2points(np_linestrings, pts1$plot_id) %>% 
+    distinct()
+
+  return(resin)
 }
 
+
+ouro <- perspective_routes(target_pts = pts, roads = cnty_rds, dem = dem, 
+                   search_dist = 4828, public_lands = PAD, road_segments = 400)
+
+
+
+### testy why so slow
+
+search_window <- st_buffer(pts, 4828) %>% 
+  dplyr::select(geometry)
+PAD1 <- st_transform(PAD, st_crs(road_subset))
+
+road_subset <- st_intersection(search_window, cnty_rds)
+road_subset <- st_intersection(PAD1, road_subset)
+road_subset <- rmapshaper::ms_simplify(road_subset, keep = 0.05) %>% 
+    summarize(geometry = st_union(geometry))
+road_subset <- st_segmentize(road_subset, dfMaxLength = 400) 
+road_subset <- nngeo::st_segments(road_subset, progress = F)
+  
+str(road_subset)
+  
+  pts_split <- split(pts, ~ pts$plot_id)
+  rds <- bind_rows(lapply(pts_split, closest, access = road_subset)) %>% 
+    st_as_sf()
+  
+recip_point <- rds %>% 
+  dplyr::select(plot_id) %>% 
+  st_drop_geometry()
+  
+pts1 <- pts %>% 
+  dplyr::select(plot_id) %>% 
+  right_join(., recip_point)
+
+np_linestrings <- st_nearest_points(pts1, rds, pairwise = TRUE)
+
+resin <- nearestPt2points(np_linestrings, pts1$plot_id) %>% 
+  distinct()
+
+ggplot(resin) +
+  geom_sf(aes(colour = location))
 
 
 ```

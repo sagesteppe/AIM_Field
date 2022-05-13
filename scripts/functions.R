@@ -363,3 +363,30 @@ collapse_rows_df <- function(df, variable){
     mutate(!!quo_name(group_var) := ifelse(groupRow == 1, as.character(!! group_var), "")) %>%
     select(-c(groupRow))
 }
+
+
+########################################
+####        nearestPt2points        #### 
+########################################
+
+nearestPt2points <- function(linestrings, ID){
+  # converts the LINESTRING output of the 'st_nearest_points' function from sf
+  # into individual POINT geometries with origin and destination ('parking', 'point')
+  # appended to them as well as sample id information
+  
+  # inputs:
+  # linestrings: unmodified st_nearest_points output; as the crow flies distance.
+  # ID: a dataframe and column in form df$col containing an ID column in the same 
+  # order as the linestrings were generated. 
+  
+  park2point <- linestrings %>% 
+    st_cast('MULTIPOINT') %>% 
+    st_as_sf() %>% 
+    st_cast('POINT') %>% 
+    mutate(location = rep(c('point', 'parking'), times = length(np_linestrings)), .before = 1) %>% 
+    mutate(plot_id = rep(ID, each = 2), .before = 1) %>% 
+    rename('geometry' = x)
+  
+  return(park2point)
+  
+}
