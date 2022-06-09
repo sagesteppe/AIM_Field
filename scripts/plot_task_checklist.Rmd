@@ -1,0 +1,47 @@
+---
+title: "Plot Task Checklist"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+
+```{r, echo = F, warning =FALSE}
+checklist_info <- read.csv(paste0(here::here(), '/data/raw/plot_task_checklist.csv'), 
+                           fileEncoding="UTF-8-BOM")
+plots <- read.csv(paste0(here::here(), '/data/raw/plot_names.csv'), 
+                           fileEncoding="UTF-8-BOM")
+plots <- plots[plots$point_status == 'Yes',1]
+plot_checklist <- function(plots, checklist_items){
+  
+  # A function to create a quick document for checking off what attributes
+  # you have collected at the plot
+  # Inputs:
+  # plots = a vector of plots, optionally with a column determining whether 
+  # there are over samples or not.
+  # checklist_items = a data frame (perhaps made by you containing the AIM attributes
+  # that your crew collects.)
+  
+  checklist <- data.frame(cbind(
+    'plot' = unlist(rep(plots, each = nrow(checklist_items))),
+    'attribute' = unlist(rep(checklist_items, times = length(plots))),
+    'collected' = '        ',
+    'qc' = '       ',
+    'submission'= '       ',
+    'notes' = '       '
+  ))
+  
+ # checklist <- checklist[order(checklist$plot,checklist$attribute),]
+  #rownames(checklist) <- NULL
+  
+}
+
+finalized_checklists <- plot_checklist(plots = plots, checklist_items = checklist_info)
+rownames(finalized_checklists) <- NULL
+kableExtra::kable(finalized_checklists, "latex", booktabs = TRUE, longtable = TRUE, 
+                    caption = "Plot Data Checklist 2022 UFO AIM") |>
+  kableExtra::group_rows('plots', plots) |>
+  kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header")) 
+rm(checklist_info, plots, plot_checklist)
+```
