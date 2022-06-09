@@ -14,4 +14,5 @@ data/processed/UFO_dem_10_smooth.tif
 data/processed/UFO_geomorphons-10m.tif
 data/processed/UFO_slope_deg.tif
 data/processed/UFO_topo_roughness.tif
+scripts/.RData
 
