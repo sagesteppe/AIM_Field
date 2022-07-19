@@ -48,7 +48,8 @@ mlra <- st_read(paste0(here(), '/data/raw/nrcs_mlra/',
   list.files(paste0(here(), '/data/raw/nrcs_mlra'), pattern = '.shp$')), 
   quiet = T)
 
-head(blm_admnu[,c(2,7)]) %>% st_drop_geometry()
+head(blm_admnu[,c(2,7)]) %>% 
+  st_drop_geometry()
 ```
 
 I work in the Uncompahgre field office, hence I will filter for that administrative name ('ADMU_NAME'). An alternative it to filter by the District office ('PARENT_NAME'), for example the 'Southwest District Office'; note both of these are in all caps. 

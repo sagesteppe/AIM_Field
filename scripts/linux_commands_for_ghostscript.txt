@@ -1,0 +1,35 @@
+# from withinthe folder which you have downloaded the esds to, perform the following commands. 
+
+mkdir processed
+touch reduce_esd_dpi.sh
+
+# you can copy this into the newly created file.  Note you should be sure to change the number of threads to what your computer can support. 
+
+#!/bin/bash
+for f in *.pdf
+do
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH   -sOutputFile=processed/$f $f
+done
+
+# and run the following in the terminal 
+bash reduce_esd_dpi.sh
+
+
+
+
+
+
+
+
+
+#!/bin/bash
+for f in *.pdf
+do
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dNumRenderingThreads=16  -dBandBufferSpace=500000000  -c 30000000 setvmthreshold -f -dBufferSpace=1000000000 -dBATCH -sOutputFile=processed/$f $f
+done
+
+
+
+
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
+-dNOPAUSE -dQUIET -dBATCH -sOutputFile=processed/R034BY002UT - alkali_bottom_alkali_sacaton.pdf R034BY002UT - alkali_bottom_alkali_sacaton.pdf

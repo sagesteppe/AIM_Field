@@ -1,0 +1,65 @@
+---
+title: "MLRA"
+author: "steppe"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+```{r Load Libraries, echo = F, warning = F, message = F}
+library(tidyverse)
+library(here)
+library(sf)
+```
+
+
+```{r Import Data, message = F, echo = F}
+
+mlra <- st_read(paste0(here(), '/data/raw/nrcs_mlra/',
+  list.files(paste0(here(), '/data/raw/nrcs_mlra'), pattern = '.shp$')), 
+  quiet = T) %>%  dplyr::select('MLRARSYM','MLRA_NAME')
+plots <- st_read(paste0(here(), '/data/raw/AIM_Points_2022.shp'), quiet = T) %>% 
+  st_transform(st_crs(mlra))
+```
+
+
+```{r subset mlra dataset, echo = F, warning=F, fig.align="center"}
+mlra_lookup <- st_intersects(plots, mlra, sparse = T)
+mlra <- mlra[unique(unlist(mlra_lookup)),]
+
+pbb <- st_bbox(plots)
+
+plots <- plots %>% 
+  mutate(stratum = str_remove(plot_id, '-[0-9]+'))
+
+ggplot() +
+  geom_sf(data = mlra, aes(fill = MLRARSYM), alpha = 0.4) +
+  geom_sf(data = plots, aes(color = stratum), size = 3, pch = 18) +
+  coord_sf(xlim = c(pbb[1],pbb[3]), ylim = c(pbb[2],pbb[4])) +
+  labs(fill = "MLRA: ", color = 'Stratum: ', title = "Major Land Resource Area") +
+  theme_void() + 
+  theme(plot.title = element_text(hjust = 0.5),
+        legend.title.align=0.5)  +
+  scale_fill_manual(values= c('cadetblue2', 'chocolate3', 'mediumpurple3'))
+
+rm(mlra_lookup, pbb)
+```
+
+
+\newpage 
+
+```{r create table, echo = F, warning = F}
+
+st_intersection(plots, mlra) %>% 
+  st_drop_geometry() %>% 
+  dplyr::select('plot_id','MLRARSYM','MLRA_NAME') %>% 
+  arrange(plot_id) %>% 
+  kableExtra::kable(., "latex", booktabs = TRUE, longtable = TRUE, 
+                    caption = "Ecological Sites Descriptions 2022 UFO AIM", 
+                    col.names = c('Plot ID', 'MLRA Symbol', 'MLRA Name')) %>%
+  kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header")) 
+
+rm(plots, mlra)
+```
+

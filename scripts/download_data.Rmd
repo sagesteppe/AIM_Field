@@ -12,9 +12,11 @@ library(tidyverse)
 library(here)
 library(FedData)
 library(sf)
+library(raster) # needed for gdistance
 library(terra)
 library(whitebox)
-#set_here('..')
+library(gdistance)
+source(here::here('scripts/functions.R'))
 ```
 
 ```{r Read in and Subset BLM field offices}
@@ -98,7 +100,7 @@ terrain(dem, v = 'TRI', neighbors = 8, unit = 'degrees',
 ```
 
 Points with greater than 26.57 degrees (slopes of 50*) are office rejections.
-```{r Read in Slope degree raster}
+```{r Read in Slope degree raster, eval = F}
 degrees<- rast(paste0(here(), '/data/processed/UFO_slope.tif'))
 plot(degrees)
 #aspect<- rast(paste0(here(), '/data/processed/UFO_aspect.tif'))
@@ -153,7 +155,7 @@ john_tigger <- function(x) {
 }
 ```
 
-```{r Pull in Road Data, warning = F}
+```{r Pull in Road Data, warning = F, eval = F}
 counties_filt <- tigris::counties(state = c('CO', 'UT'))
 counties <- st_join(counties_filt, st_as_sf(FO), join = st_intersects, left = F)
 
@@ -190,51 +192,105 @@ rm(lst_result, john_tigger, FO_ch_15mi, counties_filt, inter)
 ```
 
 
-```{r Reduce Road Data to remove disconnected roads}
-
-cnty_rds <- st_read(paste0(here(), '/data/processed/UFO_roads.shp'), quiet =T)
-
-
-#touching <- st_touches(cnty_rds)
-#v <- touching[1:length(touching)] != "integer(0)"
-#touching <- cnty_rds[v,]
-
-cnty_rds_union <- st_as_sf(cnty_rds_union)
-
-ggplot() +
-  geom_sf(data = st_as_sf(FO), fill = 'blue', alpha = 0.5) +
-  geom_sf(data = cnty_rds, alpha = 0.7) +
-  geom_sf(data = touching, color = 'red') +
-  theme_bw()
-
-
-```
-
-
 ### Load 
 
 ### Locate most proximal road access to Points
 
-```{r Find most proximal points to road}
-pts <- st_read(paste0(here(), '/data/raw/AIM_Points_2022.shp')) %>% 
-  st_transform(26912)
-cnty_rds <- st_transform(cnty_rds, 26912) %>% 
-  group_by(FULLNAME) %>% 
-  summarize(geometry = st_union(geometry))
+Here we find the 5 segments of road which are most close to the point. This is to buffer against having to hike up and down a canyon.
+```{r lcoate positions on most proximal stretches of road}
+p1 <- paste0(here(), '/data/raw/', 
+       list.files(paste0(here(), '/data/raw/'), pattern = 'PADUS'), "/")
+PAD <- st_read(paste0(p1, list.files(p1, pattern = 'Fee.*\\.shp$')), quiet = T)
+PAD_valid <- PAD %>% st_is_valid()
+PAD[which(PAD_valid %in% F),] <- st_make_valid(PAD[which(PAD_valid %in% F),])
 
-res <- st_nearest_feature(pts, cnty_rds)
-closest_rds <- cnty_rds[res,]
-distances <- st_distance(pts, cnty_rds[res,], by_element = TRUE)
+aim_pts<- st_read(paste0(here(), '/data/raw/AIM_Points_2022.shp'), quiet = T)
+cnty_rds <- st_read(paste0(here(), '/data/processed/UFO_roads.shp'), quiet =T)
+# dem <- terra::project(dem, "epsg:26912")
+#writeRaster(dem, paste0(here(), '/data/processed/', "UFO_dem_10_smooth_UTM.tif"))
+dem <- rast(paste0(here(), '/data/processed/', "UFO_dem_10_smooth_UTM.tif"))
 
-np_linestrings <- st_nearest_points(pts, closest_rds, pairwise = TRUE)
 
-ggplot(pts) +
-  geom_sf() +
-  geom_sf(data = closest_rds) +
-  geom_sf(data = np_linestrings, color = 'red')
+road_parking <- perspective_routes(target_pts = aim_pts, roads = cnty_rds, dem = dem, 
+                           search_dist = 4828, public_lands = PAD, road_segments = 400)
 
+
+ggplot(road_parking) +
+  geom_sf(aes(colour = location))
+
+rm(perspective_routes, closest, nearestPt2points, p1, cnty_rds, FO, PAD_valid)
 ```
 
 ### Determine whether these roads follow public access or cross private without right of way
 
 
+```{r gdistance example, eval = F}
+r <- raster(system.file("external/maungawhau.grd", package="gdistance"))
+
+altDiff <- function(x){x[2] - x[1]}
+hd <- transition(r, altDiff, 16, symm=FALSE)
+slope <- geoCorrection(hd)
+adj <- adjacent(r, cells=1:ncell(r), pairs=TRUE, directions=16)
+speed <- slope
+speed[adj] <- 6 * exp(-3.5 * abs(slope[adj] + 0.05))
+Conductance <- geoCorrection(speed) 
+
+A <- c(2667670, 6479000)
+B <- c(2667800, 6479400)
+AtoB <- shortestPath(Conductance, A, B, output="SpatialLines")
+BtoA <- shortestPath(Conductance, B, A, output="SpatialLines")
+
+plot(r, xlab="x coordinate (m)", ylab="y coordinate (m)",
+     legend.lab="Altitude (masl)")
+lines(AtoB, col="red", lwd=2)
+lines(BtoA, col="blue")
+text(A[1] - 10, A[2] - 10, "A")
+text(B[1] + 10, B[2] + 10, "B")
+
+rm(altDiff, hd, slope, adk, speed, Conductance, A, B, AtoB, BtoA)
+```
+
+
+
+```{r worked examples}
+
+# EXAMPLE PROCESS
+ext1 <- road_parking %>% 
+  filter(plot_id == 'AS-012') %>% 
+  ext(.) %>% 
+  as.polygons()              
+empty1 <- terra::mask(dem, ext1, inverse = T)
+
+
+# ACTUALY PROCESS
+empty_raster <- rast(dem)
+empty_raster <- crop(empty_raster, ext(crop_ext))
+values(empty_raster) <- 1
+
+areas <- road_parking %>% 
+  st_buffer(250) %>% 
+  split(., .$plot_id)
+extents <- lapply((lapply(areas, ext)), as.polygons)
+
+empty1 <- mapply(FUN = mask, empty, extents, inverse = T)
+
+plot(empty1)
+
+
+altDiff <- function(x){x[2] - x[1]}
+hd <- transition(dem, altDiff, 16, symm=FALSE)
+slope <- geoCorrection(hd)
+adj <- adjacent(dem, cells=1:ncell(r), pairs=TRUE, directions=16)
+speed <- slope
+speed[adj] <- 6 * exp(-3.5 * abs(slope[adj] + 0.05))
+Conductance <- geoCorrection(speed) 
+
+parking <- park2point %>% 
+  filter(location == 'parking')
+point <- park2point %>% 
+  filter(location == 'point') 
+
+to_plot <- shortestPath(Conductance, parking, point, output="SpatialLines")
+from_plot <- shortestPath(Conductance, point, parking, output="SpatialLines")
+
+```

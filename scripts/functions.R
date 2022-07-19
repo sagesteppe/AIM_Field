@@ -363,3 +363,103 @@ collapse_rows_df <- function(df, variable){
     mutate(!!quo_name(group_var) := ifelse(groupRow == 1, as.character(!! group_var), "")) %>%
     select(-c(groupRow))
 }
+
+
+########################################
+####        nearestPt2points        #### 
+########################################
+
+nearestPt2points <- function(linestrings, ID){
+  # converts the LINESTRING output of the 'st_nearest_points' function from sf
+  # into individual POINT geometries with origin and destination ('parking', 'point')
+  # appended to them as well as sample id information
+  
+  # inputs:
+  # linestrings: unmodified st_nearest_points output; as the crow flies distance.
+  # ID: a dataframe and column in form df$col containing an ID column in the same 
+  # order as the linestrings were generated. 
+  
+  park2point <- linestrings %>% 
+    st_cast('MULTIPOINT') %>% 
+    st_as_sf() %>% 
+    st_cast('POINT') %>% 
+    mutate(location = rep(c('point', 'parking'), times = length(linestrings)), .before = 1) %>% 
+    mutate(plot_id = rep(ID, each = 2), .before = 1) %>% 
+    rename('geometry' = x)
+  
+  return(park2point)
+  
+}
+
+##########################################
+###             closest                ###
+##########################################
+# helper functions:
+closest <- function(target, access){
+  
+  access <- st_transform(access, st_crs(target))
+  distances <- st_distance(target, access)
+  closest <- access[head(order(distances), 5), ]
+  closest <- tibble('plot_id' = target$plot_id[1], closest)
+  
+}
+
+########################################
+###        perspective_routes        ###
+########################################
+
+perspective_routes <- function(target_pts, roads, dem, search_dist, public_lands, road_segments){
+  
+  # this function will identify 5 positions (including the shortest distance)
+  # from a road to an AIM point. Each of these 5 points will have the least cost
+  # distance 'as the wolf runs' from them to the AIM point calculated. The top
+  # 3 possible routes will be returned.
+  
+  # target_pts: AIM points as sf objects
+  # roads: a road layer, such as TIGER, as multi-linestring
+  # dem: a digital elevation model, in meters ala UTM (we recommend terra for projecting)
+  # search_dist: radii from which to search for a route from 'roads' to 'target_pts'
+  # public_lands: a vector dataset of public land owernship, can you only travel on these
+  # road_segments: distance by which to 'chop up' a road so that multiple segments can be 
+  # used for starting points, in meters.
+  
+  # project all data to the crs of the digital elevation model
+  pts <- st_transform(target_pts, crs(dem))
+  roads <- st_transform(roads, crs(dem))
+  public_lands <- st_transform(public_lands, crs(dem)) %>% 
+    dplyr::select(geometry)
+  
+  # REDUCE EXTENT OF ANALYSIS TO STUDY AREAS 
+  search_window <- st_buffer(pts, search_dist) %>% 
+    dplyr::select(geometry)
+  
+  road_subset <- st_intersection(search_window, roads)
+  road_subset <- st_intersection(public_lands, road_subset)
+  
+  # SPLIT ROADS INTO PIECES AND SELECT THOSE OF 1/8 ~ 1/4 MI
+  road_subset <- rmapshaper::ms_simplify(road_subset, keep = 0.05) %>% 
+    summarize(geometry = st_union(geometry))
+  road_subset <- st_segmentize(road_subset, dfMaxLength = road_segments) 
+  road_subset <- nngeo::st_segments(road_subset, progress = F)
+  
+  road_subset_length <- st_length(road_subset)
+  road_subset <- road_subset[as.numeric(road_subset_length) > 120,]
+  
+  pts_split <- split(pts, ~ pts$plot_id)
+  rds <- bind_rows(lapply(pts_split, closest, access = road_subset)) %>% 
+    st_as_sf()
+  
+  recip_point <- rds %>% 
+    dplyr::select(plot_id) %>% 
+    st_drop_geometry()
+  
+  pts1 <- pts %>% 
+    dplyr::select(plot_id) %>% 
+    right_join(., recip_point)
+  
+  np_linestrings <- st_nearest_points(pts1, rds, pairwise = TRUE)
+  
+  resin <- nearestPt2points(np_linestrings, pts1$plot_id) %>% 
+    distinct()
+  return(resin)
+}
